@@ -1,0 +1,14 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Zip files
+*.zip
+
+# Documentation (optional - can include if you want)
+# README.md
