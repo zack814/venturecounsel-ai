@@ -3,108 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VentureCounsel.AI | Institutional Venture Counsel on Demand</title>
+    <title>VentureCounsel.AI | AI Venture Counsel for Founders</title>
+    <meta name="description" content="AI-powered venture counsel that drafts real contracts, spots hidden risks, and delivers actionable guidance—not generic explanations.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .selection-bg::selection { background-color: #1e3a8a; color: white; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Inter', -apple-system, system-ui, sans-serif; }
     </style>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-900 selection-bg">
+<body class="antialiased bg-white text-slate-900">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
-                        <i data-lucide="scale" class="w-6 h-6 text-white"></i>
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#top" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-blue-900 rounded-md flex items-center justify-center group-hover:bg-blue-800 transition-colors">
+                        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
                     </div>
-                    <span class="font-bold text-xl tracking-tight text-slate-900">VentureCounsel<span class="text-blue-700">.AI</span></span>
-                </div>
+                    <span class="font-bold text-lg">VentureCounsel<span class="text-blue-900">.AI</span></span>
+                </a>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#capabilities" class="text-slate-600 hover:text-blue-800 transition-colors font-medium text-sm uppercase tracking-wide">Capabilities</a>
-                    <a href="#difference" class="text-slate-600 hover:text-blue-800 transition-colors font-medium text-sm uppercase tracking-wide">The Difference</a>
-                    <a href="#who-its-for" class="text-slate-600 hover:text-blue-800 transition-colors font-medium text-sm uppercase tracking-wide">For Whom</a>
-                    <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" class="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2.5 rounded-md font-medium transition-all flex items-center gap-2">
-                        Launch GPT <i data-lucide="external-link" class="w-4 h-4"></i>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#problem" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">The Problem</a>
+                    <a href="#difference" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">How It Works</a>
+                    <a href="#examples" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">See Examples</a>
+                    <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md">
+                        Try It Now
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
                     </a>
                 </div>
 
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-slate-600">
-                        <i data-lucide="menu" class="h-6 w-6"></i>
-                    </button>
-                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
-        </div>
-        <!-- Mobile Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-6 space-y-4 shadow-xl">
-            <a href="#capabilities" class="block text-slate-800 font-medium">Capabilities</a>
-            <a href="#difference" class="block text-slate-800 font-medium">The Difference</a>
-            <a href="#who-its-for" class="block text-slate-800 font-medium">For Whom</a>
-            <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" class="block bg-blue-900 text-white p-3 rounded text-center">Launch GPT</a>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#problem" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">The Problem</a>
+                <a href="#difference" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">How It Works</a>
+                <a href="#examples" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">See Examples</a>
+                <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="block px-3 py-2 bg-blue-900 text-white text-center rounded-md font-semibold text-sm">
+                    Try It Now →
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 lg:pt-40 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-widest mb-6 border border-slate-200">
-                <span class="w-2 h-2 rounded-full bg-blue-600"></span> Transaction Ready
+    <section id="top" class="pt-24 pb-16 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full mb-6">
+                <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                <span class="text-blue-900 font-semibold text-xs uppercase tracking-wide">For Startup Founders</span>
             </div>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">
-                Institutional-quality venture counsel, <span class="text-blue-900 underline decoration-blue-200 decoration-4 underline-offset-4">on demand.</span>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-[1.1]">
+                Legal counsel that doesn't<br class="hidden sm:inline"> waste your time with<br class="hidden sm:inline"> <span class="text-blue-900 relative">
+                    generic advice
+                    <svg class="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 300 8" preserveAspectRatio="none">
+                        <path d="M0,4 Q75,8 150,4 T300,4" stroke="#3b82f6" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </span>
             </h1>
-            <p class="text-xl text-slate-600 mb-10 max-w-3xl mx-auto">
-                Delivering the judgment, rigor, and deal realism of senior venture counsel—without the ambiguity or cost structure of traditional firms.
+
+            <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                VentureCounsel.AI drafts real contracts, spots hidden risks, and tells you exactly what to fix—like having a senior deal lawyer who's closed 100 rounds.
             </p>
-            <div class="flex justify-center">
-                <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" class="px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white rounded-md font-semibold text-lg shadow-lg flex items-center gap-2 transition-all">
-                    Consult VentureCounsel.AI <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
+                <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all text-lg w-full sm:w-auto justify-center">
+                    Try It Free Now
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+                <a href="#difference" class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 font-semibold rounded-lg border-2 border-slate-300 transition-all text-lg w-full sm:w-auto justify-center">
+                    See How It Works
                 </a>
             </div>
+            <p class="text-sm text-slate-500">Requires ChatGPT Plus · No credit card for trial</p>
         </div>
+    </section>
 
-        <!-- Comparison Demo -->
-        <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden">
-            <div class="bg-slate-50 border-b border-slate-200 p-4 flex items-center justify-between">
-                <div class="flex gap-2"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-amber-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
-                <div class="text-xs font-mono text-slate-400">Comparing Outputs</div>
+    <!-- Problem Section -->
+    <section id="problem" class="py-20 px-4 sm:px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    Most "legal AI" is basically a search engine
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    It explains concepts, summarizes documents, and tells you what's "standard"—but it doesn't <strong>do the work</strong>.
+                </p>
             </div>
-            <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
-                <!-- Left: Generic -->
-                <div class="p-8 bg-slate-50/50">
-                    <div class="flex items-center gap-2 mb-4 text-slate-500">
-                        <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                        <span class="font-semibold text-sm uppercase tracking-wide">Generic AI Model</span>
+
+            <!-- Problem Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl border border-slate-200">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
                     </div>
-                    <div class="opacity-70 space-y-4">
-                        <div class="p-4 bg-white rounded border border-slate-200 text-sm font-mono text-slate-600">User: Review this ROFR clause...</div>
-                        <p class="text-sm text-slate-800">"The clause looks generally standard. A ROFR allows the investor to buy shares before others. It is common to protect ownership percentage..."</p>
-                        <div class="text-xs text-red-500 italic mt-2">Result: Vague, descriptive, misses nuance.</div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Vague Feedback</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">"This ROFR clause is pretty standard for Series A deals..."</p>
+                    <p class="text-red-600 text-xs font-semibold mt-3">↑ Doesn't help you fix anything</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-slate-200">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">No Specifics</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">"You might want to consider negotiating the valuation cap..."</p>
+                    <p class="text-red-600 text-xs font-semibold mt-3">↑ What cap? Why? Compared to what?</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-slate-200">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Teaches, Doesn't Do</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">"Let me explain how anti-dilution provisions work..."</p>
+                    <p class="text-red-600 text-xs font-semibold mt-3">↑ You need the clause, not a lecture</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-900 text-white p-8 rounded-xl shadow-xl">
+                <p class="text-lg sm:text-xl font-semibold mb-2">What you actually need:</p>
+                <p class="text-blue-100 text-base sm:text-lg">
+                    "Your ROFR is missing the Major Investor threshold. Series A leads holding &gt;10% expect this. Insert it in Section 4.1(a) before the Excluded Securities carve-out. Here's the exact language..."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It's Different -->
+    <section id="difference" class="py-20 px-4 sm:px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    How VentureCounsel.AI is different
+                </h2>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Trained on real deal patterns, not generic legal concepts
+                </p>
+            </div>
+
+            <!-- Comparison -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Generic AI -->
+                <div class="bg-slate-50 p-8 rounded-xl border-2 border-slate-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-slate-300 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900">Generic Legal AI</h3>
+                    </div>
+                    <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2">
+                            <span class="text-red-500 font-bold">✕</span>
+                            <span>Explains what terms mean</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-red-500 font-bold">✕</span>
+                            <span>Says things are "standard"</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-red-500 font-bold">✕</span>
+                            <span>Gives you options to "consider"</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-red-500 font-bold">✕</span>
+                            <span>Produces draft language you have to fix</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-red-500 font-bold">✕</span>
+                            <span>Doesn't understand deal context</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- VentureCounsel.AI -->
+                <div class="bg-blue-50 p-8 rounded-xl border-2 border-blue-900 relative">
+                    <div class="absolute -top-3 right-4 bg-blue-900 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        WHAT YOU NEED
+                    </div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-blue-900">VentureCounsel.AI</h3>
+                    </div>
+                    <ul class="space-y-3 text-slate-900">
+                        <li class="flex gap-2">
+                            <span class="text-blue-600 font-bold">✓</span>
+                            <span><strong>Spots specific risks</strong> you'd miss</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-blue-600 font-bold">✓</span>
+                            <span><strong>References market norms</strong> (e.g., "Series A leads expect...")</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-blue-600 font-bold">✓</span>
+                            <span><strong>Tells you exactly what to do</strong> with section numbers</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-blue-600 font-bold">✓</span>
+                            <span><strong>Produces final-form language</strong> you can use immediately</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-blue-600 font-bold">✓</span>
+                            <span><strong>Understands deal dynamics</strong> and negotiation leverage</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Production-Ready Drafts</h4>
+                    <p class="text-sm text-slate-600">Send directly to investors</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Risk Detection</h4>
+                    <p class="text-sm text-slate-600">Flags what you'd miss</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Instant Redlines</h4>
+                    <p class="text-sm text-slate-600">With exact section numbers</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Market Standards</h4>
+                    <p class="text-sm text-slate-600">Based on 100s of deals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="py-20 px-4 sm:px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    See the difference in real scenarios
+                </h2>
+                <p class="text-xl text-slate-600">
+                    Actual outputs from VentureCounsel.AI
+                </p>
+            </div>
+
+            <!-- Example 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-slate-200">
+                <div class="bg-slate-900 text-white px-6 py-4">
+                    <p class="font-semibold">Scenario: Reviewing a SAFE from an angel investor</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="bg-blue-50 border-l-4 border-blue-900 p-4">
+                        <p class="font-semibold text-blue-900 mb-2">VentureCounsel.AI Output:</p>
+                        <div class="text-sm text-slate-800 space-y-2">
+                            <p><strong>Risk Flag:</strong> Missing pro-rata rights. This SAFE converts without giving you a seat at the next raise.</p>
+                            <p><strong>Market Check:</strong> Angels writing $50K+ typically expect pro-rata for at least one follow-on round.</p>
+                            <p><strong>Action:</strong> Add to Section 2(b): <em>"Investor shall have the right to participate in the Company's next equity financing up to Investor's pro-rata share based on the conversion of this instrument."</em></p>
+                            <p class="text-blue-900 font-semibold text-xs mt-3">↑ Specific, actionable, references market norms</p>
+                        </div>
                     </div>
                 </div>
-                <!-- Right: VentureCounsel -->
-                <div class="p-8 bg-white relative">
-                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">TAILORED OUTPUT</div>
-                    <div class="flex items-center gap-2 mb-4 text-blue-900">
-                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                        <span class="font-semibold text-sm uppercase tracking-wide">VentureCounsel.AI</span>
-                    </div>
-                    <div class="space-y-4 text-sm leading-relaxed">
-                        <div class="p-4 bg-blue-50/50 rounded border border-blue-100 font-mono text-slate-700">User: Review this ROFR clause...</div>
-                        <div class="border-l-2 border-blue-600 pl-4">
-                            <strong>Risk Flag:</strong> Missing standard carve-outs for Excluded Securities.<br>
-                            <strong>Market Check:</strong> Series A leads typically hold &gt;10% for secondary ROFR.<br>
-                            <strong>Action:</strong> Insert 'Major Investor' threshold and reference Art IV definitions.
+            </div>
+
+            <!-- Example 2 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-slate-200">
+                <div class="bg-slate-900 text-white px-6 py-4">
+                    <p class="font-semibold">Scenario: Drafting founder vesting terms</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="bg-blue-50 border-l-4 border-blue-900 p-4">
+                        <p class="font-semibold text-blue-900 mb-2">VentureCounsel.AI Output:</p>
+                        <div class="text-sm text-slate-800 space-y-2">
+                            <p><strong>Standard Structure:</strong> 4-year vest, 1-year cliff, monthly thereafter.</p>
+                            <p><strong>Hidden Issue:</strong> You need double-trigger acceleration for M&A. Without it, acquirer can fire you day 1 and you lose unvested equity.</p>
+                            <p><strong>Language to Add:</strong></p>
+                            <div class="bg-slate-100 p-3 rounded font-mono text-xs mt-2">
+                                "Upon a Change of Control, if Founder's service is terminated without Cause within 12 months following such transaction, 50% of then-unvested shares shall immediately vest."
+                            </div>
+                            <p class="text-blue-900 font-semibold text-xs mt-3">↑ Anticipates what you didn't know to ask</p>
                         </div>
-                        <div class="p-3 bg-slate-100 rounded border border-slate-200 font-mono text-xs">
-                            <span class="text-red-600 line-through">Section 4.1 Right of First Refusal.</span><br>
-                            <span class="text-green-700">Section 4.1 Major Investor Right of First Refusal...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+                <div class="bg-slate-900 text-white px-6 py-4">
+                    <p class="font-semibold">Scenario: Negotiating a term sheet valuation cap</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="bg-blue-50 border-l-4 border-blue-900 p-4">
+                        <p class="font-semibold text-blue-900 mb-2">VentureCounsel.AI Output:</p>
+                        <div class="text-sm text-slate-800 space-y-2">
+                            <p><strong>Your Position:</strong> Pre-revenue, $2M cap proposed.</p>
+                            <p><strong>Market Context:</strong> 2024 seed pre-revenue SaaS caps range $6M-$10M. Your $2M is bottom 10th percentile.</p>
+                            <p><strong>Negotiation Strategy:</strong></p>
+                            <ul class="list-disc list-inside space-y-1 ml-3">
+                                <li>Anchor at $8M citing market comps</li>
+                                <li>Floor at $5M (still gives them 3-4x on conversion)</li>
+                                <li>If they won't move, add MFN clause to next round</li>
+                            </ul>
+                            <p class="text-blue-900 font-semibold text-xs mt-3">↑ Contextual advice with negotiation strategy</p>
                         </div>
                     </div>
                 </div>
@@ -112,50 +377,238 @@
         </div>
     </section>
 
-    <!-- Capabilities -->
-    <section id="capabilities" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 lg:px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2">Consequential Transactions</h2>
-            <div class="h-1 w-20 bg-blue-900 mb-12"></div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6 bg-slate-50 rounded-lg">
-                    <i data-lucide="zap" class="text-blue-900 mb-4"></i>
-                    <h3 class="font-bold mb-2">Equity & Financing</h3>
-                    <p class="text-sm text-slate-600">SAFEs, preferred stock, and side letters drafted for cap-table clarity.</p>
+    <!-- What It Covers -->
+    <section id="capabilities" class="py-20 px-4 sm:px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    Built for the deals founders actually face
+                </h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        SAFEs & Convertible Notes
+                    </h3>
+                    <p class="text-sm text-slate-600">Valuation caps, discount rates, pro-rata rights, MFN clauses</p>
                 </div>
-                <div class="p-6 bg-slate-50 rounded-lg">
-                    <i data-lucide="lock" class="text-blue-900 mb-4"></i>
-                    <h3 class="font-bold mb-2">Token & Digital Assets</h3>
-                    <p class="text-sm text-slate-600">Regulatory-aware structuring for token warrants and SAFTs.</p>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Term Sheets
+                    </h3>
+                    <p class="text-sm text-slate-600">Liquidation preferences, board composition, protective provisions</p>
                 </div>
-                <div class="p-6 bg-slate-50 rounded-lg">
-                    <i data-lucide="shield" class="text-blue-900 mb-4"></i>
-                    <h3 class="font-bold mb-2">Corporate Governance</h3>
-                    <p class="text-sm text-slate-600">Board control and protective provisions that hold up under stress.</p>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Founder Agreements
+                    </h3>
+                    <p class="text-sm text-slate-600">Equity splits, vesting schedules, IP assignment, departure scenarios</p>
                 </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                        </svg>
+                        IP & Asset Transfers
+                    </h3>
+                    <p class="text-sm text-slate-600">Code assignments, open-source issues, residual rights, carve-outs</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        Investor Rights
+                    </h3>
+                    <p class="text-sm text-slate-600">ROFR, information rights, drag-along, registration rights</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        Commercial Contracts
+                    </h3>
+                    <p class="text-sm text-slate-600">SaaS agreements, partnership deals, services contracts, NDAs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                Stop paying $800/hr for generic AI could give you
+            </h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Get production-ready legal work in minutes. No learning curve. No vague advice.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 text-blue-900 font-bold rounded-lg shadow-xl transition-all text-lg w-full sm:w-auto justify-center">
+                    Try VentureCounsel.AI Free
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+            </div>
+            <p class="text-sm text-blue-200">Requires ChatGPT Plus ($20/mo) · Start using in 30 seconds</p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 px-4 sm:px-6 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Common questions</h2>
+
+            <div class="space-y-6">
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        Is this actually legal advice?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <p class="mt-4 text-slate-600 leading-relaxed">No. VentureCounsel.AI is a tool that helps you draft and understand contracts. It doesn't create an attorney-client relationship. For high-stakes deals, you should still have a real lawyer review. But for 80% of early-stage work, this gives you production-ready drafts that save you thousands in legal fees.</p>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        Do I need to know legal terminology?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <p class="mt-4 text-slate-600 leading-relaxed">Nope. Just describe your situation in plain English: "I'm raising $500K on a SAFE and the investor sent me this term sheet" or "I need a founder vesting agreement for 3 co-founders." It will guide you from there.</p>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        How is this different from ChatGPT?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <p class="mt-4 text-slate-600 leading-relaxed">Regular ChatGPT explains concepts and gives generic examples. VentureCounsel.AI is trained specifically on venture deal patterns and operates like a senior deal lawyer: it spots risks, cites market standards, and produces final-form language with exact section numbers. Think of it as ChatGPT + 100 deals of experience.</p>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        What if I need help with something specific?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <p class="mt-4 text-slate-600 leading-relaxed">Just paste your contract, term sheet, or email from an investor and ask: "Review this" or "Is this fair?" or "What am I missing?" It will analyze it and tell you exactly what to fix, with specific edits.</p>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        How much does it cost?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <p class="mt-4 text-slate-600 leading-relaxed">You just need ChatGPT Plus ($20/month), which gives you unlimited access. Compare that to $800/hr for a junior associate at a law firm. One term sheet review pays for a year of ChatGPT Plus.</p>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white pt-16 pb-8 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 lg:px-8 text-center sm:text-left">
-            <div class="p-4 bg-slate-50 border border-slate-100 rounded text-[10px] text-slate-500 text-justify mb-8">
-                <strong>DISCLAIMER:</strong> VentureCounsel.AI is an AI tool and is <strong>not a law firm</strong>. It does not provide legal advice, and its use does not create an attorney-client relationship. Use as a starting point for discussion with licensed counsel.
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-white">VentureCounsel.AI</span>
+                    </div>
+                    <p class="text-sm">AI venture counsel for startup founders.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-white mb-3">Product</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#difference" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#examples" class="hover:text-white transition-colors">Examples</a></li>
+                        <li><a href="#capabilities" class="hover:text-white transition-colors">What It Covers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-white mb-3">Use Cases</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><span class="hover:text-white transition-colors">SAFEs & Convertibles</span></li>
+                        <li><span class="hover:text-white transition-colors">Term Sheet Review</span></li>
+                        <li><span class="hover:text-white transition-colors">Founder Agreements</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-white mb-3">Get Started</h3>
+                    <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold">
+                        Launch GPT
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <p class="text-xs text-slate-400">© 2024 VentureCounsel.AI. All rights reserved.</p>
+
+            <div class="border-t border-slate-800 pt-8">
+                <div class="bg-slate-800/50 rounded-lg p-4 mb-6">
+                    <p class="text-xs leading-relaxed">
+                        <strong class="text-white">DISCLAIMER:</strong> VentureCounsel.AI is an AI tool and is not a law firm. It does not provide legal advice, and its use does not create an attorney-client relationship. Use as a starting point for discussion with licensed counsel. For critical transactions, always consult a qualified attorney.
+                    </p>
+                </div>
+                <p class="text-xs text-center">© 2024 VentureCounsel.AI. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Initialize Icons
-        lucide.createIcons();
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
         });
     </script>
 </body>
