@@ -3,261 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transactional Lawyer AI | Senior Deal Counsel</title>
-    <meta name="description" content="AI-powered transactional lawyer specializing in contracts, M&A, IP transactions, and commercial agreements. Draft, redline, and negotiate with precision.">
-    <link rel="stylesheet" href="styles.css">
+    <title>VentureCounsel.AI | Institutional Venture Counsel on Demand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .selection-bg::selection { background-color: #1e3a8a; color: white; }
+    </style>
 </head>
-<body>
-    <nav class="nav">
-        <div class="container nav-container">
-            <div class="logo">
-                <span class="logo-icon">⚖️</span>
-                <span class="logo-text">Transactional Counsel AI</span>
+<body class="min-h-screen bg-slate-50 text-slate-900 selection-bg">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
+                        <i data-lucide="scale" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">VentureCounsel<span class="text-blue-700">.AI</span></span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#capabilities" class="text-slate-600 hover:text-blue-800 transition-colors font-medium text-sm uppercase tracking-wide">Capabilities</a>
+                    <a href="#difference" class="text-slate-600 hover:text-blue-800 transition-colors font-medium text-sm uppercase tracking-wide">The Difference</a>
+                    <a href="#who-its-for" class="text-slate-600 hover:text-blue-800 transition-colors font-medium text-sm uppercase tracking-wide">For Whom</a>
+                    <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" class="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2.5 rounded-md font-medium transition-all flex items-center gap-2">
+                        Launch GPT <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#capabilities">Capabilities</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#approach">Approach</a></li>
-                <li><a href="#access">Get Access</a></li>
-            </ul>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-6 space-y-4 shadow-xl">
+            <a href="#capabilities" class="block text-slate-800 font-medium">Capabilities</a>
+            <a href="#difference" class="block text-slate-800 font-medium">The Difference</a>
+            <a href="#who-its-for" class="block text-slate-800 font-medium">For Whom</a>
+            <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" class="block bg-blue-900 text-white p-3 rounded text-center">Launch GPT</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <h1 class="hero-title">Senior Deal Counsel.<br>On Demand.</h1>
-            <p class="hero-subtitle">AI-powered transactional lawyer that drafts, redlines, and negotiates commercial agreements with the judgment and precision of experienced deal counsel.</p>
-            <div class="hero-cta">
-                <a href="#access" class="btn btn-primary">Get Access</a>
-                <a href="#capabilities" class="btn btn-secondary">See Capabilities</a>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-4xl mx-auto mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-widest mb-6 border border-slate-200">
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span> Transaction Ready
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">
+                Institutional-quality venture counsel, <span class="text-blue-900 underline decoration-blue-200 decoration-4 underline-offset-4">on demand.</span>
+            </h1>
+            <p class="text-xl text-slate-600 mb-10 max-w-3xl mx-auto">
+                Delivering the judgment, rigor, and deal realism of senior venture counsel—without the ambiguity or cost structure of traditional firms.
+            </p>
+            <div class="flex justify-center">
+                <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" class="px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white rounded-md font-semibold text-lg shadow-lg flex items-center gap-2 transition-all">
+                    Consult VentureCounsel.AI <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
             </div>
         </div>
-    </header>
 
-    <section id="value-prop" class="section section-dark">
-        <div class="container">
-            <div class="value-grid">
-                <div class="value-item">
-                    <h3>Production-Ready Output</h3>
-                    <p>Final-form language that can be sent directly to opposing counsel. No cleanup required.</p>
-                </div>
-                <div class="value-item">
-                    <h3>Risk-First Analysis</h3>
-                    <p>Identifies real problems, anticipates exploitation, and allocates downside deliberately.</p>
-                </div>
-                <div class="value-item">
-                    <h3>Negotiation Awareness</h3>
-                    <p>Understands what counterparties resist, accept, or trade. Optimizes for leverage, not perfection.</p>
-                </div>
+        <!-- Comparison Demo -->
+        <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-200 p-4 flex items-center justify-between">
+                <div class="flex gap-2"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-amber-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+                <div class="text-xs font-mono text-slate-400">Comparing Outputs</div>
             </div>
-        </div>
-    </section>
-
-    <section id="capabilities" class="section">
-        <div class="container">
-            <h2 class="section-title">Core Capabilities</h2>
-            <p class="section-intro">Focused exclusively on contracts and transactions that matter.</p>
-
-            <div class="capabilities-grid">
-                <div class="capability-card">
-                    <div class="capability-icon">📄</div>
-                    <h3>Contract Drafting</h3>
-                    <p>Draft commercial agreements, asset purchases, IP transactions, sponsorships, and services contracts with precision and enforceability.</p>
+            <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                <!-- Left: Generic -->
+                <div class="p-8 bg-slate-50/50">
+                    <div class="flex items-center gap-2 mb-4 text-slate-500">
+                        <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                        <span class="font-semibold text-sm uppercase tracking-wide">Generic AI Model</span>
+                    </div>
+                    <div class="opacity-70 space-y-4">
+                        <div class="p-4 bg-white rounded border border-slate-200 text-sm font-mono text-slate-600">User: Review this ROFR clause...</div>
+                        <p class="text-sm text-slate-800">"The clause looks generally standard. A ROFR allows the investor to buy shares before others. It is common to protect ownership percentage..."</p>
+                        <div class="text-xs text-red-500 italic mt-2">Result: Vague, descriptive, misses nuance.</div>
+                    </div>
                 </div>
-
-                <div class="capability-card">
-                    <div class="capability-icon">✏️</div>
-                    <h3>Redlining & Revision</h3>
-                    <p>Mark up counterparty paper with specific section numbers, enforceable language, and negotiation-savvy positioning.</p>
-                </div>
-
-                <div class="capability-card">
-                    <div class="capability-icon">💡</div>
-                    <h3>IP & Technology</h3>
-                    <p>Navigate ownership vs license ambiguity, open-source risk, residual rights, and competitive carve-outs in tech deals.</p>
-                </div>
-
-                <div class="capability-card">
-                    <div class="capability-icon">🔍</div>
-                    <h3>Contract Analysis</h3>
-                    <p>Identify silent risk, illusory protections, and enforcement gaps. Distinguish real problems from cosmetic nits.</p>
-                </div>
-
-                <div class="capability-card">
-                    <div class="capability-icon">⚡</div>
-                    <h3>Risk Allocation</h3>
-                    <p>Structure indemnities, liability caps, survival periods, and remedies that actually protect when tested.</p>
-                </div>
-
-                <div class="capability-card">
-                    <div class="capability-icon">🎯</div>
-                    <h3>Deal Strategy</h3>
-                    <p>Recommend primary language plus fallbacks. Identify which issues justify burning capital vs accepting market terms.</p>
+                <!-- Right: VentureCounsel -->
+                <div class="p-8 bg-white relative">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">TAILORED OUTPUT</div>
+                    <div class="flex items-center gap-2 mb-4 text-blue-900">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span class="font-semibold text-sm uppercase tracking-wide">VentureCounsel.AI</span>
+                    </div>
+                    <div class="space-y-4 text-sm leading-relaxed">
+                        <div class="p-4 bg-blue-50/50 rounded border border-blue-100 font-mono text-slate-700">User: Review this ROFR clause...</div>
+                        <div class="border-l-2 border-blue-600 pl-4">
+                            <strong>Risk Flag:</strong> Missing standard carve-outs for Excluded Securities.<br>
+                            <strong>Market Check:</strong> Series A leads typically hold &gt;10% for secondary ROFR.<br>
+                            <strong>Action:</strong> Insert 'Major Investor' threshold and reference Art IV definitions.
+                        </div>
+                        <div class="p-3 bg-slate-100 rounded border border-slate-200 font-mono text-xs">
+                            <span class="text-red-600 line-through">Section 4.1 Right of First Refusal.</span><br>
+                            <span class="text-green-700">Section 4.1 Major Investor Right of First Refusal...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="expertise" class="section section-gray">
-        <div class="container">
-            <h2 class="section-title">Transaction Expertise</h2>
-
-            <div class="expertise-columns">
-                <div class="expertise-column">
-                    <h3>Commercial Transactions</h3>
-                    <ul>
-                        <li>Asset purchases (IP / codebase acquisitions)</li>
-                        <li>Software licenses, assignments, and development</li>
-                        <li>Sponsorships and commercial partnerships</li>
-                        <li>Services agreements and SOWs</li>
-                        <li>Side letters, amendments, and MFN rights</li>
-                    </ul>
+    <!-- Capabilities -->
+    <section id="capabilities" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-2">Consequential Transactions</h2>
+            <div class="h-1 w-20 bg-blue-900 mb-12"></div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-slate-50 rounded-lg">
+                    <i data-lucide="zap" class="text-blue-900 mb-4"></i>
+                    <h3 class="font-bold mb-2">Equity & Financing</h3>
+                    <p class="text-sm text-slate-600">SAFEs, preferred stock, and side letters drafted for cap-table clarity.</p>
                 </div>
-
-                <div class="expertise-column">
-                    <h3>Critical Focus Areas</h3>
-                    <ul>
-                        <li>IP ownership and post-closing use restrictions</li>
-                        <li>Open-source contamination and compliance</li>
-                        <li>Indemnities, liability caps, and survival</li>
-                        <li>Services vs employment structure</li>
-                        <li>Investment-adjacent commercial terms</li>
-                    </ul>
+                <div class="p-6 bg-slate-50 rounded-lg">
+                    <i data-lucide="lock" class="text-blue-900 mb-4"></i>
+                    <h3 class="font-bold mb-2">Token & Digital Assets</h3>
+                    <p class="text-sm text-slate-600">Regulatory-aware structuring for token warrants and SAFTs.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-lg">
+                    <i data-lucide="shield" class="text-blue-900 mb-4"></i>
+                    <h3 class="font-bold mb-2">Corporate Governance</h3>
+                    <p class="text-sm text-slate-600">Board control and protective provisions that hold up under stress.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="approach" class="section">
-        <div class="container">
-            <h2 class="section-title">Operating Philosophy</h2>
-
-            <div class="philosophy-grid">
-                <div class="philosophy-item">
-                    <div class="philosophy-number">01</div>
-                    <h3>Contracts allocate downside</h3>
-                    <p>Every clause is a tool for managing risk. Ambiguity is acceptable only when it benefits your side.</p>
-                </div>
-
-                <div class="philosophy-item">
-                    <div class="philosophy-number">02</div>
-                    <h3>Enforcement posture matters</h3>
-                    <p>Draft as though the agreement will be tested by hostile counterparties, bankruptcy trustees, or regulators.</p>
-                </div>
-
-                <div class="philosophy-item">
-                    <div class="philosophy-number">03</div>
-                    <h3>"Market" is contextual</h3>
-                    <p>Know when to push and when to conserve leverage. Balance deal velocity against meaningful protection.</p>
-                </div>
-
-                <div class="philosophy-item">
-                    <div class="philosophy-number">04</div>
-                    <h3>Judgment over explanation</h3>
-                    <p>Tell you what actually matters, not what both sides might argue. Produce decision-useful insight.</p>
-                </div>
+    <!-- Footer -->
+    <footer class="bg-white pt-16 pb-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 text-center sm:text-left">
+            <div class="p-4 bg-slate-50 border border-slate-100 rounded text-[10px] text-slate-500 text-justify mb-8">
+                <strong>DISCLAIMER:</strong> VentureCounsel.AI is an AI tool and is <strong>not a law firm</strong>. It does not provide legal advice, and its use does not create an attorney-client relationship. Use as a starting point for discussion with licensed counsel.
             </div>
-        </div>
-    </section>
-
-    <section id="differentiation" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">What Makes This Different</h2>
-
-            <div class="diff-container">
-                <div class="diff-column">
-                    <h3 class="diff-header diff-no">Generic Legal AI</h3>
-                    <ul class="diff-list">
-                        <li>Teaches basic contract law</li>
-                        <li>"Balanced" agreements by default</li>
-                        <li>Academic footnotes and disclaimers</li>
-                        <li>Placeholder language requiring cleanup</li>
-                        <li>Explains what's "standard" without context</li>
-                        <li>Optimizes for theoretical perfection</li>
-                    </ul>
-                </div>
-
-                <div class="diff-column">
-                    <h3 class="diff-header diff-yes">Transactional Counsel AI</h3>
-                    <ul class="diff-list">
-                    <li>Drafts final-form language for live deals</li>
-                        <li>Deliberately allocates risk to protect clients</li>
-                        <li>Concise, professional contract language</li>
-                        <li>Production-ready output, no revision needed</li>
-                        <li>Contextual judgment on what actually matters</li>
-                        <li>Balances protection with deal velocity</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="examples" class="section">
-        <div class="container">
-            <h2 class="section-title">Example Use Cases</h2>
-
-            <div class="examples-grid">
-                <div class="example-card">
-                    <h3>Acquiring a Codebase</h3>
-                    <p>Draft asset purchase agreement with clear IP assignment, wall off seller's continued use rights, identify open-source exposure, structure knowledge transfer without ongoing dependency.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3>Redlining Vendor Paper</h3>
-                    <p>Mark up software license with specific section edits to narrow IP grants, add meaningful indemnities, cap liability realistically, and fix illusory termination rights.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3>Structuring Services Engagement</h3>
-                    <p>Create SOW with finite scope, concrete deliverables, explicit knowledge transfer, no employment-like control, and termination rights that have teeth.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3>Analyzing Existing Agreement</h3>
-                    <p>Identify silent risk in partnership agreement, distinguish cosmetic protections from enforceable ones, explain practical consequences of ambiguous exclusivity clause.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="access" class="section section-cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Work with AI Deal Counsel?</h2>
-                <p>Get access to transactional legal analysis that matches the judgment and precision of experienced practitioners.</p>
-                <div class="cta-buttons">
-                    <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" class="btn btn-primary btn-large">Access the GPT</a>
-                </div>
-                <p class="cta-note">Requires ChatGPT Plus or Enterprise subscription</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Transactional Counsel AI</h4>
-                    <p>AI-powered deal counsel for contracts and commercial transactions.</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Scope</h4>
-                    <p>Exclusively transactional work. Not for litigation, employment law, or general legal education.</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Disclaimer</h4>
-                    <p>This AI tool provides contract drafting assistance. It does not create an attorney-client relationship.</p>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Transactional Counsel AI. All rights reserved.</p>
-            </div>
+            <p class="text-xs text-slate-400">© 2024 VentureCounsel.AI. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
