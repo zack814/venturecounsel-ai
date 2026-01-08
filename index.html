@@ -31,7 +31,7 @@
         }
     </script>
     <style>
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        html { scroll-behavior: smooth; scroll-padding-top: 110px; }
         body { font-family: 'Inter', -apple-system, system-ui, sans-serif; }
     </style>
 </head>
@@ -56,8 +56,9 @@
                     <a href="#problem" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">The Problem</a>
                     <a href="#difference" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">How It Works</a>
                     <a href="#examples" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">See Examples</a>
+                    <a href="/term-sheet-checker" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">Term Sheet Checker</a>
                     <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md">
-                        Try It Now
+                        Try GPT Chat
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
@@ -77,20 +78,28 @@
                 <a href="#problem" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">The Problem</a>
                 <a href="#difference" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">How It Works</a>
                 <a href="#examples" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">See Examples</a>
+                <a href="/term-sheet-checker" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm mobile-menu-link">Term Sheet Checker</a>
                 <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="block px-3 py-2 bg-blue-900 text-white text-center rounded-md font-semibold text-sm">
-                    Try It Now →
+                    Try GPT Chat →
                 </a>
             </div>
         </div>
     </nav>
 
+    <!-- Persistent Disclaimer Banner -->
+    <div class="fixed top-16 left-0 right-0 z-40 bg-amber-100 border-b border-amber-300 py-2 px-4">
+        <p class="text-center text-xs text-amber-900 max-w-4xl mx-auto">
+            <strong>Educational Tool Only:</strong> VentureCounsel.AI is NOT a law firm and does NOT provide legal advice. No attorney-client relationship or privilege is created. AI output may contain errors or hallucinations. <a href="#faq" class="underline font-semibold hover:text-amber-700">See full disclaimers</a>.
+        </p>
+    </div>
+
     <!-- Hero Section -->
-    <section id="top" class="pt-24 pb-16 px-4 sm:px-6">
+    <section id="top" class="pt-32 pb-16 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto text-center">
             <!-- Badge -->
             <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full mb-6">
                 <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-                <span class="text-blue-900 font-semibold text-xs uppercase tracking-wide">For Startup Founders</span>
+                <span class="text-blue-900 font-semibold text-xs uppercase tracking-wide">Educational Tool for Founders</span>
             </div>
 
             <!-- Headline -->
@@ -104,7 +113,7 @@
             </h1>
 
             <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                VentureCounsel.AI drafts real contracts, spots hidden risks, and tells you exactly what to fix—like having a senior deal lawyer who's closed 100 rounds.
+                VentureCounsel.AI helps you understand venture contracts, identify potential issues, and prepare for conversations with legal counsel—an educational tool to help you ask better questions.
             </p>
 
             <!-- CTA Buttons -->
@@ -231,7 +240,7 @@
                 <!-- VentureCounsel.AI -->
                 <div class="bg-blue-50 p-8 rounded-xl border-2 border-blue-900 relative">
                     <div class="absolute -top-3 right-4 bg-blue-900 text-white text-xs font-bold px-3 py-1 rounded-full">
-                        WHAT YOU NEED
+                        EDUCATIONAL FOCUS
                     </div>
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center">
@@ -244,25 +253,26 @@
                     <ul class="space-y-3 text-slate-900">
                         <li class="flex gap-2">
                             <span class="text-blue-600 font-bold">✓</span>
-                            <span><strong>Spots specific risks</strong> you'd miss</span>
+                            <span><strong>Identifies potential issues</strong> to discuss with counsel</span>
                         </li>
                         <li class="flex gap-2">
                             <span class="text-blue-600 font-bold">✓</span>
-                            <span><strong>References market norms</strong> (e.g., "Series A leads expect...")</span>
+                            <span><strong>Explains market context</strong> (requires independent verification)</span>
                         </li>
                         <li class="flex gap-2">
                             <span class="text-blue-600 font-bold">✓</span>
-                            <span><strong>Tells you exactly what to do</strong> with section numbers</span>
+                            <span><strong>Suggests areas to review</strong> with specific references</span>
                         </li>
                         <li class="flex gap-2">
                             <span class="text-blue-600 font-bold">✓</span>
-                            <span><strong>Produces final-form language</strong> you can use immediately</span>
+                            <span><strong>Provides sample language</strong> (for discussion, not direct use)</span>
                         </li>
                         <li class="flex gap-2">
                             <span class="text-blue-600 font-bold">✓</span>
-                            <span><strong>Understands deal dynamics</strong> and negotiation leverage</span>
+                            <span><strong>Helps prepare questions</strong> for your attorney</span>
                         </li>
                     </ul>
+                    <p class="text-xs text-slate-600 mt-4 pt-3 border-t border-slate-200">*All output requires verification. Not legal advice.</p>
                 </div>
             </div>
 
@@ -274,8 +284,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-slate-900 mb-1">Production-Ready Drafts</h4>
-                    <p class="text-sm text-slate-600">Send directly to investors</p>
+                    <h4 class="font-bold text-slate-900 mb-1">Sample Language</h4>
+                    <p class="text-sm text-slate-600">For review with counsel*</p>
                 </div>
 
                 <div class="text-center">
@@ -284,8 +294,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-slate-900 mb-1">Risk Detection</h4>
-                    <p class="text-sm text-slate-600">Flags what you'd miss</p>
+                    <h4 class="font-bold text-slate-900 mb-1">Issue Spotting</h4>
+                    <p class="text-sm text-slate-600">Questions to ask your lawyer*</p>
                 </div>
 
                 <div class="text-center">
@@ -294,8 +304,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-slate-900 mb-1">Instant Redlines</h4>
-                    <p class="text-sm text-slate-600">With exact section numbers</p>
+                    <h4 class="font-bold text-slate-900 mb-1">Suggested Edits</h4>
+                    <p class="text-sm text-slate-600">Require attorney review*</p>
                 </div>
 
                 <div class="text-center">
@@ -304,10 +314,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-slate-900 mb-1">Market Standards</h4>
-                    <p class="text-sm text-slate-600">Based on 100s of deals</p>
+                    <h4 class="font-bold text-slate-900 mb-1">Market Context</h4>
+                    <p class="text-sm text-slate-600">Needs verification*</p>
                 </div>
             </div>
+            <p class="text-center text-xs text-slate-500 mt-4">*All output is for educational purposes only. AI may produce inaccurate information. Always verify with licensed counsel.</p>
         </div>
     </section>
 
@@ -316,10 +327,13 @@
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-                    See the difference in real scenarios
+                    Illustrative examples
                 </h2>
                 <p class="text-xl text-slate-600">
-                    Actual outputs from VentureCounsel.AI
+                    Sample outputs showing how the tool works
+                </p>
+                <p class="text-sm text-amber-700 mt-3 bg-amber-50 inline-block px-4 py-2 rounded-lg border border-amber-200">
+                    These examples are for illustration only. All output requires independent verification and professional review before use.
                 </p>
             </div>
 
@@ -330,12 +344,12 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="bg-blue-50 border-l-4 border-blue-900 p-4">
-                        <p class="font-semibold text-blue-900 mb-2">VentureCounsel.AI Output:</p>
+                        <p class="font-semibold text-blue-900 mb-2">Illustrative Output (for discussion with counsel):</p>
                         <div class="text-sm text-slate-800 space-y-2">
-                            <p><strong>Risk Flag:</strong> Missing pro-rata rights. This SAFE converts without giving you a seat at the next raise.</p>
-                            <p><strong>Market Check:</strong> Angels writing $50K+ typically expect pro-rata for at least one follow-on round.</p>
-                            <p><strong>Action:</strong> Add to Section 2(b): <em>"Investor shall have the right to participate in the Company's next equity financing up to Investor's pro-rata share based on the conversion of this instrument."</em></p>
-                            <p class="text-blue-900 font-semibold text-xs mt-3">↑ Specific, actionable, references market norms</p>
+                            <p><strong>Potential Issue:</strong> Missing pro-rata rights. This SAFE may convert without giving you a seat at the next raise.</p>
+                            <p><strong>Market Context:</strong> Angels writing $50K+ may expect pro-rata for at least one follow-on round (verify with counsel).</p>
+                            <p><strong>Sample Language to Discuss:</strong> <em>"Investor shall have the right to participate in the Company's next equity financing up to Investor's pro-rata share based on the conversion of this instrument."</em></p>
+                            <p class="text-amber-700 font-semibold text-xs mt-3 bg-amber-50 p-2 rounded">This is illustrative only. Have your attorney review and verify before use.</p>
                         </div>
                     </div>
                 </div>
@@ -348,15 +362,15 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="bg-blue-50 border-l-4 border-blue-900 p-4">
-                        <p class="font-semibold text-blue-900 mb-2">VentureCounsel.AI Output:</p>
+                        <p class="font-semibold text-blue-900 mb-2">Illustrative Output (for discussion with counsel):</p>
                         <div class="text-sm text-slate-800 space-y-2">
-                            <p><strong>Standard Structure:</strong> 4-year vest, 1-year cliff, monthly thereafter.</p>
-                            <p><strong>Hidden Issue:</strong> You need double-trigger acceleration for M&A. Without it, acquirer can fire you day 1 and you lose unvested equity.</p>
-                            <p><strong>Language to Add:</strong></p>
+                            <p><strong>Common Structure:</strong> 4-year vest, 1-year cliff, monthly thereafter (verify if appropriate for your situation).</p>
+                            <p><strong>Potential Issue to Discuss:</strong> Consider asking your attorney about double-trigger acceleration for M&A scenarios.</p>
+                            <p><strong>Sample Language to Review with Counsel:</strong></p>
                             <div class="bg-slate-100 p-3 rounded font-mono text-xs mt-2">
                                 "Upon a Change of Control, if Founder's service is terminated without Cause within 12 months following such transaction, 50% of then-unvested shares shall immediately vest."
                             </div>
-                            <p class="text-blue-900 font-semibold text-xs mt-3">↑ Anticipates what you didn't know to ask</p>
+                            <p class="text-amber-700 font-semibold text-xs mt-3 bg-amber-50 p-2 rounded">This is illustrative only. Vesting terms must be reviewed by qualified counsel.</p>
                         </div>
                     </div>
                 </div>
@@ -369,17 +383,17 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="bg-blue-50 border-l-4 border-blue-900 p-4">
-                        <p class="font-semibold text-blue-900 mb-2">VentureCounsel.AI Output:</p>
+                        <p class="font-semibold text-blue-900 mb-2">Illustrative Output (for discussion with counsel):</p>
                         <div class="text-sm text-slate-800 space-y-2">
-                            <p><strong>Your Position:</strong> Pre-revenue, $2M cap proposed.</p>
-                            <p><strong>Market Context:</strong> 2024 seed pre-revenue SaaS caps range $6M-$10M. Your $2M is bottom 10th percentile.</p>
-                            <p><strong>Negotiation Strategy:</strong></p>
+                            <p><strong>Your Situation:</strong> Pre-revenue, $2M cap proposed.</p>
+                            <p><strong>Context to Verify:</strong> Historical seed caps vary widely. Discuss with your attorney and advisors whether this is appropriate for your specific situation and market.</p>
+                            <p><strong>Questions to Ask Your Attorney:</strong></p>
                             <ul class="list-disc list-inside space-y-1 ml-3">
-                                <li>Anchor at $8M citing market comps</li>
-                                <li>Floor at $5M (still gives them 3-4x on conversion)</li>
-                                <li>If they won't move, add MFN clause to next round</li>
+                                <li>What are current market ranges for similar deals?</li>
+                                <li>What negotiation approaches are appropriate?</li>
+                                <li>Should I consider an MFN clause?</li>
                             </ul>
-                            <p class="text-blue-900 font-semibold text-xs mt-3">↑ Contextual advice with negotiation strategy</p>
+                            <p class="text-amber-700 font-semibold text-xs mt-3 bg-amber-50 p-2 rounded">Market data may be outdated or inaccurate. Verify all information with current sources and counsel.</p>
                         </div>
                     </div>
                 </div>
@@ -464,38 +478,118 @@
     <section class="py-20 px-4 sm:px-6 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-                Stop paying $800/hr for generic AI could give you
+                Prepare for legal conversations with confidence
             </h2>
             <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Get production-ready legal work in minutes. No learning curve. No vague advice.
+                Understand deal terms, identify questions to ask, and come prepared when you meet with counsel.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 text-blue-900 font-bold rounded-lg shadow-xl transition-all text-lg w-full sm:w-auto justify-center">
-                    Try VentureCounsel.AI Free
+                    Try the Educational Tool
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                 </a>
             </div>
-            <p class="text-sm text-blue-200">Requires ChatGPT Plus ($20/mo) · Start using in 30 seconds</p>
+            <p class="text-sm text-blue-200">Requires ChatGPT Plus ($20/mo) · Not a substitute for legal counsel</p>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-20 px-4 sm:px-6 bg-white">
+    <section id="faq" class="py-20 px-4 sm:px-6 bg-white">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Common questions</h2>
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Important Information & Common Questions</h2>
+
+            <!-- Critical Warning Banner -->
+            <div class="bg-amber-50 border-2 border-amber-400 rounded-xl p-6 mb-8">
+                <div class="flex gap-3">
+                    <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <div>
+                        <h3 class="font-bold text-amber-800 mb-2">Before You Use This Tool</h3>
+                        <p class="text-amber-900 text-sm leading-relaxed">
+                            VentureCounsel.AI is an <strong>educational and informational tool only</strong>. It does NOT provide legal advice, does NOT create an attorney-client relationship, and its outputs may contain errors, hallucinations, or jurisdiction-inappropriate content. <strong>Never copy-paste output into real contracts without review by a licensed attorney.</strong> See full disclaimers below.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
             <div class="space-y-6">
-                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200" open>
                     <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
-                        Is this actually legal advice?
+                        Is this legal advice? What about attorney-client privilege?
                         <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
-                    <p class="mt-4 text-slate-600 leading-relaxed">No. VentureCounsel.AI is a tool that helps you draft and understand contracts. It doesn't create an attorney-client relationship. For high-stakes deals, you should still have a real lawyer review. But for 80% of early-stage work, this gives you production-ready drafts that save you thousands in legal fees.</p>
+                    <div class="mt-4 text-slate-600 leading-relaxed space-y-3">
+                        <p><strong class="text-slate-900">No, this is NOT legal advice.</strong> VentureCounsel.AI is an AI tool—not a law firm, not a lawyer, and not a substitute for one. Using this tool does NOT create an attorney-client relationship.</p>
+                        <p><strong class="text-slate-900">There is NO attorney-client privilege.</strong> Information you enter is processed by third-party AI systems and is NOT protected by privilege or confidentiality. Do not enter sensitive or privileged information expecting protection.</p>
+                        <p>This tool is designed to help you <em>prepare</em> for conversations with licensed counsel—not replace them. For any real transaction, always consult a qualified attorney in your jurisdiction.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        What about AI hallucinations? Does it verify citations?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div class="mt-4 text-slate-600 leading-relaxed space-y-3">
+                        <p><strong class="text-slate-900">AI hallucinations are a known risk.</strong> Like all large language models, this tool may generate plausible-sounding but entirely fabricated information—including fake case citations, incorrect statutory references, and misstatements of law.</p>
+                        <p><strong class="text-slate-900">We do NOT validate citations against live legal databases.</strong> The tool does not have real-time access to Westlaw, LexisNexis, court reporters, or current statutes. Any case names, statute numbers, or legal citations must be independently verified.</p>
+                        <p><strong class="text-red-700">You are solely responsible for verifying ALL information before relying on it.</strong></p>
+                    </div>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        Can I copy the sample language into real contracts?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div class="mt-4 text-slate-600 leading-relaxed space-y-3">
+                        <p><strong class="text-red-700">Not without professional review.</strong> Any sample language, clause suggestions, or draft text is provided for <em>educational and illustrative purposes only</em>.</p>
+                        <p>If you copy-paste AI-generated language into actual contracts without attorney review, you accept <strong>all associated risks</strong>, including but not limited to: errors, omissions, unenforceability, unintended legal consequences, and liability exposure.</p>
+                        <p>The "reliance risk" does not disappear because of disclaimers—which is exactly why we strongly recommend <strong>always</strong> having a licensed attorney review any language before use in actual transactions.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        How does the tool handle different jurisdictions?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div class="mt-4 text-slate-600 leading-relaxed space-y-3">
+                        <p><strong class="text-slate-900">There is NO technical jurisdiction gating.</strong> The tool cannot reliably distinguish between or isolate legal concepts from different jurisdictions (Delaware corporate law, California employment law, UK company law, EU regulations, etc.).</p>
+                        <p>Output may inadvertently blend doctrine from multiple jurisdictions—for example, mixing Delaware corporate concepts with UK company law principles. This is an inherent limitation of general-purpose AI models.</p>
+                        <p><strong class="text-red-700">You must independently confirm</strong> that any information, language, or guidance is applicable and current in YOUR specific jurisdiction. When in doubt, specify your jurisdiction clearly in your query and always verify with local counsel.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
+                        Who is liable if something goes wrong?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div class="mt-4 text-slate-600 leading-relaxed space-y-3">
+                        <p><strong class="text-slate-900">You assume all risk.</strong> By using this tool, you acknowledge that:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-2">
+                            <li>The tool provides informational content only, not legal advice</li>
+                            <li>AI output may be inaccurate, incomplete, or entirely wrong</li>
+                            <li>You are solely responsible for verifying all information</li>
+                            <li>Any use of output in actual documents or decisions is at your own risk</li>
+                        </ul>
+                        <p><strong class="text-slate-900">We disclaim all liability</strong> to the fullest extent permitted by law for any damages arising from your use of or reliance on this tool. This includes errors, hallucinations, jurisdiction issues, and any consequences of incorporating AI output into real contracts or business decisions.</p>
+                    </div>
                 </details>
 
                 <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
@@ -505,7 +599,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
-                    <p class="mt-4 text-slate-600 leading-relaxed">Nope. Just describe your situation in plain English: "I'm raising $500K on a SAFE and the investor sent me this term sheet" or "I need a founder vesting agreement for 3 co-founders." It will guide you from there.</p>
+                    <p class="mt-4 text-slate-600 leading-relaxed">No. You can describe your situation in plain English. However, remember that the output is for educational purposes—use it to better understand concepts and prepare questions for a real attorney, not as a substitute for professional advice.</p>
                 </details>
 
                 <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
@@ -515,17 +609,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
-                    <p class="mt-4 text-slate-600 leading-relaxed">Regular ChatGPT explains concepts and gives generic examples. VentureCounsel.AI is trained specifically on venture deal patterns and operates like a senior deal lawyer: it spots risks, cites market standards, and produces final-form language with exact section numbers. Think of it as ChatGPT + 100 deals of experience.</p>
-                </details>
-
-                <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
-                    <summary class="font-semibold text-slate-900 cursor-pointer flex justify-between items-center">
-                        What if I need help with something specific?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </summary>
-                    <p class="mt-4 text-slate-600 leading-relaxed">Just paste your contract, term sheet, or email from an investor and ask: "Review this" or "Is this fair?" or "What am I missing?" It will analyze it and tell you exactly what to fix, with specific edits.</p>
+                    <p class="mt-4 text-slate-600 leading-relaxed">VentureCounsel.AI uses custom prompting focused on venture deal patterns. However, like all AI tools, it has the same fundamental limitations: potential for hallucinations, no real-time legal database access, and inability to provide actual legal advice. Use it as an educational starting point, not a replacement for counsel.</p>
                 </details>
 
                 <details class="group bg-slate-50 p-6 rounded-xl border border-slate-200">
@@ -535,7 +619,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </summary>
-                    <p class="mt-4 text-slate-600 leading-relaxed">You just need ChatGPT Plus ($20/month), which gives you unlimited access. Compare that to $800/hr for a junior associate at a law firm. One term sheet review pays for a year of ChatGPT Plus.</p>
+                    <p class="mt-4 text-slate-600 leading-relaxed">Access requires ChatGPT Plus ($20/month). This tool is designed to help you <em>prepare</em> for discussions with attorneys—not replace legal counsel entirely. Budget for both AI tools and professional review for actual transactions.</p>
                 </details>
             </div>
         </div>
@@ -587,12 +671,42 @@
             </div>
 
             <div class="border-t border-slate-800 pt-8">
-                <div class="bg-slate-800/50 rounded-lg p-4 mb-6">
-                    <p class="text-xs leading-relaxed">
-                        <strong class="text-white">DISCLAIMER:</strong> VentureCounsel.AI is an AI tool and is not a law firm. It does not provide legal advice, and its use does not create an attorney-client relationship. Use as a starting point for discussion with licensed counsel. For critical transactions, always consult a qualified attorney.
-                    </p>
+                <!-- Comprehensive Legal Disclaimer -->
+                <div class="bg-red-900/30 border border-red-800/50 rounded-lg p-6 mb-6">
+                    <h3 class="text-white font-bold text-sm mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        IMPORTANT LEGAL NOTICE — PLEASE READ CAREFULLY
+                    </h3>
+                    <div class="text-xs leading-relaxed space-y-3 text-slate-300">
+                        <p>
+                            <strong class="text-white">NOT LEGAL ADVICE:</strong> VentureCounsel.AI is an AI-powered informational tool only. It is NOT a law firm, does NOT practice law, and does NOT provide legal advice. No attorney-client relationship, privilege, or confidentiality is created by your use of this service. Information you submit is NOT protected by attorney-client privilege.
+                        </p>
+                        <p>
+                            <strong class="text-white">NO RELIANCE:</strong> All output—including sample language, clause suggestions, contract drafts, and analysis—is provided for <strong>educational and informational purposes only</strong>. You must NOT rely on any output as legal advice or as a substitute for consultation with a licensed attorney. Any language, clauses, or documents you copy, adapt, or use are done so <strong>entirely at your own risk</strong>.
+                        </p>
+                        <p>
+                            <strong class="text-white">AI LIMITATIONS & HALLUCINATIONS:</strong> This tool uses large language models (LLMs) that may generate inaccurate, incomplete, outdated, or entirely fabricated information—including false case citations, incorrect statutory references, and misstatements of law. <strong>AI hallucinations are a known and unavoidable risk.</strong> We do NOT validate output against live legal databases, court reporters, or current statutes. You are solely responsible for independently verifying ALL information before use.
+                        </p>
+                        <p>
+                            <strong class="text-white">JURISDICTION & CHOICE OF LAW:</strong> This tool has NO technical mechanism to ensure jurisdiction-specific accuracy. Output may inadvertently blend legal concepts from different jurisdictions (e.g., Delaware corporate law, UK company law, EU regulations). Laws vary significantly by jurisdiction. You must independently confirm that any information is applicable and current in YOUR specific jurisdiction.
+                        </p>
+                        <p>
+                            <strong class="text-white">PROFESSIONAL REVIEW REQUIRED:</strong> For any actual legal matter, contract, transaction, or dispute, you MUST consult a licensed attorney in your jurisdiction. This tool is intended only as a starting point for discussion with qualified legal counsel—never as a replacement.
+                        </p>
+                        <p>
+                            <strong class="text-white">LIMITATION OF LIABILITY:</strong> To the fullest extent permitted by law, VentureCounsel.AI, its creators, operators, and affiliates disclaim ALL liability for any damages, losses, or harm arising from your use of or reliance on this tool, including but not limited to: (a) errors, omissions, or inaccuracies in output; (b) AI hallucinations or fabricated information; (c) misapplication of legal concepts across jurisdictions; (d) decisions made based on tool output; (e) contracts or documents incorporating tool output. YOUR USE OF THIS TOOL IS ENTIRELY AT YOUR OWN RISK.
+                        </p>
+                        <p>
+                            <strong class="text-white">NO WARRANTY:</strong> This tool is provided "AS IS" without warranty of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement.
+                        </p>
+                        <p>
+                            <strong class="text-white">ETHICS NOTICE:</strong> Use of AI tools in legal practice may be subject to professional responsibility rules. If you are a licensed attorney, you remain fully responsible for supervising any AI-generated work product and ensuring compliance with applicable rules of professional conduct.
+                        </p>
+                    </div>
                 </div>
-                <p class="text-xs text-center">© 2024 VentureCounsel.AI. All rights reserved.</p>
+                <p class="text-xs text-center">© 2025 VentureCounsel.AI. All rights reserved. | <a href="#faq" class="underline hover:text-white">Legal Disclaimers</a></p>
             </div>
         </div>
     </footer>
