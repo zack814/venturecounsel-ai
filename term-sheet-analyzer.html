@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Term Sheet Analyzer | VentureCounsel.AI</title>
+    <meta name="description" content="AI-powered term sheet analysis tool. Get instant feedback on liquidation preferences, board composition, anti-dilution, and more.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7EMWJE3VYY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7EMWJE3VYY');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, system-ui, sans-serif; }
+        .spinner {
+            border: 3px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50%;
+            border-top: 3px solid #1e3a8a;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased bg-slate-50 text-slate-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="/index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-blue-900 rounded-md flex items-center justify-center group-hover:bg-blue-800 transition-colors">
+                        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <span class="font-bold text-lg">VentureCounsel<span class="text-blue-900">.AI</span></span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">Home</a>
+                    <a href="/index.html#examples" class="text-slate-600 hover:text-blue-900 font-medium text-sm transition-colors">Examples</a>
+                    <a href="https://chatgpt.com/g/g-69601b4d2d608191b22e565b4c3074e7-venturecounsel-ai-term-sheet-analyzer" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md">
+                        Launch Analyzer
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="/index.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm">Home</a>
+                <a href="/index.html#examples" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 rounded-md font-medium text-sm">Examples</a>
+                <a href="https://chatgpt.com/g/g-69601b4d2d608191b22e565b4c3074e7-venturecounsel-ai-term-sheet-analyzer" target="_blank" rel="noopener" class="block px-3 py-2 bg-blue-900 text-white text-center rounded-md font-semibold text-sm">
+                    Launch Analyzer →
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Disclaimer Banner -->
+    <div class="fixed top-16 left-0 right-0 z-40 bg-amber-100 border-b border-amber-300 py-2 px-4">
+        <p class="text-center text-xs text-amber-900 max-w-4xl mx-auto">
+            <strong>Educational Tool Only:</strong> Not legal advice. AI output may contain errors. No attorney-client relationship created. <a href="#disclaimers" class="underline font-semibold hover:text-amber-700">See full disclaimers</a>.
+        </p>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full mb-6">
+                <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                <span class="text-blue-900 font-semibold text-xs uppercase tracking-wide">AI-Powered Analysis</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                Term Sheet Analyzer
+            </h1>
+
+            <p class="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Instant analysis of your term sheet against current market norms. Identify red flags, understand what's negotiable, and prepare for investor conversations with confidence.
+            </p>
+
+            <!-- Main CTA -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                <a href="https://chatgpt.com/g/g-69601b4d2d608191b22e565b4c3074e7-venturecounsel-ai-term-sheet-analyzer" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all text-lg w-full sm:w-auto justify-center">
+                    Analyze Your Term Sheet
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+            </div>
+            <p class="text-sm text-slate-500">Requires ChatGPT Plus · Analysis in under 60 seconds</p>
+        </div>
+    </section>
+
+    <!-- What We Analyze -->
+    <section class="py-16 px-4 sm:px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    Comprehensive Term Sheet Analysis
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Our AI analyzes every material term against current market standards
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Valuation & Economics -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Valuation & Economics</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>• Pre/post-money valuation</li>
+                        <li>• Liquidation preference</li>
+                        <li>• Participation rights</li>
+                        <li>• Dividends</li>
+                    </ul>
+                </div>
+
+                <!-- Control & Governance -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Control & Governance</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>• Board composition</li>
+                        <li>• Protective provisions</li>
+                        <li>• Voting rights</li>
+                        <li>• Observer rights</li>
+                    </ul>
+                </div>
+
+                <!-- Founder Terms -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Founder Terms</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>• Vesting schedules</li>
+                        <li>• Acceleration clauses</li>
+                        <li>• Founder restrictions</li>
+                        <li>• IP assignment</li>
+                    </ul>
+                </div>
+
+                <!-- Dilution Protection -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Dilution Protection</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>• Anti-dilution provisions</li>
+                        <li>• Pro-rata rights</li>
+                        <li>• Pay-to-play provisions</li>
+                        <li>• Option pool sizing</li>
+                    </ul>
+                </div>
+
+                <!-- Exit Rights -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Exit & Liquidity</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>• Drag-along rights</li>
+                        <li>• ROFR/Co-sale rights</li>
+                        <li>• Redemption rights</li>
+                        <li>• Registration rights</li>
+                    </ul>
+                </div>
+
+                <!-- Other Terms -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Process Terms</h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li>• No-shop period</li>
+                        <li>• Conditions precedent</li>
+                        <li>• Exclusivity</li>
+                        <li>• Legal fees</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 px-4 sm:px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    How It Works
+                </h2>
+                <p class="text-lg text-slate-600">
+                    Get professional-grade analysis in three simple steps
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-2xl">
+                        1
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Upload Your Term Sheet</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Paste your term sheet text directly into the chat, or describe the key terms you're evaluating
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-2xl">
+                        2
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">AI Analysis</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Our AI analyzes each term against market norms for your stage, geography, and deal type
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-2xl">
+                        3
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900">Get Your Report</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Receive detailed analysis with red flags, negotiation tips, and market-standard alternative language
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <a href="https://chatgpt.com/g/g-69601b4d2d608191b22e565b4c3074e7-venturecounsel-ai-term-sheet-analyzer" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all text-lg">
+                    Start Your Analysis
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+                <p class="text-sm text-slate-500 mt-4">Free with ChatGPT Plus subscription</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="py-16 px-4 sm:px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    What You Get
+                </h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Feature 1 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Term-by-Term Scoring</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Each term is scored as <strong>market-standard</strong>, <strong>founder-friendly</strong>, <strong>aggressive</strong>, or <strong>red flag</strong> with severity ratings and confidence scores
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Red Flag Identification</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Instant alerts on deal-killing terms like full ratchet anti-dilution, redemption rights, participating preferences, and excessive protective provisions
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Alternative Clause Language</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            For problematic terms, get specific founder-friendly and market-standard alternative language you can propose to investors (for discussion with counsel)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Negotiation Strategy Plan</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Prioritized negotiation roadmap telling you which terms to accept, which to negotiate, and which require hard pushback—with specific talking points
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Executive Summary</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            One-page summary with overall deal quality assessment, top 3 issues to address, critical action items, and confidence analysis
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Data -->
+    <section class="py-16 px-4 sm:px-6 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    Trained on Real Market Data
+                </h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                    Our analyzer is trained on comprehensive market research from leading sources
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="font-bold text-lg mb-2">NVCA Model Documents</div>
+                    <p class="text-sm text-blue-100">Industry-standard term sheets and definitive agreements</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="font-bold text-lg mb-2">Cooley GO 2025</div>
+                    <p class="text-sm text-blue-100">Q1-Q2 2025 market term surveys and benchmarks</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="font-bold text-lg mb-2">Carta Private Markets</div>
+                    <p class="text-sm text-blue-100">2025 State of Private Markets data and analysis</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="font-bold text-lg mb-2">Wilson Sonsini Guidance</div>
+                    <p class="text-sm text-blue-100">Top-tier firm best practices and market standards</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="font-bold text-lg mb-2">Y Combinator</div>
+                    <p class="text-sm text-blue-100">YC Series A term sheet and deal guidance</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="font-bold text-lg mb-2">a16z Guidance</div>
+                    <p class="text-sm text-blue-100">Andreessen Horowitz deal structure recommendations</p>
+                </div>
+            </div>
+
+            <p class="text-center text-blue-200 text-sm mt-8">
+                *All market data requires independent verification. Not legal advice.
+            </p>
+        </div>
+    </section>
+
+    <!-- Disclaimers Section -->
+    <section id="disclaimers" class="py-16 px-4 sm:px-6 bg-slate-50">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Important Information</h2>
+
+            <!-- Critical Warning -->
+            <div class="bg-amber-50 border-2 border-amber-400 rounded-xl p-6 mb-8">
+                <div class="flex gap-3">
+                    <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <div>
+                        <h3 class="font-bold text-amber-800 mb-2">Educational Tool Only</h3>
+                        <p class="text-amber-900 text-sm leading-relaxed">
+                            This analyzer is an <strong>educational tool only</strong>. It does NOT provide legal advice, does NOT create an attorney-client relationship, and its outputs may contain errors or hallucinations. <strong>Always consult a licensed attorney</strong> before making decisions based on this analysis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+                <p>
+                    <strong class="text-slate-900">Not Legal Advice:</strong> VentureCounsel.AI Term Sheet Analyzer is an AI-powered informational tool. It is NOT a law firm and does NOT provide legal advice. Using this tool does NOT create an attorney-client relationship or privilege.
+                </p>
+                <p>
+                    <strong class="text-slate-900">AI Limitations:</strong> This tool uses large language models that may generate inaccurate, incomplete, or fabricated information. Market data may be outdated. You are solely responsible for verifying ALL information before use.
+                </p>
+                <p>
+                    <strong class="text-slate-900">Professional Review Required:</strong> Any language or suggestions provided are for educational purposes only. Never incorporate AI-generated language into real contracts without review by a licensed attorney in your jurisdiction.
+                </p>
+                <p>
+                    <strong class="text-slate-900">Jurisdiction Limitations:</strong> This tool cannot reliably distinguish between legal concepts from different jurisdictions. Verify that information is applicable to YOUR specific jurisdiction.
+                </p>
+                <p>
+                    <strong class="text-slate-900">No Warranty:</strong> This tool is provided "AS IS" without warranty. We disclaim all liability for any damages arising from your use or reliance on this tool.
+                </p>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="/index.html#faq" class="text-blue-900 hover:text-blue-700 font-semibold text-sm underline">
+                    Read Full Legal Disclaimers →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 px-4 sm:px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                Ready to analyze your term sheet?
+            </h2>
+            <p class="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
+                Get instant analysis and negotiation guidance in under 60 seconds
+            </p>
+
+            <a href="https://chatgpt.com/g/g-69601b4d2d608191b22e565b4c3074e7-venturecounsel-ai-term-sheet-analyzer" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded-lg shadow-xl transition-all text-lg">
+                Launch Term Sheet Analyzer
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </a>
+            <p class="text-sm text-slate-500 mt-4">Requires ChatGPT Plus · Educational purposes only</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-white">VentureCounsel.AI</span>
+                    </div>
+                    <p class="text-sm">AI venture counsel for startup founders.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-white mb-3">Tools</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/term-sheet-analyzer.html" class="hover:text-white transition-colors">Term Sheet Analyzer</a></li>
+                        <li><a href="https://chatgpt.com/g/g-6957e09a03d481919f852e6925893010-venturecounsel-ai" class="hover:text-white transition-colors">Contract Advisor</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-white mb-3">Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/index.html#examples" class="hover:text-white transition-colors">Examples</a></li>
+                        <li><a href="/index.html#faq" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#disclaimers" class="hover:text-white transition-colors">Legal Disclaimers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-white mb-3">Company</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/index.html#problem" class="hover:text-white transition-colors">About</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8">
+                <p class="text-xs text-center">© 2025 VentureCounsel.AI. All rights reserved. | <a href="#disclaimers" class="underline hover:text-white">Legal Disclaimers</a> | Educational tool only. Not legal advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
