@@ -1,0 +1,164 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-01-08",
+  "clauses": {
+    "liquidation_preference": {
+      "issue": "Participating liquidation preference or multiple > 1x",
+      "founderFriendly": {
+        "language": "The holders of Series [X] Preferred Stock shall be entitled to receive, prior to and in preference to any distribution to holders of Common Stock, an amount per share equal to [Original Purchase Price] plus declared but unpaid dividends (the \"Liquidation Preference\"). After payment of the Liquidation Preference, the remaining assets shall be distributed pro rata to holders of Common Stock.",
+        "rationale": "1x non-participating is the overwhelming market standard (98% of deals). This ensures investors get their money back first, then everyone shares remaining proceeds proportionally. Clean, simple, aligned.",
+        "negotiationTip": "This is market standard across all stages. If investor pushes for participating or >1x, it's a major red flag unless this is a down round."
+      },
+      "marketStandard": {
+        "language": "The holders of Series [X] Preferred Stock shall be entitled to receive, in preference to holders of Common Stock, an amount equal to [1.0] times the Original Purchase Price, plus declared but unpaid dividends. After such preferential payment, all remaining proceeds shall be distributed pro rata among all stockholders on an as-converted basis.",
+        "rationale": "1x non-participating liquidation preference - the NVCA standard used in 96%+ of venture deals.",
+        "negotiationTip": "This is non-negotiable for most institutional investors. Focus negotiations elsewhere."
+      },
+      "fallback": {
+        "language": "Liquidation Preference: 1x non-participating, with a cap on total liquidation preference at [2-3x] invested capital across all series.",
+        "rationale": "If multiple series stack up, cap the total preference to prevent overwhelming common stock in modest exits.",
+        "negotiationTip": "Use this as a compromise if company has multiple series with cumulative preferences building up."
+      }
+    },
+    "anti_dilution": {
+      "issue": "Full ratchet anti-dilution protection",
+      "founderFriendly": {
+        "language": "Anti-Dilution Protection: Broad-based weighted average anti-dilution protection, which adjusts the conversion price based on the size and price of the new issuance according to the following formula:\n\nNCP = OCP × (A + B) / (A + C)\n\nWhere:\nNCP = New Conversion Price\nOCP = Old Conversion Price\nA = Number of shares of Common Stock outstanding immediately before the new issue\nB = Aggregate consideration received by the Company for the new issue divided by the Old Conversion Price\nC = Number of shares issued in the dilutive issuance",
+        "rationale": "Broad-based weighted average (BBWA) is the market standard in 98%+ of deals. Protects investors fairly without devastating founders and employees in a down round. Takes into account both the price and size of the new round.",
+        "negotiationTip": "This is market standard per NVCA model docs. Full ratchet can wipe out founder equity and should be rejected except in extreme distress situations."
+      },
+      "marketStandard": {
+        "language": "In the event the Company issues Additional Shares of Common Stock (as defined below) at a purchase price less than the Series [X] Conversion Price, the Series [X] Conversion Price shall be adjusted pursuant to a broad-based weighted average formula.",
+        "rationale": "Standard NVCA approach that balances investor protection with fairness to founders and employees.",
+        "negotiationTip": "Non-negotiable for most institutional investors. Focus on carve-outs for employee options, convertible notes, and other standard exceptions."
+      }
+    },
+    "board_composition_seed": {
+      "issue": "Investor-controlled board at seed stage",
+      "founderFriendly": {
+        "language": "Board of Directors: The Board shall consist of [three (3)] members: (i) two (2) members designated by holders of Common Stock (the \"Common Directors\"), and (ii) one (1) member designated by holders of a majority of the Series Seed Preferred Stock (the \"Series Seed Director\").",
+        "rationale": "Maintains founder control (2-1) at seed stage, which is market standard. Founders should maintain board control through at least Series A.",
+        "negotiationTip": "This is the YC Series A template structure. Investor control at seed is aggressive and limits founder flexibility. Push back hard."
+      },
+      "marketStandard": {
+        "language": "Board of Directors: The Board shall consist of [three (3)] members: (i) [Name], (ii) [Name], and (iii) one (1) member designated by holders of a majority of the Series Seed Preferred Stock.",
+        "rationale": "Typical seed stage board maintains founder control while giving investors a voice.",
+        "negotiationTip": "Can also do 1F-1I-1 Independent as an alternative balanced structure."
+      }
+    },
+    "board_composition_series_a": {
+      "issue": "Board composition unclear or investor-heavy too early",
+      "founderFriendly": {
+        "language": "Board of Directors: The Board shall consist of five (5) members: (i) two (2) Common Directors elected by holders of Common Stock, (ii) one (1) Series Seed Director (if applicable), (iii) one (1) Series A Director elected by holders of Series A Preferred, and (iv) one (1) Independent Director mutually agreed upon by Common and Preferred stockholders.",
+        "rationale": "5-person board with founder influence maintained through 2 common directors plus influence over independent director selection. Independent seat often vacant initially, giving founders effective 2-2 control.",
+        "negotiationTip": "Focus on mutual consent for independent director. This prevents investors from unilaterally controlling the board."
+      },
+      "marketStandard": {
+        "language": "The Board shall consist of [five (5)] members, comprised of (i) [two (2)] representatives designated by the Common stockholders, (ii) [two (2)] representatives designated by the Preferred stockholders, and (iii) [one (1)] independent member mutually acceptable to Common and Preferred stockholders.",
+        "rationale": "Balanced Series A board structure.",
+        "negotiationTip": "Ensure 'mutually acceptable' language for independent director to prevent investor veto."
+      }
+    },
+    "founder_vesting": {
+      "issue": "No acceleration or unfavorable vesting terms",
+      "founderFriendly": {
+        "language": "Founder Vesting: Founder shares shall vest over four (4) years, with a one (1) year cliff, and monthly vesting thereafter. Upon a Change of Control, if Founder's employment or service is terminated without Cause or Founder resigns for Good Reason within twelve (12) months following such Change of Control, then fifty percent (50%) of Founder's then-unvested shares shall immediately accelerate and become fully vested.\n\nDefinitions:\n- \"Change of Control\" means (a) a merger or consolidation in which the Company is not the surviving entity, (b) a sale of all or substantially all of the Company's assets, or (c) any transaction resulting in a third party owning more than 50% of the Company's voting power.\n- \"Cause\" means (i) conviction of a felony, (ii) willful misconduct materially harmful to the Company, or (iii) material breach of duties that remains uncured for 30 days after written notice.\n- \"Good Reason\" means (i) material reduction in duties or responsibilities, (ii) relocation of more than 50 miles, or (iii) reduction in base compensation by more than 20%, in each case without Founder's consent.",
+        "rationale": "Double-trigger acceleration protects founders from being pushed out after acquisition while still providing retention incentives to the acquirer. 50% acceleration is a reasonable compromise. Clear definitions prevent disputes.",
+        "negotiationTip": "Double-trigger acceleration is increasingly standard and protects you from the acquirer firing you day 1 to eliminate unvested equity. Most investors accept 50% acceleration; push for 100% if you have leverage."
+      },
+      "marketStandard": {
+        "language": "Founder shares shall vest over four (4) years with a one (1) year cliff, vesting monthly thereafter. Upon a Change of Control and termination without Cause or resignation for Good Reason within 12 months, [50%] of unvested shares shall accelerate.",
+        "rationale": "Standard 4-year vesting with reasonable double-trigger acceleration protection.",
+        "negotiationTip": "4-year/1-year cliff is non-negotiable. Focus on acceleration terms and definitions of Cause/Good Reason."
+      },
+      "fallback": {
+        "language": "Standard 4-year vesting with 1-year cliff. No single-trigger acceleration. Double-trigger acceleration: 50% of unvested shares vest upon Change of Control + qualifying termination within 12 months.",
+        "rationale": "Minimum viable protection. Better than no acceleration.",
+        "negotiationTip": "If investors won't agree to 100% acceleration, 50% double-trigger is acceptable and increasingly common."
+      }
+    },
+    "pro_rata_rights": {
+      "issue": "Forever pro-rata rights or unclear major investor threshold",
+      "founderFriendly": {
+        "language": "Pro Rata Rights: Each Major Investor shall have the right to purchase its pro rata share of any New Securities issued by the Company, calculated based on such Major Investor's fully-diluted ownership percentage immediately prior to the issuance. \n\n\"Major Investor\" means any investor who purchases at least $[100,000] of Series [X] Preferred Stock or who holds at least [1%] of the Company's fully-diluted capitalization.\n\nTermination: These pro rata rights shall terminate upon (i) the earlier of the Company's initial public offering or (ii) the closing of a Series [X+2] financing (i.e., two rounds after this financing).",
+        "rationale": "Limits pro-rata rights to major investors (clear threshold) and sunsets them after two subsequent rounds. This prevents cap table from getting cluttered with many small investors exercising pro-rata rights forever. Gives you flexibility in later rounds.",
+        "negotiationTip": "Forever pro-rata rights constrain future flexibility. Push for: (1) clear Major Investor definition ($100K+ or 1%+), (2) termination after 1-2 rounds or IPO, and (3) language allowing next lead investor to modify these rights if needed."
+      },
+      "marketStandard": {
+        "language": "Pro Rata Rights: Major Investors shall have a right to purchase their pro rata share of New Securities. \"Major Investor\" means any investor holding at least [1%] of the Company's outstanding capital stock or who invested at least $[100,000] in this round.",
+        "rationale": "Standard pro-rata language with clear threshold definition.",
+        "negotiationTip": "Define Major Investor clearly. $100K+ or 1%+ ownership is typical."
+      },
+      "fallback": {
+        "language": "Pro-rata rights for investors holding [1%+] of fully-diluted capitalization, subject to rights of future lead investors to modify or terminate as needed for their investment.",
+        "rationale": "Gives future lead investors flexibility to override if needed.",
+        "negotiationTip": "Include override language to prevent future rounds from being blocked by pro-rata holders."
+      }
+    },
+    "protective_provisions": {
+      "issue": "Overly broad protective provisions or low voting thresholds",
+      "founderFriendly": {
+        "language": "Protective Provisions: So long as [at least [40%]] of the originally issued Series [X] Preferred Stock remains outstanding, the Company shall not, without the written consent of the holders of a majority of the Series [X] Preferred Stock:\n\n(a) alter or change the rights, preferences or privileges of the Series [X] Preferred Stock;\n(b) increase or decrease the authorized number of shares of Series [X] Preferred Stock;\n(c) create any new class or series of shares having rights, preferences, or privileges senior to or on parity with the Series [X] Preferred Stock;\n(d) merge or consolidate with any other corporation (other than a wholly-owned subsidiary);\n(e) sell, lease, or dispose of all or substantially all of the Company's assets;\n(f) amend the Company's Certificate of Incorporation or Bylaws in a manner adverse to Series [X] Preferred Stock;\n(g) redeem or repurchase any shares of capital stock (except pursuant to employee agreements).\n\nVoting Threshold: Majority of Series [X] Preferred Stock (not supermajority).",
+        "rationale": "Limits protective provisions to truly material decisions and uses majority (not supermajority) threshold. Includes sunset provision (40% outstanding) so these rights don't persist forever with tiny minority holders. Excludes day-to-day operational decisions.",
+        "negotiationTip": "Watch for: (1) supermajority thresholds (67%+) which give small minorities blocking power, (2) separate series votes that create gridlock, (3) overly broad provisions covering normal business decisions. Push for majority votes and sunset provisions."
+      },
+      "marketStandard": {
+        "language": "So long as shares of Series [X] Preferred Stock remain outstanding, the Company shall not without approval of holders of a majority of the Series [X] Preferred Stock: (a) alter rights of Series [X], (b) create senior or parity securities, (c) declare dividends, (d) amend charter/bylaws adversely, (e) change authorized shares, (f) merge, consolidate or sell substantially all assets.",
+        "rationale": "Standard NVCA protective provisions focused on protecting investor rights.",
+        "negotiationTip": "These are fairly standard. Focus on voting threshold (majority vs supermajority) and whether votes are by series or aggregated preferred."
+      }
+    },
+    "drag_along": {
+      "issue": "Drag-along without minority protections",
+      "founderFriendly": {
+        "language": "Drag-Along Rights: If (i) the holders of a majority of the outstanding Common Stock, (ii) the holders of a majority of the outstanding Preferred Stock (voting together as a single class), and (iii) the Board of Directors approve a Sale of the Company, then all stockholders shall vote in favor of such Sale and take all necessary actions to consummate it.\n\nMinority Protections:\n(a) Minority stockholders shall not be required to make representations or warranties except: (i) ownership of shares, (ii) authority to enter into agreement, and (iii) shares are free of liens.\n(b) Liability of minority stockholders for indemnification shall not exceed the amount received by such stockholder in the transaction.\n(c) All stockholders shall receive the same form and amount of consideration per share (subject to liquidation preferences).\n(d) Terms of sale shall be no less favorable than terms offered to any other stockholder.",
+        "rationale": "Prevents minority holders from blocking exit while protecting them from: (1) extensive rep & warranty exposure, (2) indemnification beyond proceeds received, (3) different deal terms. These protections are critical and increasingly standard.",
+        "negotiationTip": "Drag-along itself is reasonable and standard. Focus on ensuring minority protections are included: limited reps, capped indemnity, same consideration. Without these, you could be forced to pay money out of pocket if deal goes bad."
+      },
+      "marketStandard": {
+        "language": "Drag-Along: If holders of [majority] of Common and [majority] of Preferred approve a sale, all stockholders shall vote in favor. Minority stockholders shall have liability capped at proceeds received and shall receive same per-share consideration (subject to preferences).",
+        "rationale": "Standard drag-along with basic minority protections.",
+        "negotiationTip": "Ensure minority protections are included: capped liability, same consideration, limited reps."
+      }
+    },
+    "no_shop": {
+      "issue": "Excessive exclusivity period",
+      "founderFriendly": {
+        "language": "No-Shop: For a period of [30] days from the date of this term sheet (the \"Exclusivity Period\"), the Company shall not, directly or indirectly: (a) solicit, initiate, or encourage any inquiries or proposals from other parties regarding an investment in or acquisition of the Company, or (b) participate in discussions or negotiations with any other party regarding such matters.\n\nCarve-out: The Company may continue discussions with parties with whom substantive discussions were ongoing prior to the date of this term sheet, provided Company notifies Investor within [2] business days.\n\nTermination: This exclusivity obligation shall automatically terminate if (i) Investor fails to deliver draft definitive documents within [15] days, or (ii) Investor materially breaches the exclusivity provisions of this term sheet.",
+        "rationale": "30-day exclusivity is at the founder-friendly end of market (30-60 days is typical). Includes carve-out for ongoing discussions and automatic termination if investor doesn't perform. Protects founder from being locked up indefinitely.",
+        "negotiationTip": "Push for 30 days max. Investor may counter with 45-60 for complex deals. Include carve-outs for ongoing processes and automatic termination if investor doesn't deliver docs or fund on schedule."
+      },
+      "marketStandard": {
+        "language": "Exclusivity: For [30-45] days following execution of this term sheet, Company shall not solicit or engage in discussions with other parties regarding investment or acquisition. This obligation terminates upon Investor's material breach or failure to proceed in good faith.",
+        "rationale": "Standard 30-45 day exclusivity period.",
+        "negotiationTip": "30 days is ideal, 45-60 acceptable. Include termination provisions if investor doesn't perform."
+      }
+    },
+    "redemption_rights": {
+      "issue": "Presence of redemption rights",
+      "founderFriendly": {
+        "language": "No redemption rights.",
+        "rationale": "Redemption rights convert equity to debt and create a ticking time bomb. They can force the company to buy back shares at a future date, creating massive cash obligations that can drive the startup into insolvency. This is NOT market standard for VC deals and is a major red flag.",
+        "negotiationTip": "REJECT COMPLETELY. If investor insists, this is likely not a genuine VC deal. Consider whether you want this investor. Redemption rights are deal-killers that future investors will also reject."
+      },
+      "marketStandard": {
+        "language": "No redemption rights (not included in NVCA model documents).",
+        "rationale": "Redemption rights are not market standard and appear in fewer than 5% of VC deals, typically only in distressed situations or bridge rounds.",
+        "negotiationTip": "Walk away if investor pushes for this unless company is in dire straits and you understand the consequences."
+      }
+    },
+    "information_rights": {
+      "issue": "Overly burdensome information rights",
+      "founderFriendly": {
+        "language": "Information Rights: The Company shall provide to each Major Investor:\n\n(a) Annual Financials: Within [120] days after the end of each fiscal year, audited financial statements (or unaudited if no audit conducted).\n\n(b) Quarterly Financials: Within [45] days after the end of each fiscal quarter, unaudited financial statements.\n\n(c) Annual Budget: Within [30] days prior to the end of each fiscal year, the Company's operating plan and budget for the next fiscal year.\n\n(d) Other Information: With reasonable advance notice, access to Company's facilities and personnel to discuss Company's business, finances, and accounts (during normal business hours).\n\nTermination: These rights terminate upon (i) Company's IPO, or (ii) when investor holds less than [1%] of Company's outstanding stock.\n\nConfidentiality: All information shall be subject to standard confidentiality obligations.",
+        "rationale": "Reasonable information rights that don't create excessive burden. Annual and quarterly financials are standard. Includes sunset provision when company goes public or investor stake becomes minimal. Limits access rights to reasonable requests.",
+        "negotiationTip": "Watch for: (1) monthly reporting requirements (too burdensome for early-stage), (2) no sunset provisions (rights persist forever), (3) unlimited access rights (disrupts operations). Push for quarterly (not monthly) reporting and clear sunset triggers."
+      },
+      "marketStandard": {
+        "language": "Company shall provide Major Investors with: (a) annual audited financials within 120 days of fiscal year end, (b) quarterly unaudited financials within 45 days of quarter end, (c) annual budget, and (d) customary inspection rights. Rights terminate upon IPO.",
+        "rationale": "Standard information rights package.",
+        "negotiationTip": "This is fairly standard. Ensure sunset provision is included."
+      }
+    }
+  }
+}

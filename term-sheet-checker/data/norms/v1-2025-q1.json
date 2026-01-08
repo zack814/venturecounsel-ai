@@ -1,0 +1,439 @@
+{
+  "version": "1.0",
+  "effectiveDate": "2025-Q1",
+  "lastUpdated": "2025-01-08",
+  "sources": [
+    "NVCA Model Documents",
+    "Cooley GO Q1-Q2 2025",
+    "Carta State of Private Markets 2025",
+    "Wilson Sonsini, Fenwick & West guidance",
+    "YC Series A Term Sheet",
+    "a16z guidance"
+  ],
+  "norms": {
+    "liquidation_preference": {
+      "pre-seed": {
+        "silicon-valley": {
+          "marketStandard": "1x non-participating",
+          "acceptableRange": {
+            "values": ["1x non-participating"]
+          },
+          "prevalence": 98,
+          "confidence": 0.95,
+          "notes": "98% of Q2 2025 deals. Participating preferences are now largely considered off-market in early-stage deals."
+        },
+        "europe": {
+          "marketStandard": "1x non-participating",
+          "acceptableRange": {
+            "values": ["1x non-participating"]
+          },
+          "prevalence": 95,
+          "confidence": 0.9,
+          "notes": "95% non-participating in 2024"
+        }
+      },
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "1x non-participating",
+          "acceptableRange": {
+            "values": ["1x non-participating"]
+          },
+          "prevalence": 98,
+          "confidence": 0.95,
+          "notes": "Overwhelming standard. Only 12% of term sheets included participating rights in 2025, primarily in down rounds."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "1x non-participating",
+          "acceptableRange": {
+            "values": ["1x non-participating", "1x participating (down rounds only)"]
+          },
+          "prevalence": 96,
+          "confidence": 0.95,
+          "notes": "Standard across NVCA model docs. Participating preferences appear only in challenging situations."
+        }
+      },
+      "series-b-plus": {
+        "silicon-valley": {
+          "marketStandard": "1x non-participating",
+          "acceptableRange": {
+            "values": ["1x non-participating"]
+          },
+          "prevalence": 96,
+          "confidence": 0.95,
+          "notes": "Consistent across all stages"
+        }
+      }
+    },
+    "anti_dilution": {
+      "pre-seed": {
+        "silicon-valley": {
+          "marketStandard": "Broad-based weighted average",
+          "acceptableRange": {
+            "values": ["Broad-based weighted average", "No anti-dilution"]
+          },
+          "prevalence": 98,
+          "confidence": 0.95,
+          "notes": "BBWA is default in NVCA model docs. Full ratchet is a major red flag at this stage."
+        }
+      },
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "Broad-based weighted average",
+          "acceptableRange": {
+            "values": ["Broad-based weighted average"]
+          },
+          "prevalence": 98,
+          "confidence": 0.95,
+          "notes": "Full ratchet can wipe out founder equity and is considered aggressive/deal-killing."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "Broad-based weighted average",
+          "acceptableRange": {
+            "values": ["Broad-based weighted average"]
+          },
+          "prevalence": 99,
+          "confidence": 0.95,
+          "notes": "Universally expected. Full ratchet only in distressed situations."
+        }
+      }
+    },
+    "board_composition": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "2 common (founders) + 1 preferred (investor)",
+          "acceptableRange": {
+            "values": ["2-1 founder control", "1-1-1 (1F, 1I, 1 independent)"]
+          },
+          "prevalence": 85,
+          "confidence": 0.9,
+          "notes": "Founders maintain control at seed stage. YC term sheet uses 2 common + 1 preferred structure."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "5-person board: 2 common + 1 seed preferred + 1 Series A preferred + 1 independent",
+          "acceptableRange": {
+            "values": ["2-2-1 structure", "2-1-1-1 structure"]
+          },
+          "prevalence": 70,
+          "confidence": 0.85,
+          "notes": "Founders often lose outright control but maintain influence. Independent seat sometimes vacant initially."
+        }
+      },
+      "series-b-plus": {
+        "silicon-valley": {
+          "marketStandard": "Investor control typical",
+          "acceptableRange": {
+            "values": ["Varies significantly"]
+          },
+          "prevalence": 60,
+          "confidence": 0.7,
+          "notes": "Balance shifts toward investors at later stages"
+        }
+      }
+    },
+    "protective_provisions": {
+      "all-stages": {
+        "silicon-valley": {
+          "marketStandard": "Standard set including: dividend declarations, stock modifications, charter amendments, share auth changes, senior/parity issuances",
+          "acceptableRange": {
+            "values": ["Standard NVCA provisions"]
+          },
+          "prevalence": 92,
+          "confidence": 0.95,
+          "notes": "Over 90% of deals include protective provisions. Standard across all stages. Watch for overly broad provisions or low voting thresholds."
+        }
+      }
+    },
+    "founder_vesting": {
+      "all-stages": {
+        "silicon-valley": {
+          "marketStandard": "4-year vest, 1-year cliff, monthly thereafter",
+          "acceptableRange": {
+            "values": ["4yr/1yr cliff"]
+          },
+          "prevalence": 95,
+          "confidence": 0.95,
+          "notes": "Industry standard expected by most VCs"
+        }
+      }
+    },
+    "acceleration": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "Double-trigger acceleration (50% on acquisition + termination)",
+          "acceptableRange": {
+            "values": ["Double-trigger 50%", "Double-trigger 100%", "No acceleration"]
+          },
+          "prevalence": 70,
+          "confidence": 0.8,
+          "notes": "Double-trigger is standard/preferred. Single-trigger is rare and most investors won't accept it. Critical protection against post-M&A termination."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "Double-trigger acceleration (50-100% on acquisition + termination)",
+          "acceptableRange": {
+            "values": ["Double-trigger 50%", "Double-trigger 100%"]
+          },
+          "prevalence": 80,
+          "confidence": 0.85,
+          "notes": "Increasingly standard at Series A. Single-trigger deters investors and acquirers."
+        }
+      }
+    },
+    "pro_rata_rights": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "Major investors ($100K+ or 1% ownership) get pro-rata for 1-2 subsequent rounds",
+          "acceptableRange": {
+            "min": 100000,
+            "values": ["$100K+ check", "1%+ ownership"]
+          },
+          "prevalence": 85,
+          "confidence": 0.85,
+          "notes": "Standard for major investors. Best practice: define 'Major Investor' threshold and limit to 1-2 rounds."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "Major investors (typically $500K+ or 1%+) get pro-rata",
+          "acceptableRange": {
+            "min": 500000,
+            "values": ["$500K+ check", "1%+ ownership"]
+          },
+          "prevalence": 90,
+          "confidence": 0.9,
+          "notes": "Nearly universal for lead investors. Super pro-rata less common but may appear for leads."
+        }
+      }
+    },
+    "pay_to_play": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "Rare in healthy rounds",
+          "acceptableRange": {
+            "values": ["None"]
+          },
+          "prevalence": 10,
+          "confidence": 0.85,
+          "notes": "Q2 2025 saw 10.1% prevalence—highest since 2014. Almost exclusively appears in down rounds or distressed situations. Signals market pressure."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "Uncommon in up rounds, common in down rounds",
+          "acceptableRange": {
+            "values": ["None", "Down rounds only"]
+          },
+          "prevalence": 10,
+          "confidence": 0.85,
+          "notes": "Increasingly seen in Series A (previously only later-stage). Red flag if present in healthy deal."
+        }
+      }
+    },
+    "dividends": {
+      "all-stages": {
+        "silicon-valley": {
+          "marketStandard": "None, or 5-10% cumulative if used",
+          "acceptableRange": {
+            "min": 5,
+            "max": 10,
+            "values": ["None", "5-10% cumulative"]
+          },
+          "prevalence": 30,
+          "confidence": 0.75,
+          "notes": "Rare but standard when used. Typical rates: 5-10% annual accrual. Increases liquidation preference over time."
+        }
+      }
+    },
+    "redemption_rights": {
+      "all-stages": {
+        "silicon-valley": {
+          "marketStandard": "None",
+          "acceptableRange": {
+            "values": ["None"]
+          },
+          "prevalence": 5,
+          "confidence": 0.95,
+          "notes": "MAJOR RED FLAG. Not market standard. Converts equity to debt, creates ticking time bomb. Can drive startup into insolvency. Avoid at all costs."
+        }
+      }
+    },
+    "rofr_cosale": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "ROFR + co-sale rights for major investors",
+          "acceptableRange": {
+            "values": ["ROFR + co-sale paired"]
+          },
+          "prevalence": 85,
+          "confidence": 0.9,
+          "notes": "Standard binding provision. Typically 20 days for ROFR exercise. Co-sale kicks in after ROFR passed."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "ROFR + co-sale rights",
+          "acceptableRange": {
+            "values": ["ROFR + co-sale paired"]
+          },
+          "prevalence": 90,
+          "confidence": 0.9,
+          "notes": "Nearly universal. Standard practice for managing shareholder liquidity."
+        }
+      }
+    },
+    "drag_along": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "Majority of common + preferred + board approval required",
+          "acceptableRange": {
+            "values": ["Majority approval with minority protections"]
+          },
+          "prevalence": 80,
+          "confidence": 0.85,
+          "notes": "Standard to prevent minority blocking. Should include protections: limited representations, liability cap, same consideration."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "Majority of common + preferred + board approval required",
+          "acceptableRange": {
+            "values": ["Majority approval with minority protections"]
+          },
+          "prevalence": 90,
+          "confidence": 0.9,
+          "notes": "Nearly universal at Series A and beyond"
+        }
+      }
+    },
+    "no_shop_exclusivity": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "30-45 days",
+          "acceptableRange": {
+            "min": 30,
+            "max": 60
+          },
+          "prevalence": 95,
+          "confidence": 0.95,
+          "notes": "Standard and non-negotiable that it exists. Length is negotiable. Ideal: 30 days. Investor request: 45-60 days for complex DD."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "30-45 days",
+          "acceptableRange": {
+            "min": 30,
+            "max": 60
+          },
+          "prevalence": 98,
+          "confidence": 0.95,
+          "notes": "Keep as short as reasonably possible. 30 days ideal, 45-60 acceptable."
+        }
+      }
+    },
+    "observer_rights": {
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "Common for non-board investors",
+          "acceptableRange": {
+            "values": ["Observer rights with Series A termination", "No observer rights"]
+          },
+          "prevalence": 82,
+          "confidence": 0.85,
+          "notes": "82% of VC funds utilize board observers (2024 NVCA). Should terminate at Series A or B. Don't affect control but influence discussions."
+        }
+      }
+    },
+    "valuation_cap_safe": {
+      "pre-seed": {
+        "silicon-valley": {
+          "marketStandard": "$7.5M",
+          "acceptableRange": {
+            "min": 5000000,
+            "max": 10000000
+          },
+          "prevalence": 90,
+          "confidence": 0.8,
+          "notes": "Median $7.5M for rounds under $250K (2025), up from $6.5M. SAFEs used in 90% of pre-seed rounds."
+        }
+      },
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "$6M-$10M",
+          "acceptableRange": {
+            "min": 6000000,
+            "max": 12000000
+          },
+          "prevalence": 85,
+          "confidence": 0.8,
+          "notes": "Pre-revenue SaaS typically $6M-$10M caps. Below $5M is bottom 10th percentile."
+        }
+      }
+    },
+    "post_money_valuation": {
+      "pre-seed": {
+        "silicon-valley": {
+          "marketStandard": "$5.3M-$5.7M",
+          "acceptableRange": {
+            "min": 4000000,
+            "max": 8000000
+          },
+          "prevalence": 70,
+          "confidence": 0.8,
+          "notes": "Median US $5.3M-$5.7M. AI startups command higher valuations."
+        }
+      },
+      "seed": {
+        "silicon-valley": {
+          "marketStandard": "$16M",
+          "acceptableRange": {
+            "min": 12000000,
+            "max": 20000000
+          },
+          "prevalence": 70,
+          "confidence": 0.85,
+          "notes": "Q1 2025 median $16M (up 18% YoY). AI software ~$19M vs $15M broader market. Bay Area premium."
+        },
+        "europe": {
+          "marketStandard": "€12M-€15M",
+          "acceptableRange": {
+            "min": 10000000,
+            "max": 18000000
+          },
+          "prevalence": 65,
+          "confidence": 0.75,
+          "notes": "More conservative than US. €5.0M median (approximately $5.5M USD)."
+        }
+      },
+      "series-a": {
+        "silicon-valley": {
+          "marketStandard": "$48M pre-money",
+          "acceptableRange": {
+            "min": 35000000,
+            "max": 60000000
+          },
+          "prevalence": 70,
+          "confidence": 0.8,
+          "notes": "Q1 2025 median $48M pre-money (up 9% YoY). Most companies have $2M-$5M ARR."
+        },
+        "europe": {
+          "marketStandard": "£31.5M pre-money",
+          "acceptableRange": {
+            "min": 25000000,
+            "max": 45000000
+          },
+          "prevalence": 65,
+          "confidence": 0.75,
+          "notes": "Approximately $40M USD. Flat from 2024."
+        }
+      }
+    }
+  }
+}
