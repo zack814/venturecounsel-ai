@@ -87,7 +87,7 @@ const faqItems = [
   },
   {
     question: 'Do you offer discounts for accelerator companies?',
-    answer: 'Yes! If you\'re part of Y Combinator, Techstars, or other recognized accelerators, you get 6 months of Pro free. Contact us with proof of participation.'
+    answer: 'We offer discounts for companies in recognized accelerator programs. Contact us with proof of participation to learn about available discounts.'
   },
   {
     question: 'Is my document data secure?',

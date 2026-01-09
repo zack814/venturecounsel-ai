@@ -14,7 +14,7 @@ interface EmailCaptureProps {
 export default function EmailCapture({
   variant = 'card',
   title = 'Get the Free Term Sheet Checklist',
-  description = '20 critical clauses to review before signing any term sheet. Used by 2,500+ founders.',
+  description = '20 critical clauses to review before signing any term sheet.',
   leadMagnet = 'term-sheet-checklist',
   buttonText = 'Send Me the Checklist',
   className = ''
@@ -179,7 +179,7 @@ export default function EmailCapture({
         </button>
       </form>
       <p className="text-center text-slate-400 text-xs mt-4">
-        Join 2,500+ founders. No spam, ever.
+        No spam, ever. Unsubscribe anytime.
       </p>
     </div>
   );
