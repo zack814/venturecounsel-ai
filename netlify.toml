@@ -1,7 +1,7 @@
 [build]
   base = "term-sheet-checker"
   command = "npm run build"
-  publish = "term-sheet-checker/.next"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
