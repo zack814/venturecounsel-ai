@@ -28,6 +28,21 @@ const config: Config = {
           950: '#0a1929',
         },
       },
+      spacing: {
+        'section-sm': '3rem',
+        'section-md': '4rem',
+        'section-lg': '5rem',
+      },
+      borderRadius: {
+        'card': '0.75rem',
+        'button': '0.5rem',
+        'section': '1.5rem',
+        'badge': '0.375rem',
+      },
+      boxShadow: {
+        'card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+        'card-hover': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+      },
     },
   },
   plugins: [],

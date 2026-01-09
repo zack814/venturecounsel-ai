@@ -408,17 +408,6 @@ export default function DemoPreview({ className = '' }: DemoPreviewProps) {
         </div>
       </div>
 
-      {/* Video Demo Link */}
-      <div className="mt-8 text-center">
-        <button className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
-          <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          <span className="font-medium">Watch 2-minute video walkthrough</span>
-        </button>
-      </div>
     </div>
   );
 }

@@ -10,27 +10,6 @@ const posts = getSortedPosts();
 const featuredPost = getFeaturedPost();
 const categories = getCategories();
 
-const guides = [
-  {
-    title: 'The Complete SAFE Guide for Founders',
-    description: 'Everything you need to know about SAFEs, from basic mechanics to advanced negotiation tactics.',
-    chapters: 8,
-    readTime: '45 min total'
-  },
-  {
-    title: 'Term Sheet Negotiation Playbook',
-    description: 'Battle-tested strategies for negotiating your first term sheet without killing the deal.',
-    chapters: 6,
-    readTime: '35 min total'
-  },
-  {
-    title: 'Equity Compensation Handbook',
-    description: 'How to structure equity grants, understand 409A, and build competitive offers.',
-    chapters: 5,
-    readTime: '30 min total'
-  }
-];
-
 export default function BlogPage() {
   // Get posts excluding the featured post
   const displayPosts = featuredPost
@@ -97,7 +76,7 @@ export default function BlogPage() {
           )}
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8">
             {/* Posts List */}
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-bold text-navy-900 mb-8">Latest Articles</h2>
@@ -145,23 +124,6 @@ export default function BlogPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-
-              {/* Guides */}
-              <div className="bg-white rounded-xl p-6 mb-8 border border-gray-200">
-                <h3 className="font-bold text-navy-900 mb-4">Comprehensive Guides</h3>
-                <div className="space-y-4">
-                  {guides.map((guide) => (
-                    <Link key={guide.title} href="#" className="block p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
-                      <h4 className="font-semibold text-navy-900 mb-1">{guide.title}</h4>
-                      <p className="text-gray-600 text-sm mb-2">{guide.description}</p>
-                      <div className="flex gap-4 text-xs text-gray-500">
-                        <span>{guide.chapters} chapters</span>
-                        <span>{guide.readTime}</span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
               </div>
 
               {/* Lead Magnet */}

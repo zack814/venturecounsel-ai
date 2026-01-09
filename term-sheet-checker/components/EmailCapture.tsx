@@ -94,7 +94,7 @@ export default function EmailCapture({
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@startup.com"
             required
-            className="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
           />
           <button
             type="submit"
@@ -174,7 +174,7 @@ export default function EmailCapture({
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@startup.com"
               required
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
             />
             {status === 'error' && (
               <p className="text-red-500 text-sm">{errorMessage}</p>
@@ -216,7 +216,7 @@ export default function EmailCapture({
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@startup.com"
           required
-          className="w-full px-4 py-3 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-3 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700"
         />
         {status === 'error' && (
           <p className="text-red-400 text-sm">{errorMessage}</p>

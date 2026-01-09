@@ -100,7 +100,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               value={termSheetText}
               onChange={(e) => setTermSheetText(e.target.value)}
               placeholder="Paste the full text of your term sheet here, or drag and drop a file..."
-              className="w-full h-64 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-blue-900 resize-none font-mono text-sm"
+              className="w-full h-64 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-900 resize-none font-mono text-sm"
               required
               disabled={isLoading}
             />
@@ -121,7 +121,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               id="stage"
               value={context.stage}
               onChange={(e) => setContext({ ...context, stage: e.target.value as any })}
-              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
               <option value="pre-seed">Pre-Seed</option>
@@ -140,7 +140,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               id="investorType"
               value={context.investorType}
               onChange={(e) => setContext({ ...context, investorType: e.target.value as any })}
-              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
               <option value="institutional-vc">Institutional VC</option>
@@ -160,7 +160,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               id="geography"
               value={context.geography}
               onChange={(e) => setContext({ ...context, geography: e.target.value as any })}
-              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
               <option value="silicon-valley">Silicon Valley</option>
@@ -179,7 +179,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               id="dealType"
               value={context.dealType}
               onChange={(e) => setContext({ ...context, dealType: e.target.value as any })}
-              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
               <option value="safe">SAFE</option>
@@ -199,7 +199,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               id="competitive"
               value={context.competitiveProcess || 'some'}
               onChange={(e) => setContext({ ...context, competitiveProcess: e.target.value as any })}
-              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
               <option value="none">No other investors</option>
@@ -217,7 +217,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
               id="hasLead"
               value={context.hasLeadInvestor ? 'yes' : 'no'}
               onChange={(e) => setContext({ ...context, hasLeadInvestor: e.target.value === 'yes' })}
-              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
               <option value="yes">Yes</option>

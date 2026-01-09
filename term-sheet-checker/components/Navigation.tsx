@@ -122,7 +122,7 @@ export default function Navigation() {
 
             {/* CTA Button */}
             <Link
-              href="/term-sheet"
+              href="/contract-review"
               className="ml-4 px-5 py-2.5 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-medium text-sm rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all shadow-md hover:shadow-lg"
             >
               Get Started
@@ -198,7 +198,7 @@ export default function Navigation() {
 
             {/* CTA */}
             <Link
-              href="/term-sheet"
+              href="/contract-review"
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full py-3 bg-gradient-to-r from-navy-800 to-navy-900 text-white text-center font-semibold rounded-lg"
             >

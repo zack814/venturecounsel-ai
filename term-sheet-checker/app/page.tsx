@@ -18,7 +18,7 @@ export default function HomePage() {
       <main className="hero-gradient subtle-grid pt-28 pb-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Main Hero */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full mb-6 shadow-sm">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
@@ -36,13 +36,13 @@ export default function HomePage() {
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <Link
                 href="#tools"
-                className="px-8 py-4 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-semibold rounded-xl hover:from-navy-700 hover:to-navy-800 transition-all shadow-lg hover:shadow-xl"
+                className="px-8 py-4 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-semibold rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all shadow-lg hover:shadow-xl"
               >
                 Try It Free
               </Link>
               <Link
                 href="/compare"
-                className="px-8 py-4 bg-white text-navy-900 font-semibold rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
+                className="px-8 py-4 bg-white text-navy-900 font-semibold rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm"
               >
                 See How It Works
               </Link>
@@ -50,18 +50,15 @@ export default function HomePage() {
           </div>
 
           {/* Usage Counter */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-16">
             <UsageCounter variant="compact" />
           </div>
 
-          {/* Compact Social Proof - Logos */}
-          <SocialProof variant="logos-only" className="mb-16" />
-
           {/* Tools Grid */}
-          <div id="tools" className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto mb-20 scroll-mt-24">
+          <div id="tools" className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-20 scroll-mt-24">
             {/* Term Sheet Checker Card */}
             <Link href="/term-sheet" className="group card-hover">
-              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-xl hover:border-blue-200 transition-all">
+              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-lg hover:border-blue-200 transition-all">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
                   <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -85,7 +82,7 @@ export default function HomePage() {
 
             {/* SAFE Generator Card */}
             <Link href="/safe-generator" className="group card-hover">
-              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-xl hover:border-amber-200 transition-all">
+              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-lg hover:border-amber-200 transition-all">
                 <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-amber-50 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
                   <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -109,7 +106,7 @@ export default function HomePage() {
 
             {/* Comp Optimizer Card */}
             <Link href="/comp-optimizer" className="group card-hover">
-              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all">
+              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all">
                 <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
                   <svg className="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -133,7 +130,7 @@ export default function HomePage() {
 
             {/* Contract Review GPT Card */}
             <Link href="/contract-review" className="group card-hover">
-              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-xl hover:border-violet-200 transition-all">
+              <div className="bg-white border border-gray-200/80 rounded-2xl p-6 h-full shadow-sm hover:shadow-lg hover:border-violet-200 transition-all">
                 <div className="w-12 h-12 bg-gradient-to-br from-violet-100 to-violet-50 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
                   <svg className="w-6 h-6 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -162,47 +159,8 @@ export default function HomePage() {
           {/* Social Proof - Full */}
           <SocialProof variant="full" />
 
-          {/* Features Section */}
-          <div className="mt-20 mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-navy-900 mb-4">Why Founders Choose Us</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Built by a team that&apos;s been on both sides of the table—as founders raising capital and lawyers drafting the documents.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <svg className="w-8 h-8 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-navy-900 mb-2 text-lg">Market Calibrated</h3>
-                <p className="text-gray-600 text-sm">Benchmarked against real Silicon Valley startup data.</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <svg className="w-8 h-8 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-navy-900 mb-2 text-lg">Instant Results</h3>
-                <p className="text-gray-600 text-sm">Get actionable insights in under 2 minutes.</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <svg className="w-8 h-8 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-navy-900 mb-2 text-lg">Risk Flagging</h3>
-                <p className="text-gray-600 text-sm">Automatic detection of aggressive terms and red flags.</p>
-              </div>
-            </div>
-          </div>
-
           {/* Comparison CTA */}
-          <div className="bg-white rounded-3xl p-8 sm:p-12 mb-20 border border-gray-200 shadow-sm">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 mb-16 border border-gray-200 shadow-sm">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <span className="inline-block px-3 py-1 bg-teal-50 text-teal-700 font-semibold text-xs uppercase tracking-wide rounded-md mb-4">Save Time & Money</span>
@@ -247,7 +205,7 @@ export default function HomePage() {
           </div>
 
           {/* Email Capture */}
-          <div className="max-w-2xl mx-auto mb-20">
+          <div className="max-w-2xl mx-auto mb-16">
             <EmailCapture
               title="Get the Free Term Sheet Checklist"
               description="20 critical clauses to review before signing any term sheet."
@@ -258,7 +216,7 @@ export default function HomePage() {
           </div>
 
           {/* Premium Waitlist */}
-          <div className="max-w-2xl mx-auto mb-20">
+          <div className="max-w-2xl mx-auto mb-16">
             <PremiumWaitlist />
           </div>
 
@@ -294,7 +252,7 @@ export default function HomePage() {
           </div>
 
           {/* Blog/Resources Preview */}
-          <div className="mb-20">
+          <div className="mb-16">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-bold text-navy-900">Latest from the Knowledge Base</h2>
               <Link href="/blog" className="text-teal-600 font-medium hover:text-teal-700 flex items-center gap-1">
@@ -348,7 +306,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/term-sheet"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-semibold rounded-xl hover:from-navy-700 hover:to-navy-800 transition-all shadow-lg hover:shadow-xl"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-semibold rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all shadow-lg hover:shadow-xl"
             >
               Check Your Term Sheet — Free
             </Link>

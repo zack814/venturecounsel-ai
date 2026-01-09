@@ -4,7 +4,7 @@ const features = [
   { value: 'Free', label: 'To get started' },
   { value: '< 2 min', label: 'Time to results' },
   { value: '24/7', label: 'Always available' },
-  { value: 'AI-Powered', label: 'Market-calibrated analysis' }
+  { value: 'AI', label: 'Market-calibrated' }
 ];
 
 interface SocialProofProps {
@@ -19,7 +19,7 @@ export default function SocialProof({ variant = 'full', className = '' }: Social
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {features.map((feature) => (
             <div key={feature.label} className="text-center">
-              <p className="text-3xl sm:text-4xl font-extrabold text-blue-600 mb-1">{feature.value}</p>
+              <p className="text-3xl sm:text-4xl font-extrabold text-teal-600 mb-1">{feature.value}</p>
               <p className="text-slate-600 text-sm">{feature.label}</p>
             </div>
           ))}
@@ -88,7 +88,7 @@ export default function SocialProof({ variant = 'full', className = '' }: Social
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {features.map((feature) => (
             <div key={feature.label} className="text-center">
-              <p className="text-3xl sm:text-4xl font-extrabold text-blue-600 mb-1">{feature.value}</p>
+              <p className="text-3xl sm:text-4xl font-extrabold text-teal-600 mb-1">{feature.value}</p>
               <p className="text-slate-600 text-sm">{feature.label}</p>
             </div>
           ))}
