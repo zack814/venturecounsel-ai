@@ -120,7 +120,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
             <select
               id="stage"
               value={context.stage}
-              onChange={(e) => setContext({ ...context, stage: e.target.value as any })}
+              onChange={(e) => setContext({ ...context, stage: e.target.value as IntakeContext['stage'] })}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
@@ -139,7 +139,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
             <select
               id="investorType"
               value={context.investorType}
-              onChange={(e) => setContext({ ...context, investorType: e.target.value as any })}
+              onChange={(e) => setContext({ ...context, investorType: e.target.value as IntakeContext['investorType'] })}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
@@ -159,7 +159,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
             <select
               id="geography"
               value={context.geography}
-              onChange={(e) => setContext({ ...context, geography: e.target.value as any })}
+              onChange={(e) => setContext({ ...context, geography: e.target.value as IntakeContext['geography'] })}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
@@ -178,7 +178,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
             <select
               id="dealType"
               value={context.dealType}
-              onChange={(e) => setContext({ ...context, dealType: e.target.value as any })}
+              onChange={(e) => setContext({ ...context, dealType: e.target.value as IntakeContext['dealType'] })}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >
@@ -198,7 +198,7 @@ export default function IntakeForm({ onSubmit, isLoading }: IntakeFormProps) {
             <select
               id="competitive"
               value={context.competitiveProcess || 'some'}
-              onChange={(e) => setContext({ ...context, competitiveProcess: e.target.value as any })}
+              onChange={(e) => setContext({ ...context, competitiveProcess: e.target.value as IntakeContext['competitiveProcess'] })}
               className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               disabled={isLoading}
             >

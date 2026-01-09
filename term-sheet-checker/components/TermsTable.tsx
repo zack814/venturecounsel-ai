@@ -62,7 +62,7 @@ export default function TermsTable({ scoredTerms }: TermsTableProps) {
           <label className="text-sm font-semibold text-slate-700 mr-2">Sort by:</label>
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) => setSortBy(e.target.value as 'severity' | 'type')}
             className="px-3 py-1.5 border border-slate-300 rounded-lg text-sm"
           >
             <option value="severity">Severity (High to Low)</option>
