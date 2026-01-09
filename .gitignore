@@ -12,3 +12,12 @@ Thumbs.db
 
 # Documentation (optional - can include if you want)
 # README.md
+
+# Local Netlify folder
+.netlify
+
+# Design mockups
+mockups/
+
+# Claude Code config
+.claude/
