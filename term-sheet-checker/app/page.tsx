@@ -293,22 +293,25 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
+                  slug: 'how-to-read-term-sheet-15-minutes',
+                  title: 'How to Read a Term Sheet in 15 Minutes',
+                  category: 'Fundraising Basics',
+                  readTime: '15 min'
+                },
+                {
+                  slug: 'safe-vs-convertible-note-2024',
                   title: 'SAFE vs. Convertible Note: What Founders Actually Need to Know',
                   category: 'Fundraising Basics',
                   readTime: '12 min'
                 },
                 {
-                  title: 'Pro-Rata Rights: Friend or Foe for Early-Stage Founders?',
+                  slug: 'liquidation-preferences-explained',
+                  title: 'Liquidation Preferences: The Silent Equity Killer',
                   category: 'Term Sheet Deep Dives',
-                  readTime: '8 min'
-                },
-                {
-                  title: 'The MFN Clause Trap: When "Most Favored Nation" Backfires',
-                  category: 'Term Sheet Deep Dives',
-                  readTime: '7 min'
+                  readTime: '11 min'
                 }
               ].map((post) => (
-                <Link key={post.title} href="/blog" className="group block card-hover">
+                <Link key={post.slug} href={`/blog/${post.slug}`} className="group block card-hover">
                   <article className="bg-white border border-gray-200 rounded-xl p-6 h-full shadow-sm hover:shadow-lg transition-shadow">
                     <span className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs font-medium rounded mb-3 inline-block">
                       {post.category}

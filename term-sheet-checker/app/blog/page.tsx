@@ -3,76 +3,11 @@
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { getSortedPosts, getFeaturedPost, getCategories } from '@/lib/blog-data';
 
-const featuredPost = {
-  slug: 'safe-vs-convertible-note-2024',
-  title: 'SAFE vs. Convertible Note: What First-Time Founders Actually Need to Know',
-  excerpt: 'The decision between a SAFE and convertible note isn\'t just legal boilerplate—it affects your cap table, investor relationships, and future fundraising. Here\'s what matters and what doesn\'t.',
-  category: 'Fundraising Basics',
-  readTime: '12 min read',
-  date: 'December 15, 2024',
-  author: 'VentureCounsel.AI',
-  authorRole: 'Editorial Team'
-};
-
-const posts = [
-  {
-    slug: 'understanding-pro-rata-rights',
-    title: 'Pro-Rata Rights: Friend or Foe for Early-Stage Founders?',
-    excerpt: 'Pro-rata rights sound investor-friendly, but they can have surprising implications for your future rounds. When to grant them, when to push back.',
-    category: 'Term Sheet Deep Dives',
-    readTime: '8 min read',
-    date: 'December 10, 2024'
-  },
-  {
-    slug: 'valuation-caps-explained',
-    title: 'Valuation Caps Explained: How to Think About Your SAFE Cap',
-    excerpt: 'Your valuation cap isn\'t your company\'s value—it\'s a conversion ceiling. Here\'s how to negotiate it without leaving money on the table.',
-    category: 'Fundraising Basics',
-    readTime: '10 min read',
-    date: 'December 5, 2024'
-  },
-  {
-    slug: 'mfn-clause-trap',
-    title: 'The MFN Clause Trap: When "Most Favored Nation" Backfires',
-    excerpt: 'MFN clauses seem fair, but they can create chaos in later rounds. Learn from founders who learned this lesson the hard way.',
-    category: 'Term Sheet Deep Dives',
-    readTime: '7 min read',
-    date: 'November 28, 2024'
-  },
-  {
-    slug: 'board-seats-seed-stage',
-    title: 'Should Your Seed Investor Get a Board Seat?',
-    excerpt: 'Board seats at seed stage are more common than they should be. Here\'s how to think about governance before you have real governance.',
-    category: 'Governance',
-    readTime: '9 min read',
-    date: 'November 20, 2024'
-  },
-  {
-    slug: 'information-rights-what-investors-can-see',
-    title: 'Information Rights: What Investors Can (and Can\'t) See',
-    excerpt: 'Information rights clauses vary wildly. Some investors want monthly financials; others want real-time dashboard access. Know what\'s standard.',
-    category: 'Term Sheet Deep Dives',
-    readTime: '6 min read',
-    date: 'November 15, 2024'
-  },
-  {
-    slug: '409a-valuation-basics',
-    title: '409A Valuations: Why You Need One Before Hiring',
-    excerpt: 'Granting equity without a 409A valuation is a ticking tax bomb. Here\'s what founders need to know about this IRS requirement.',
-    category: 'Equity & Compensation',
-    readTime: '8 min read',
-    date: 'November 10, 2024'
-  }
-];
-
-const categories = [
-  { name: 'All Posts', count: 15 },
-  { name: 'Fundraising Basics', count: 6 },
-  { name: 'Term Sheet Deep Dives', count: 5 },
-  { name: 'Equity & Compensation', count: 3 },
-  { name: 'Governance', count: 2 }
-];
+const posts = getSortedPosts();
+const featuredPost = getFeaturedPost();
+const categories = getCategories();
 
 const guides = [
   {
@@ -96,6 +31,11 @@ const guides = [
 ];
 
 export default function BlogPage() {
+  // Get posts excluding the featured post
+  const displayPosts = featuredPost
+    ? posts.filter(p => p.slug !== featuredPost.slug).slice(0, 10)
+    : posts.slice(0, 10);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
@@ -139,34 +79,36 @@ export default function BlogPage() {
           </div>
 
           {/* Featured Post */}
-          <div className="mb-16">
-            <h2 className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-4">Featured</h2>
-            <Link href={`/blog/${featuredPost.slug}`} className="group block">
-              <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full">
-                    {featuredPost.category}
-                  </span>
-                  <span className="text-gray-500 text-sm">{featuredPost.readTime}</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-navy-900 mb-4 group-hover:text-teal-600 transition-colors">
-                  {featuredPost.title}
-                </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                  {featuredPost.excerpt}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-teal-200 rounded-full flex items-center justify-center">
-                    <span className="text-teal-700 font-semibold text-sm">VC</span>
+          {featuredPost && (
+            <div className="mb-16">
+              <h2 className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-4">Featured</h2>
+              <Link href={`/blog/${featuredPost.slug}`} className="group block">
+                <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full">
+                      {featuredPost.category}
+                    </span>
+                    <span className="text-gray-500 text-sm">{featuredPost.readTime}</span>
                   </div>
-                  <div>
-                    <p className="font-medium text-navy-900">{featuredPost.author}</p>
-                    <p className="text-gray-500 text-sm">{featuredPost.date}</p>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-navy-900 mb-4 group-hover:text-teal-600 transition-colors">
+                    {featuredPost.title}
+                  </h3>
+                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                    {featuredPost.excerpt}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-teal-200 rounded-full flex items-center justify-center">
+                      <span className="text-teal-700 font-semibold text-sm">VC</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-navy-900">{featuredPost.author}</p>
+                      <p className="text-gray-500 text-sm">{featuredPost.date}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </div>
+          )}
 
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-3 gap-12">
@@ -174,7 +116,7 @@ export default function BlogPage() {
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-bold text-navy-900 mb-8">Latest Articles</h2>
               <div className="space-y-8">
-                {posts.map((post) => (
+                {displayPosts.map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
                     <article className="border-b border-gray-200 pb-8">
                       <div className="flex items-center gap-4 mb-3">
@@ -193,11 +135,13 @@ export default function BlogPage() {
                 ))}
               </div>
 
-              <div className="mt-8 text-center">
-                <button className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors">
-                  Load More Articles
-                </button>
-              </div>
+              {posts.length > 11 && (
+                <div className="mt-8 text-center">
+                  <button className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors">
+                    Load More Articles
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Sidebar */}
@@ -238,7 +182,7 @@ export default function BlogPage() {
               <div className="bg-gradient-to-br from-navy-900 to-navy-800 rounded-xl p-6 text-white">
                 <h3 className="font-bold mb-3">Free Download</h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  Get our Term Sheet Red Flag Checklist—20 clauses to scrutinize before signing anything.
+                  Get our Term Sheet Red Flag Checklist—25 clauses to scrutinize before signing anything.
                 </p>
                 <form className="space-y-3">
                   <input
