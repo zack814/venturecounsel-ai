@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EmailCapture from '@/components/EmailCapture';
 import { getSortedPosts, getFeaturedPost, getCategories } from '@/lib/blog-data';
 
 const posts = getSortedPosts();
@@ -53,30 +54,15 @@ export default function BlogPage() {
           </div>
 
           {/* Newsletter Signup */}
-          <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl p-8 mb-16 text-white">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl font-bold mb-4">Get Weekly Insights</h2>
-              <p className="text-gray-300 mb-6">
-                Get our weekly analysis of VC deal patterns, market trends, and negotiation tactics delivered to your inbox.
-              </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="you@startup.com"
-                  className="flex-1 px-4 py-3 rounded-lg text-navy-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors"
-                >
-                  Subscribe
-                </button>
-              </form>
-              <p className="text-gray-400 text-xs mt-4">
-                No spam. Unsubscribe anytime. We respect your inbox.
-              </p>
-            </div>
-          </div>
+          <EmailCapture
+            variant="card"
+            title="Get Weekly Insights"
+            description="Get our weekly analysis of VC deal patterns, market trends, and negotiation tactics delivered to your inbox."
+            leadMagnet="weekly-insights"
+            buttonText="Subscribe"
+            sourcePage="/blog"
+            className="mb-16"
+          />
 
           {/* Featured Post */}
           {featuredPost && (
@@ -179,25 +165,14 @@ export default function BlogPage() {
               </div>
 
               {/* Lead Magnet */}
-              <div className="bg-gradient-to-br from-navy-900 to-navy-800 rounded-xl p-6 text-white">
-                <h3 className="font-bold mb-3">Free Download</h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  Get our Term Sheet Red Flag Checklist—25 clauses to scrutinize before signing anything.
-                </p>
-                <form className="space-y-3">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="w-full px-3 py-2 rounded-lg text-navy-900 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full py-2 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors text-sm"
-                  >
-                    Download Free Checklist
-                  </button>
-                </form>
-              </div>
+              <EmailCapture
+                variant="card"
+                title="Free Download"
+                description="Get our Term Sheet Red Flag Checklist—25 clauses to scrutinize before signing anything."
+                leadMagnet="term-sheet-checklist"
+                buttonText="Download Free Checklist"
+                sourcePage="/blog"
+              />
             </div>
           </div>
         </div>

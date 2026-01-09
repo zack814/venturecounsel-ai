@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import OrganizationSchema from "@/components/OrganizationSchema";

@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import EmailCapture from '@/components/EmailCapture';
 import { blogPosts } from '@/lib/blog-data';
 
 export default function BlogPostPage() {
@@ -74,18 +75,16 @@ export default function BlogPostPage() {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
-          {/* CTA Section */}
-          <div className="mt-16 p-8 bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl text-white">
-            <h3 className="text-2xl font-bold mb-4">Ready to analyze your term sheet?</h3>
-            <p className="text-gray-300 mb-6">
-              Get instant, market-calibrated analysis of your investor terms. Know what&apos;s standard vs. aggressive before you sign.
-            </p>
-            <Link
-              href="/term-sheet"
-              className="inline-block px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors"
-            >
-              Try Term Sheet Checker Free &rarr;
-            </Link>
+          {/* Email Capture */}
+          <div className="mt-16">
+            <EmailCapture
+              variant="card"
+              title="Get the Free Term Sheet Checklist"
+              description="20 critical clauses to review before signing any term sheet. Includes red flags and negotiation tips."
+              leadMagnet="term-sheet-checklist"
+              buttonText="Send Me the Checklist"
+              sourcePage={`/blog/${slug}`}
+            />
           </div>
 
           {/* Related Posts */}

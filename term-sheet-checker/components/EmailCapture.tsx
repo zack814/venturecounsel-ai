@@ -9,6 +9,8 @@ interface EmailCaptureProps {
   leadMagnet?: string;
   buttonText?: string;
   className?: string;
+  sourcePage?: string;
+  onClose?: () => void;
 }
 
 export default function EmailCapture({
@@ -17,21 +19,47 @@ export default function EmailCapture({
   description = '20 critical clauses to review before signing any term sheet.',
   leadMagnet = 'term-sheet-checklist',
   buttonText = 'Send Me the Checklist',
-  className = ''
+  className = '',
+  sourcePage = '/',
+  onClose
 }: EmailCaptureProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMessage('');
 
-    // Simulate API call - in production, connect to your email service
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          leadMagnet,
+          sourcePage,
+          sourceVariant: variant,
+        }),
+      });
 
-    // For demo purposes, always succeed
-    setStatus('success');
-    setEmail('');
+      const data = await response.json();
+
+      if (!response.ok) {
+        setStatus('error');
+        setErrorMessage(data.error || 'Something went wrong. Please try again.');
+        return;
+      }
+
+      setStatus('success');
+      setEmail('');
+    } catch {
+      setStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
+    }
   };
 
   if (status === 'success') {
@@ -54,22 +82,27 @@ export default function EmailCapture({
 
   if (variant === 'inline') {
     return (
-      <form onSubmit={handleSubmit} className={`flex gap-3 ${className}`}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@startup.com"
-          required
-          className="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-        >
-          {status === 'loading' ? 'Sending...' : buttonText}
-        </button>
+      <form onSubmit={handleSubmit} className={`${className}`}>
+        <div className="flex gap-3">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@startup.com"
+            required
+            className="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+          >
+            {status === 'loading' ? 'Sending...' : buttonText}
+          </button>
+        </div>
+        {status === 'error' && (
+          <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+        )}
       </form>
     );
   }
@@ -100,6 +133,11 @@ export default function EmailCapture({
             </button>
           </form>
         </div>
+        {status === 'error' && (
+          <div className="text-center pb-2">
+            <p className="text-red-200 text-sm">{errorMessage}</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -108,7 +146,10 @@ export default function EmailCapture({
     return (
       <div className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 ${className}`}>
         <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
-          <button className="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"
+          >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -131,6 +172,9 @@ export default function EmailCapture({
               required
               className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
+            {status === 'error' && (
+              <p className="text-red-500 text-sm">{errorMessage}</p>
+            )}
             <button
               type="submit"
               disabled={status === 'loading'}
@@ -170,6 +214,9 @@ export default function EmailCapture({
           required
           className="w-full px-4 py-3 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        {status === 'error' && (
+          <p className="text-red-400 text-sm">{errorMessage}</p>
+        )}
         <button
           type="submit"
           disabled={status === 'loading'}

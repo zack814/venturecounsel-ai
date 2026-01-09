@@ -245,6 +245,8 @@ export default function HomePage() {
               title="Get the Free Term Sheet Checklist"
               description="20 critical clauses to review before signing any term sheet."
               buttonText="Send Me the Checklist"
+              leadMagnet="term-sheet-checklist"
+              sourcePage="/"
             />
           </div>
 
