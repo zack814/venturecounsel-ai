@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import SocialProof from '@/components/SocialProof';
 import EmailCapture from '@/components/EmailCapture';
 import DemoPreview from '@/components/DemoPreview';
+import UsageCounter from '@/components/UsageCounter';
+import PremiumWaitlist from '@/components/PremiumWaitlist';
 
 export default function HomePage() {
   return (
@@ -45,6 +47,11 @@ export default function HomePage() {
                 See How It Works
               </Link>
             </div>
+          </div>
+
+          {/* Usage Counter */}
+          <div className="flex justify-center mb-8">
+            <UsageCounter variant="compact" />
           </div>
 
           {/* Compact Social Proof - Logos */}
@@ -248,6 +255,11 @@ export default function HomePage() {
               leadMagnet="term-sheet-checklist"
               sourcePage="/"
             />
+          </div>
+
+          {/* Premium Waitlist */}
+          <div className="max-w-2xl mx-auto mb-20">
+            <PremiumWaitlist />
           </div>
 
           {/* Partnership CTA */}

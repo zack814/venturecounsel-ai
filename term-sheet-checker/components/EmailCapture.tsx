@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEmailCapture } from '@/lib/analytics';
 
 interface EmailCaptureProps {
   variant?: 'inline' | 'card' | 'banner' | 'exit-intent';
@@ -53,6 +54,9 @@ export default function EmailCapture({
         setErrorMessage(data.error || 'Something went wrong. Please try again.');
         return;
       }
+
+      // Track successful email capture for analytics
+      trackEmailCapture(leadMagnet, sourcePage, variant);
 
       setStatus('success');
       setEmail('');

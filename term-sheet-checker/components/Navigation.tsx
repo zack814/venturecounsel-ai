@@ -23,6 +23,8 @@ export default function Navigation() {
   const resourceLinks = [
     { href: '/blog', label: 'Knowledge Base' },
     { href: '/compare', label: 'How We Compare' },
+    { href: '/roadmap', label: 'Roadmap' },
+    { href: '/wall', label: 'Feedback Wall' },
     { href: '/about', label: 'About Us' },
     { href: '/pricing', label: 'Pricing' },
     { href: '/partners', label: 'Partners' },

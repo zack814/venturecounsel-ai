@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FeedbackModal from '@/components/FeedbackModal';
 import { Button } from '@/components/comp-optimizer/ui/Button';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/comp-optimizer/ui/Card';
 import {
@@ -13,9 +14,10 @@ import {
   generateDocumentSummary,
   SafeDocumentData,
 } from '@/lib/safe-templates';
-import { SAFE_TYPE_INFO, formatUSD, formatValuation, SIDE_LETTER_OPTIONS } from '@/lib/safe-types';
+import { SAFE_TYPE_INFO } from '@/lib/safe-types';
 import type { SafeWizardState } from '@/lib/safe-types';
 import { generateWordDocument } from '@/lib/docx-generator';
+import { incrementUsage } from '@/components/UsageCounter';
 
 function DocumentPreview({
   title,
@@ -174,6 +176,8 @@ export default function SafeGeneratorResultsPage() {
   const [sideLetter, setSideLetter] = useState<string | null>(null);
   const [summary, setSummary] = useState<ReturnType<typeof generateDocumentSummary> | null>(null);
   const [wizardState, setWizardState] = useState<SafeWizardState | null>(null);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [hasTrackedUsage, setHasTrackedUsage] = useState(false);
 
   useEffect(() => {
     // Get the wizard state from sessionStorage
@@ -206,11 +210,21 @@ export default function SafeGeneratorResultsPage() {
       setSideLetter(sideLetterDoc);
       setSummary(summaryData);
       setIsLoading(false);
+
+      // Track usage and show feedback modal after a delay
+      if (!hasTrackedUsage) {
+        incrementUsage('safe_generator');
+        setHasTrackedUsage(true);
+        // Show feedback modal after 3 seconds
+        setTimeout(() => {
+          setShowFeedbackModal(true);
+        }, 3000);
+      }
     } catch (error) {
       console.error('Error generating documents:', error);
       router.push('/safe-generator');
     }
-  }, [router]);
+  }, [router, hasTrackedUsage]);
 
   const [isDownloading, setIsDownloading] = useState(false);
 
@@ -427,6 +441,14 @@ export default function SafeGeneratorResultsPage() {
       </main>
 
       <Footer />
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        isOpen={showFeedbackModal}
+        onClose={() => setShowFeedbackModal(false)}
+        toolName="safe_generator"
+        toolDisplayName="SAFE Generator"
+      />
     </div>
   );
 }
