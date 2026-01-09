@@ -1,10 +1,20 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { SafeWizard } from '@/components/safe-generator/wizard/SafeWizard';
 
+const STORAGE_KEY = 'safe-generator-wizard-state';
+
 export default function SafeGeneratorPage() {
+  const [key, setKey] = useState(0);
+
+  const handleStartFresh = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    setKey(prev => prev + 1); // Force re-mount of SafeWizard
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <Navigation />
@@ -24,10 +34,16 @@ export default function SafeGeneratorPage() {
               Create market-standard SAFE documents based on Y Combinator templates.
               We&apos;ll guide you through each decision with market context and best practices.
             </p>
+            <button
+              onClick={handleStartFresh}
+              className="mt-4 text-sm text-amber-600 hover:text-amber-700 underline"
+            >
+              Start Fresh (clear saved progress)
+            </button>
           </div>
 
           {/* Wizard */}
-          <SafeWizard />
+          <SafeWizard key={key} />
         </div>
       </main>
 
