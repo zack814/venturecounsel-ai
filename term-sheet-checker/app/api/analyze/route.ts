@@ -102,7 +102,6 @@ export async function POST(request: NextRequest) {
     }
 
     // Run analysis
-    console.log('Starting analysis for IP:', clientIp);
     const report = await analyzeTermSheet(body.termSheetText, body.context);
 
     // Return success response with rate limit headers

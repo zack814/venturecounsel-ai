@@ -97,42 +97,42 @@ const guides = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-navy-900 tracking-tight mb-6">
               Founder Knowledge Base
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Practical guides and insights on fundraising, term sheets, and startup legal matters. No fluff, no legalese.
             </p>
           </div>
 
           {/* Newsletter Signup */}
-          <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 mb-16 text-white">
+          <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl p-8 mb-16 text-white">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-2xl font-bold mb-4">Get Weekly Insights</h2>
-              <p className="text-blue-100 mb-6">
+              <p className="text-gray-300 mb-6">
                 Join 5,000+ founders who get our weekly analysis of VC deal patterns, market trends, and negotiation tactics.
               </p>
               <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="you@startup.com"
-                  className="flex-1 px-4 py-3 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-white"
+                  className="flex-1 px-4 py-3 rounded-lg text-navy-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+                  className="px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors"
                 >
                   Subscribe
                 </button>
               </form>
-              <p className="text-blue-200 text-xs mt-4">
+              <p className="text-gray-400 text-xs mt-4">
                 No spam. Unsubscribe anytime. We respect your inbox.
               </p>
             </div>
@@ -140,28 +140,28 @@ export default function BlogPage() {
 
           {/* Featured Post */}
           <div className="mb-16">
-            <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">Featured</h2>
+            <h2 className="text-sm font-semibold text-teal-600 uppercase tracking-wide mb-4">Featured</h2>
             <Link href={`/blog/${featuredPost.slug}`} className="group block">
-              <div className="bg-slate-50 rounded-2xl p-8 hover:bg-slate-100 transition-colors">
+              <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all">
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full">
                     {featuredPost.category}
                   </span>
-                  <span className="text-slate-500 text-sm">{featuredPost.readTime}</span>
+                  <span className="text-gray-500 text-sm">{featuredPost.readTime}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-2xl sm:text-3xl font-bold text-navy-900 mb-4 group-hover:text-teal-600 transition-colors">
                   {featuredPost.title}
                 </h3>
-                <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                   {featuredPost.excerpt}
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center">
-                    <span className="text-blue-700 font-semibold text-sm">SC</span>
+                  <div className="w-10 h-10 bg-teal-200 rounded-full flex items-center justify-center">
+                    <span className="text-teal-700 font-semibold text-sm">SC</span>
                   </div>
                   <div>
-                    <p className="font-medium text-slate-900">{featuredPost.author}</p>
-                    <p className="text-slate-500 text-sm">{featuredPost.date}</p>
+                    <p className="font-medium text-navy-900">{featuredPost.author}</p>
+                    <p className="text-gray-500 text-sm">{featuredPost.date}</p>
                   </div>
                 </div>
               </div>
@@ -172,29 +172,29 @@ export default function BlogPage() {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Posts List */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-slate-900 mb-8">Latest Articles</h2>
+              <h2 className="text-2xl font-bold text-navy-900 mb-8">Latest Articles</h2>
               <div className="space-y-8">
                 {posts.map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                    <article className="border-b border-slate-200 pb-8">
+                    <article className="border-b border-gray-200 pb-8">
                       <div className="flex items-center gap-4 mb-3">
-                        <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs font-medium rounded">
+                        <span className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs font-medium rounded">
                           {post.category}
                         </span>
-                        <span className="text-slate-400 text-sm">{post.readTime}</span>
+                        <span className="text-gray-400 text-sm">{post.readTime}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-bold text-navy-900 mb-2 group-hover:text-teal-600 transition-colors">
                         {post.title}
                       </h3>
-                      <p className="text-slate-600 mb-3">{post.excerpt}</p>
-                      <p className="text-slate-400 text-sm">{post.date}</p>
+                      <p className="text-gray-600 mb-3">{post.excerpt}</p>
+                      <p className="text-gray-400 text-sm">{post.date}</p>
                     </article>
                   </Link>
                 ))}
               </div>
 
               <div className="mt-8 text-center">
-                <button className="px-6 py-3 border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-colors">
+                <button className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors">
                   Load More Articles
                 </button>
               </div>
@@ -203,14 +203,14 @@ export default function BlogPage() {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               {/* Categories */}
-              <div className="bg-slate-50 rounded-xl p-6 mb-8">
-                <h3 className="font-bold text-slate-900 mb-4">Categories</h3>
+              <div className="bg-white rounded-xl p-6 mb-8 border border-gray-200">
+                <h3 className="font-bold text-navy-900 mb-4">Categories</h3>
                 <ul className="space-y-2">
                   {categories.map((category) => (
                     <li key={category.name}>
-                      <button className="w-full flex justify-between items-center py-2 px-3 rounded-lg hover:bg-white transition-colors text-left">
-                        <span className="text-slate-700">{category.name}</span>
-                        <span className="text-slate-400 text-sm">{category.count}</span>
+                      <button className="w-full flex justify-between items-center py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors text-left">
+                        <span className="text-gray-700">{category.name}</span>
+                        <span className="text-gray-400 text-sm">{category.count}</span>
                       </button>
                     </li>
                   ))}
@@ -218,14 +218,14 @@ export default function BlogPage() {
               </div>
 
               {/* Guides */}
-              <div className="bg-slate-50 rounded-xl p-6 mb-8">
-                <h3 className="font-bold text-slate-900 mb-4">Comprehensive Guides</h3>
+              <div className="bg-white rounded-xl p-6 mb-8 border border-gray-200">
+                <h3 className="font-bold text-navy-900 mb-4">Comprehensive Guides</h3>
                 <div className="space-y-4">
                   {guides.map((guide) => (
-                    <Link key={guide.title} href="#" className="block p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
-                      <h4 className="font-semibold text-slate-900 mb-1">{guide.title}</h4>
-                      <p className="text-slate-600 text-sm mb-2">{guide.description}</p>
-                      <div className="flex gap-4 text-xs text-slate-500">
+                    <Link key={guide.title} href="#" className="block p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
+                      <h4 className="font-semibold text-navy-900 mb-1">{guide.title}</h4>
+                      <p className="text-gray-600 text-sm mb-2">{guide.description}</p>
+                      <div className="flex gap-4 text-xs text-gray-500">
                         <span>{guide.chapters} chapters</span>
                         <span>{guide.readTime}</span>
                       </div>
@@ -235,20 +235,20 @@ export default function BlogPage() {
               </div>
 
               {/* Lead Magnet */}
-              <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl p-6 text-white">
+              <div className="bg-gradient-to-br from-navy-900 to-navy-800 rounded-xl p-6 text-white">
                 <h3 className="font-bold mb-3">Free Download</h3>
-                <p className="text-slate-300 text-sm mb-4">
+                <p className="text-gray-300 text-sm mb-4">
                   Get our Term Sheet Red Flag Checklist—20 clauses to scrutinize before signing anything.
                 </p>
                 <form className="space-y-3">
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full px-3 py-2 rounded-lg text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 rounded-lg text-navy-900 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                   <button
                     type="submit"
-                    className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                    className="w-full py-2 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors text-sm"
                   >
                     Download Free Checklist
                   </button>

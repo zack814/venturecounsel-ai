@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
-    "@react-pdf/renderer": "^4.3.2",
     "clsx": "^2.1.1",
     "docx": "^9.5.1",
     "lucide-react": "^0.562.0",

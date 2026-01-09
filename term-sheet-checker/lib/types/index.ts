@@ -212,3 +212,27 @@ export interface AnalysisResponse {
   report?: AnalysisReport;
   error?: string;
 }
+
+/**
+ * Raw AI-generated scored term (before mapping to ScoredTerm)
+ */
+export interface RawScoredTermResponse {
+  marketStatus: ScoredTerm['marketStatus'];
+  marketStatusScore: number;
+  severityScore: number;
+  riskClass: ScoredTerm['riskClass'];
+  negotiationPosture: ScoredTerm['negotiationPosture'];
+  isDealKiller: boolean;
+  explanation: string;
+  practicalImpact: string;
+  marketComparison: string;
+  confidence: number;
+}
+
+/**
+ * Combined extraction and scoring response from AI
+ */
+export interface ExtractAndScoreResponse {
+  extractedTerms: ExtractedTerm[];
+  scoredTerms: RawScoredTermResponse[];
+}

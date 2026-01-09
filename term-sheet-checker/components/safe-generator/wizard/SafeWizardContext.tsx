@@ -33,17 +33,19 @@ const defaultState: SafeWizardState = {
   },
   companyInfo: {
     stateOfIncorporation: 'DE',
+    state: '', // Initialize address state as empty to ensure validation works
   },
   investorInfo: {
     type: 'individual',
     isAccredited: true,
+    state: '', // Initialize address state as empty to ensure validation works
   },
   sideLetters: {
     'pro-rata': { enabled: true, fields: { 'pro-rata-threshold': 100000 } },
     'info-rights': { enabled: true, fields: { 'info-rights-threshold': 250000, 'info-rights-frequency': 'quarterly' } },
     'mfn': { enabled: false, fields: {} },
     'board-observer': { enabled: false, fields: {} },
-    'major-investor': { enabled: true, fields: { 'major-investor-threshold': 250000 } },
+    'major-investor': { enabled: false, fields: { 'major-investor-threshold': 250000 } },
   },
 };
 
@@ -55,13 +57,27 @@ export function SafeWizardProvider({ children }: { children: React.ReactNode }) 
   const [state, setState] = useState<SafeWizardState>(defaultState);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from localStorage on mount with migration for old data
   useEffect(() => {
     const savedState = localStorage.getItem(STORAGE_KEY);
     if (savedState) {
       try {
         const parsed = JSON.parse(savedState);
-        setState(parsed);
+        // Migrate old data: ensure state fields exist for validation
+        const migrated = {
+          ...parsed,
+          companyInfo: {
+            ...parsed.companyInfo,
+            // Ensure state field exists (was missing in old versions)
+            state: parsed.companyInfo?.state ?? '',
+          },
+          investorInfo: {
+            ...parsed.investorInfo,
+            // Ensure state field exists (was missing in old versions)
+            state: parsed.investorInfo?.state ?? '',
+          },
+        };
+        setState(migrated);
       } catch (e) {
         console.error('Failed to parse saved SAFE wizard state:', e);
       }

@@ -101,6 +101,7 @@ export function Step3CompanyInfo() {
                 options={US_STATES}
                 value={companyInfo.state || ''}
                 onChange={(e) => updateCompanyInfo({ state: e.target.value })}
+                placeholder="Select"
               />
             </div>
             <div className="col-span-2">

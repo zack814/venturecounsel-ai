@@ -107,17 +107,17 @@ const stats = [
 
 export default function PartnersPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-navy-900 tracking-tight mb-6">
               Partner with VentureCounsel.AI
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Join the ecosystem of accelerators, VCs, law firms, and platforms helping founders make smarter legal decisions.
             </p>
           </div>
@@ -125,48 +125,48 @@ export default function PartnersPage() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center p-6 bg-slate-50 rounded-xl">
-                <p className="text-3xl font-extrabold text-blue-600 mb-1">{stat.value}</p>
-                <p className="text-slate-600 text-sm">{stat.label}</p>
+              <div key={stat.label} className="text-center p-6 bg-white rounded-xl border border-gray-200">
+                <p className="text-3xl font-extrabold text-teal-600 mb-1">{stat.value}</p>
+                <p className="text-gray-600 text-sm">{stat.label}</p>
               </div>
             ))}
           </div>
 
           {/* Partner Types */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold text-slate-900 text-center mb-12">Partnership Programs</h2>
+            <h2 className="text-2xl font-bold text-navy-900 text-center mb-12">Partnership Programs</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {partnerTypes.map((partner) => (
-                <div key={partner.id} className="bg-white border border-slate-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div key={partner.id} className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow card-hover">
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+                    <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-teal-600">
                       {partner.icon}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900">{partner.title}</h3>
-                      <p className="text-slate-600">{partner.description}</p>
+                      <h3 className="text-xl font-bold text-navy-900">{partner.title}</h3>
+                      <p className="text-gray-600">{partner.description}</p>
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-slate-900 mb-3">Partner Benefits:</h4>
+                    <h4 className="text-sm font-semibold text-navy-900 mb-3">Partner Benefits:</h4>
                     <ul className="space-y-2">
                       {partner.benefits.map((benefit) => (
                         <li key={benefit} className="flex items-start gap-2">
-                          <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-5 h-5 text-teal-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                           </svg>
-                          <span className="text-slate-600 text-sm">{benefit}</span>
+                          <span className="text-gray-600 text-sm">{benefit}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-slate-500 mb-2">Current Partners Include:</h4>
+                    <h4 className="text-sm font-semibold text-gray-500 mb-2">Current Partners Include:</h4>
                     <div className="flex flex-wrap gap-2">
                       {partner.currentPartners.map((p) => (
-                        <span key={p} className="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded">
+                        <span key={p} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
                           {p}
                         </span>
                       ))}
@@ -175,7 +175,7 @@ export default function PartnersPage() {
 
                   <Link
                     href={`mailto:partners@venturecounsel.ai?subject=${encodeURIComponent(partner.title + ' Partnership Inquiry')}`}
-                    className="block w-full py-3 bg-slate-900 text-white text-center font-semibold rounded-lg hover:bg-slate-800 transition-colors"
+                    className="block w-full py-3 bg-gradient-to-r from-navy-800 to-navy-900 text-white text-center font-semibold rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all"
                   >
                     {partner.cta}
                   </Link>
@@ -185,21 +185,21 @@ export default function PartnersPage() {
           </div>
 
           {/* Testimonials */}
-          <div className="bg-gradient-to-br from-blue-50 to-slate-50 rounded-3xl p-8 sm:p-12 mb-16">
-            <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">What Partners Say</h2>
+          <div className="bg-gradient-to-br from-teal-50 to-navy-50 rounded-3xl p-8 sm:p-12 mb-16">
+            <h2 className="text-2xl font-bold text-navy-900 text-center mb-8">What Partners Say</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
-                  <svg className="w-6 h-6 text-blue-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-teal-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
-                  <p className="text-slate-700 mb-4 leading-relaxed">{testimonial.quote}</p>
+                  <p className="text-gray-700 mb-4 leading-relaxed">{testimonial.quote}</p>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-semibold text-slate-900">{testimonial.author}</p>
-                      <p className="text-slate-500 text-sm">{testimonial.company}</p>
+                      <p className="font-semibold text-navy-900">{testimonial.author}</p>
+                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
                     </div>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">
+                    <span className="px-2 py-1 bg-teal-100 text-teal-700 text-xs font-medium rounded">
                       {testimonial.type}
                     </span>
                   </div>
@@ -210,7 +210,7 @@ export default function PartnersPage() {
 
           {/* How It Works */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold text-slate-900 text-center mb-12">How Partnership Works</h2>
+            <h2 className="text-2xl font-bold text-navy-900 text-center mb-12">How Partnership Works</h2>
             <div className="grid md:grid-cols-4 gap-6">
               {[
                 { step: '1', title: 'Apply', description: 'Fill out our partnership form with your organization details' },
@@ -219,45 +219,45 @@ export default function PartnersPage() {
                 { step: '4', title: 'Launch', description: 'Roll out to your founders with dedicated support' }
               ].map((item) => (
                 <div key={item.step} className="text-center">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                  <div className="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                     {item.step}
                   </div>
-                  <h3 className="font-semibold text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-slate-600 text-sm">{item.description}</p>
+                  <h3 className="font-semibold text-navy-900 mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Founder Communities Section */}
-          <div className="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white mb-16">
+          <div className="bg-navy-900 rounded-3xl p-8 sm:p-12 text-white mb-16">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-2xl font-bold mb-4">Founder Communities</h2>
-                <p className="text-slate-300 mb-6">
+                <p className="text-gray-300 mb-6">
                   Running a founder community, Slack group, or newsletter? We offer special partnerships for community leaders who want to bring legal resources to their members.
                 </p>
                 <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     Exclusive member discounts
                   </li>
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     Custom content for your community
                   </li>
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     Revenue share opportunities
                   </li>
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     AMA sessions with our team
@@ -267,11 +267,11 @@ export default function PartnersPage() {
               <div className="text-center md:text-right">
                 <Link
                   href="mailto:community@venturecounsel.ai?subject=Community%20Partnership%20Inquiry"
-                  className="inline-block px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors"
+                  className="inline-block px-8 py-4 bg-white text-navy-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   Apply as Community Partner
                 </Link>
-                <p className="text-slate-400 text-sm mt-4">
+                <p className="text-gray-400 text-sm mt-4">
                   1,000+ member minimum
                 </p>
               </div>
@@ -280,20 +280,20 @@ export default function PartnersPage() {
 
           {/* CTA */}
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Ready to Partner?</h2>
-            <p className="text-slate-600 mb-8 max-w-xl mx-auto">
+            <h2 className="text-2xl font-bold text-navy-900 mb-4">Ready to Partner?</h2>
+            <p className="text-gray-600 mb-8 max-w-xl mx-auto">
               Join 50+ organizations helping founders navigate legal complexity with confidence.
             </p>
             <div className="flex justify-center gap-4">
               <Link
                 href="mailto:partners@venturecounsel.ai?subject=Partnership%20Inquiry"
-                className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-8 py-4 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-semibold rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all"
               >
                 Start Partnership Conversation
               </Link>
               <Link
                 href="/about"
-                className="px-8 py-4 bg-slate-100 text-slate-900 font-semibold rounded-lg hover:bg-slate-200 transition-colors"
+                className="px-8 py-4 bg-gray-100 text-navy-900 font-semibold rounded-lg hover:bg-gray-200 transition-colors"
               >
                 Learn About Us
               </Link>

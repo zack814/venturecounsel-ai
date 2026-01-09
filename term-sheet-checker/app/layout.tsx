@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
   title: "Term Sheet Reality Checker | VentureCounsel.AI",
@@ -14,7 +15,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-white text-slate-900">
-        {children}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <ErrorBoundary>
+          <main id="main-content">
+            {children}
+          </main>
+        </ErrorBoundary>
       </body>
     </html>
   );

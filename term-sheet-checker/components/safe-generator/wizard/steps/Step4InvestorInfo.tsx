@@ -123,6 +123,7 @@ export function Step4InvestorInfo() {
             value={investorInfo.entityType || ''}
             onChange={(e) => updateInvestorInfo({ entityType: e.target.value })}
             hint="The legal structure of the investing entity"
+            placeholder="Select entity type"
           />
 
           <Input
@@ -161,6 +162,7 @@ export function Step4InvestorInfo() {
                 options={US_STATES}
                 value={investorInfo.state || ''}
                 onChange={(e) => updateInvestorInfo({ state: e.target.value })}
+                placeholder="Select"
               />
             </div>
             <div className="col-span-2">

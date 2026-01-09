@@ -101,17 +101,17 @@ const faqItems = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-navy-900 tracking-tight mb-6">
               Simple, Transparent Pricing
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Start free and scale as you grow. No hidden fees, no long-term contracts.
             </p>
           </div>
@@ -123,25 +123,25 @@ export default function PricingPage() {
                 key={plan.name}
                 className={`relative bg-white rounded-2xl p-8 ${
                   plan.highlight
-                    ? 'border-2 border-blue-500 shadow-xl'
-                    : 'border border-slate-200'
+                    ? 'border-2 border-teal-500 shadow-xl'
+                    : 'border border-gray-200'
                 }`}
               >
                 {plan.badge && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="px-4 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full">
+                    <span className="px-4 py-1 bg-teal-500 text-white text-sm font-semibold rounded-full">
                       {plan.badge}
                     </span>
                   </div>
                 )}
 
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h2>
+                  <h2 className="text-2xl font-bold text-navy-900 mb-2">{plan.name}</h2>
                   <div className="flex items-baseline justify-center gap-1 mb-3">
-                    <span className="text-4xl font-extrabold text-slate-900">{plan.price}</span>
-                    <span className="text-slate-500">{plan.period}</span>
+                    <span className="text-4xl font-extrabold text-navy-900">{plan.price}</span>
+                    <span className="text-gray-500">{plan.period}</span>
                   </div>
-                  <p className="text-slate-600 text-sm">{plan.description}</p>
+                  <p className="text-gray-600 text-sm">{plan.description}</p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
@@ -149,9 +149,9 @@ export default function PricingPage() {
                     <li key={feature} className="flex items-start gap-3">
                       <svg
                         className={`w-5 h-5 flex-shrink-0 ${
-                          plan.color === 'blue' ? 'text-blue-500' :
+                          plan.color === 'blue' ? 'text-teal-500' :
                           plan.color === 'green' ? 'text-green-500' :
-                          'text-slate-400'
+                          'text-gray-400'
                         }`}
                         fill="none"
                         viewBox="0 0 24 24"
@@ -159,25 +159,25 @@ export default function PricingPage() {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-slate-600 text-sm">{feature}</span>
+                      <span className="text-gray-600 text-sm">{feature}</span>
                     </li>
                   ))}
                   {plan.limitations.map((limitation) => (
                     <li key={limitation} className="flex items-start gap-3 opacity-50">
-                      <svg className="w-5 h-5 flex-shrink-0 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-5 h-5 flex-shrink-0 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                       </svg>
-                      <span className="text-slate-500 text-sm">{limitation}</span>
+                      <span className="text-gray-500 text-sm">{limitation}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link
                   href={plan.ctaLink}
-                  className={`block w-full py-3 px-4 text-center font-semibold rounded-lg transition-colors ${
+                  className={`block w-full py-3 px-4 text-center font-semibold rounded-lg transition-all ${
                     plan.highlight
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
+                      ? 'bg-gradient-to-r from-navy-800 to-navy-900 text-white hover:from-navy-700 hover:to-navy-800'
+                      : 'bg-gray-100 text-navy-900 hover:bg-gray-200'
                   }`}
                 >
                   {plan.cta}
@@ -187,7 +187,7 @@ export default function PricingPage() {
           </div>
 
           {/* Enterprise Section */}
-          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 text-white mb-20">
+          <div className="bg-gradient-to-br from-navy-900 to-navy-800 rounded-3xl p-8 sm:p-12 text-white mb-20">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full mb-6">
@@ -196,30 +196,30 @@ export default function PricingPage() {
                 <h2 className="text-3xl font-bold mb-4">
                   Custom Solutions for Law Firms & Accelerators
                 </h2>
-                <p className="text-slate-300 mb-6">
+                <p className="text-gray-300 mb-6">
                   White-label our tools, integrate via API, or get custom features built for your specific needs. Perfect for law firms advising startups, accelerator programs, and VC portfolio support.
                 </p>
                 <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     White-label branding
                   </li>
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     Unlimited API access
                   </li>
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     Custom integrations
                   </li>
-                  <li className="flex items-center gap-2 text-slate-300">
-                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <li className="flex items-center gap-2 text-gray-300">
+                    <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                     Dedicated support & SLA
@@ -229,11 +229,11 @@ export default function PricingPage() {
               <div className="text-center md:text-right">
                 <Link
                   href="mailto:enterprise@venturecounsel.ai?subject=Enterprise%20Inquiry"
-                  className="inline-block px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors"
+                  className="inline-block px-8 py-4 bg-white text-navy-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   Talk to Sales
                 </Link>
-                <p className="text-slate-400 text-sm mt-4">
+                <p className="text-gray-400 text-sm mt-4">
                   Typical response within 24 hours
                 </p>
               </div>
@@ -243,17 +243,17 @@ export default function PricingPage() {
           {/* FAQ Section */}
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
-              <p className="text-slate-600">
+              <h2 className="text-3xl font-bold text-navy-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-600">
                 Everything you need to know about our pricing and plans.
               </p>
             </div>
 
             <div className="space-y-6">
               {faqItems.map((item) => (
-                <div key={item.question} className="bg-slate-50 rounded-xl p-6">
-                  <h3 className="font-semibold text-slate-900 mb-2">{item.question}</h3>
-                  <p className="text-slate-600 text-sm">{item.answer}</p>
+                <div key={item.question} className="bg-white rounded-xl p-6 border border-gray-200">
+                  <h3 className="font-semibold text-navy-900 mb-2">{item.question}</h3>
+                  <p className="text-gray-600 text-sm">{item.answer}</p>
                 </div>
               ))}
             </div>
@@ -261,13 +261,13 @@ export default function PricingPage() {
 
           {/* CTA Section */}
           <div className="mt-20 text-center">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Ready to get started?</h2>
-            <p className="text-slate-600 mb-8 max-w-xl mx-auto">
+            <h2 className="text-2xl font-bold text-navy-900 mb-4">Ready to get started?</h2>
+            <p className="text-gray-600 mb-8 max-w-xl mx-auto">
               Join 2,500+ founders who trust VentureCounsel.AI for their startup legal needs.
             </p>
             <Link
               href="/term-sheet"
-              className="inline-block px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-navy-800 to-navy-900 text-white font-semibold rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all"
             >
               Start Free Today
             </Link>

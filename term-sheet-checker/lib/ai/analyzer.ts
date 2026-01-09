@@ -12,7 +12,9 @@ import {
   ExecutiveSummary,
   ClauseSuggestion,
   NegotiationPlan,
-  AssumptionsAndConfidence
+  AssumptionsAndConfidence,
+  RawScoredTermResponse,
+  ExtractAndScoreResponse
 } from '../types';
 import {
   getExtractionPrompt,
@@ -45,11 +47,9 @@ export async function analyzeTermSheet(
 
   try {
     // STAGE 1+2: Extract and score terms in a single call (faster)
-    console.log('Stage 1-2: Extracting and scoring terms...');
     const { extractedTermSheet, scoredTerms } = await extractAndScoreTerms(termSheetText, context);
 
     // STAGE 3-5: Generate all outputs in parallel (much faster)
-    console.log('Stage 3-5: Generating analysis outputs...');
     const [executiveSummary, clauseSuggestions, negotiationPlan] = await Promise.all([
       generateExecutiveSummary(scoredTerms, context),
       generateClauseSuggestions(scoredTerms, extractedTermSheet, context),
@@ -151,7 +151,7 @@ Return a JSON object with this exact structure:
     throw new Error('Failed to extract JSON from combined response');
   }
 
-  const result = JSON.parse(jsonMatch[0]);
+  const result: ExtractAndScoreResponse = JSON.parse(jsonMatch[0]);
 
   const extractedTermSheet: ExtractedTermSheet = {
     rawText: termSheetText,
@@ -159,7 +159,7 @@ Return a JSON object with this exact structure:
     terms: result.extractedTerms || []
   };
 
-  const scoredTerms: ScoredTerm[] = result.scoredTerms.map((scored: any, index: number) => ({
+  const scoredTerms: ScoredTerm[] = result.scoredTerms.map((scored: RawScoredTermResponse, index: number) => ({
     term: result.extractedTerms[index],
     marketStatus: scored.marketStatus,
     marketStatusScore: scored.marketStatusScore,
@@ -253,11 +253,11 @@ async function scoreTerms(
     throw new Error('Failed to extract JSON array from scoring response');
   }
 
-  const scoredTermsData = JSON.parse(jsonMatch[0]);
+  const scoredTermsData: RawScoredTermResponse[] = JSON.parse(jsonMatch[0]);
 
   // Map to ScoredTerm objects
-  return scoredTermsData.map((scored: any, index: number) => ({
-    term: extractedTermSheet.terms[index] || scored.term,
+  return scoredTermsData.map((scored: RawScoredTermResponse, index: number) => ({
+    term: extractedTermSheet.terms[index] || scored,
     marketStatus: scored.marketStatus,
     marketStatusScore: scored.marketStatusScore,
     severityScore: scored.severityScore,

@@ -3,258 +3,450 @@ import {
   Document,
   Paragraph,
   TextRun,
-  HeadingLevel,
   AlignmentType,
-  BorderStyle,
+  TabStopType,
+  TabStopPosition,
   Packer,
+  PageBreak,
+  Header,
+  Footer,
 } from 'docx';
 
-export interface DocxSection {
-  type: 'heading' | 'subheading' | 'paragraph' | 'divider' | 'label-value' | 'list-item';
-  content?: string;
-  label?: string;
-  value?: string;
-  bold?: boolean;
-  centered?: boolean;
+// Helper to create a centered title paragraph
+function createTitle(text: string, size: number = 28): Paragraph {
+  return new Paragraph({
+    children: [
+      new TextRun({
+        text: text.toUpperCase(),
+        bold: true,
+        size: size,
+        font: 'Times New Roman',
+      }),
+    ],
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 200 },
+  });
 }
 
-// Parse plain text document into sections for Word generation
-function parseTextToSections(text: string): DocxSection[] {
-  const sections: DocxSection[] = [];
-  const lines = text.split('\n');
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const trimmed = line.trim();
-
-    // Skip empty lines
-    if (!trimmed) {
-      continue;
-    }
-
-    // Main title (surrounded by ===)
-    if (trimmed.match(/^={10,}$/)) {
-      // Check if next non-empty line is a title
-      const nextLines: string[] = [];
-      let j = i + 1;
-      while (j < lines.length && lines[j].trim() !== '' && !lines[j].match(/^={10,}$/)) {
-        nextLines.push(lines[j].trim());
-        j++;
-      }
-      if (nextLines.length > 0) {
-        sections.push({
-          type: 'heading',
-          content: nextLines.join(' '),
-          centered: true,
-        });
-        i = j; // Skip past the title and closing ===
-      }
-      continue;
-    }
-
-    // Section divider (---)
-    if (trimmed.match(/^-{10,}$/)) {
-      // Check if next non-empty line is a section header
-      let j = i + 1;
-      while (j < lines.length && lines[j].trim() === '') j++;
-      if (j < lines.length && !lines[j].trim().match(/^-{10,}$/)) {
-        const headerLine = lines[j].trim();
-        // Check for closing divider
-        let k = j + 1;
-        while (k < lines.length && lines[k].trim() === '') k++;
-        if (k < lines.length && lines[k].trim().match(/^-{10,}$/)) {
-          sections.push({ type: 'divider' });
-          sections.push({
-            type: 'subheading',
-            content: headerLine,
-            centered: true,
-          });
-          i = k; // Skip past header and closing divider
-          continue;
-        }
-      }
-      sections.push({ type: 'divider' });
-      continue;
-    }
-
-    // Label: Value format (like COMPANY: name)
-    const labelMatch = trimmed.match(/^([A-Z][A-Z\s]+):\s*(.+)$/);
-    if (labelMatch) {
-      sections.push({
-        type: 'label-value',
-        label: labelMatch[1],
-        value: labelMatch[2],
-      });
-      continue;
-    }
-
-    // Numbered list items
-    const numberedMatch = trimmed.match(/^(\d+)\.\s+(.+)$/);
-    if (numberedMatch) {
-      sections.push({
-        type: 'list-item',
-        content: `${numberedMatch[1]}. ${numberedMatch[2]}`,
+// Helper to create a section heading
+function createSectionHeading(text: string): Paragraph {
+  return new Paragraph({
+    children: [
+      new TextRun({
+        text: text,
         bold: true,
-      });
+        size: 24,
+        font: 'Times New Roman',
+      }),
+    ],
+    alignment: AlignmentType.CENTER,
+    spacing: { before: 400, after: 200 },
+  });
+}
+
+// Helper to create a numbered section heading (e.g., "1. DEFINITIONS")
+function createNumberedHeading(number: string, text: string): Paragraph {
+  return new Paragraph({
+    children: [
+      new TextRun({
+        text: `${number}.\t${text}`,
+        bold: true,
+        size: 24,
+        font: 'Times New Roman',
+      }),
+    ],
+    spacing: { before: 300, after: 150 },
+    tabStops: [{ type: TabStopType.LEFT, position: 720 }],
+  });
+}
+
+// Helper to create a regular paragraph
+function createParagraph(text: string, indent: number = 0, firstLineIndent: number = 720): Paragraph {
+  return new Paragraph({
+    children: [
+      new TextRun({
+        text: text,
+        size: 24,
+        font: 'Times New Roman',
+      }),
+    ],
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 200, line: 276 },
+    indent: { left: indent, firstLine: indent === 0 ? firstLineIndent : 0 },
+  });
+}
+
+// Helper to create a definition paragraph with bold term
+function createDefinition(term: string, definition: string): Paragraph {
+  return new Paragraph({
+    children: [
+      new TextRun({
+        text: `"${term}"`,
+        bold: true,
+        size: 24,
+        font: 'Times New Roman',
+      }),
+      new TextRun({
+        text: ` ${definition}`,
+        size: 24,
+        font: 'Times New Roman',
+      }),
+    ],
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 200, line: 276 },
+    indent: { firstLine: 720 },
+  });
+}
+
+// Helper to create a subsection paragraph (a), (b), etc.
+function createSubsection(letter: string, text: string): Paragraph {
+  return new Paragraph({
+    children: [
+      new TextRun({
+        text: `(${letter})\t${text}`,
+        size: 24,
+        font: 'Times New Roman',
+      }),
+    ],
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { after: 150, line: 276 },
+    indent: { left: 720 },
+    tabStops: [{ type: TabStopType.LEFT, position: 1440 }],
+  });
+}
+
+// Helper for signature block
+function createSignatureBlock(name: string, title?: string): Paragraph[] {
+  const blocks: Paragraph[] = [
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: name.toUpperCase(),
+          bold: true,
+          size: 24,
+          font: 'Times New Roman',
+        }),
+      ],
+      spacing: { before: 400, after: 400 },
+    }),
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: 'By: ________________________________',
+          size: 24,
+          font: 'Times New Roman',
+        }),
+      ],
+      spacing: { after: 100 },
+    }),
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: 'Name: ',
+          size: 24,
+          font: 'Times New Roman',
+        }),
+        new TextRun({
+          text: '______________________________',
+          size: 24,
+          font: 'Times New Roman',
+        }),
+      ],
+      spacing: { after: 100 },
+    }),
+  ];
+
+  if (title) {
+    blocks.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: 'Title: ',
+            size: 24,
+            font: 'Times New Roman',
+          }),
+          new TextRun({
+            text: '______________________________',
+            size: 24,
+            font: 'Times New Roman',
+          }),
+        ],
+        spacing: { after: 100 },
+      })
+    );
+  }
+
+  return blocks;
+}
+
+// Helper to create blank line
+function createBlankLine(): Paragraph {
+  return new Paragraph({
+    children: [new TextRun({ text: '', size: 24 })],
+    spacing: { after: 200 },
+  });
+}
+
+// Parse the plain text and convert to structured docx
+export async function generateWordDocument(textContent: string, title: string): Promise<Blob> {
+  const children: Paragraph[] = [];
+  const lines = textContent.split('\n');
+
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i].trim();
+
+    // Skip document info section at end
+    if (line === 'DOCUMENT INFORMATION' || line.startsWith('Generated by VentureCounsel')) {
+      break;
+    }
+
+    // Skip decorative lines
+    if (line.match(/^[=\-]{10,}$/)) {
+      i++;
       continue;
     }
 
-    // Lettered list items
-    const letteredMatch = trimmed.match(/^\(([a-z])\)\s+(.+)$/);
-    if (letteredMatch) {
-      sections.push({
-        type: 'list-item',
-        content: `(${letteredMatch[1]}) ${letteredMatch[2]}`,
-      });
+    // Skip empty lines but track them
+    if (!line) {
+      i++;
       continue;
     }
 
-    // All caps line (likely a section header within content)
-    if (trimmed === trimmed.toUpperCase() && trimmed.length > 5 && !trimmed.match(/^\[.*\]$/)) {
-      sections.push({
-        type: 'subheading',
-        content: trimmed,
-      });
+    // Main document title (SIMPLE AGREEMENT FOR FUTURE EQUITY)
+    if (line.includes('SIMPLE AGREEMENT FOR FUTURE EQUITY') || line.includes('SIDE LETTER')) {
+      children.push(createTitle(line, 28));
+      i++;
+      continue;
+    }
+
+    // Subtitle (Post-Money SAFE with...)
+    if (line.includes('Post-Money') || line.includes('Pre-Money') || line.includes('to Simple Agreement')) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: line,
+              size: 22,
+              font: 'Times New Roman',
+              italics: true,
+            }),
+          ],
+          alignment: AlignmentType.CENTER,
+          spacing: { after: 400 },
+        })
+      );
+      i++;
+      continue;
+    }
+
+    // Securities disclaimer (all caps paragraph at start)
+    if (line.startsWith('THIS INSTRUMENT') || line.startsWith('THIS CERTIFIES')) {
+      // Collect the full disclaimer paragraph
+      let disclaimer = line;
+      i++;
+      while (i < lines.length && lines[i].trim() && !lines[i].trim().match(/^[=\-]{10,}$/)) {
+        disclaimer += ' ' + lines[i].trim();
+        i++;
+      }
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: disclaimer,
+              size: 20,
+              font: 'Times New Roman',
+            }),
+          ],
+          alignment: AlignmentType.JUSTIFIED,
+          spacing: { before: 200, after: 400 },
+          border: {
+            top: { style: 'single' as const, size: 6, color: '000000' },
+            bottom: { style: 'single' as const, size: 6, color: '000000' },
+            left: { style: 'single' as const, size: 6, color: '000000' },
+            right: { style: 'single' as const, size: 6, color: '000000' },
+          },
+        })
+      );
+      continue;
+    }
+
+    // Section headers (PARTIES, EVENTS, DEFINITIONS, etc.)
+    if (line === line.toUpperCase() && line.length > 3 && line.length < 50 && !line.includes(':')) {
+      children.push(createSectionHeading(line));
+      i++;
+      continue;
+    }
+
+    // Numbered sections (1. EQUITY FINANCING, etc.)
+    const numberedMatch = line.match(/^(\d+)\.\s+([A-Z][A-Z\s]+)$/);
+    if (numberedMatch) {
+      children.push(createNumberedHeading(numberedMatch[1], numberedMatch[2]));
+      i++;
+      continue;
+    }
+
+    // Label: Value pairs (COMPANY:, INVESTOR:, DATE:, etc.)
+    const labelMatch = line.match(/^([A-Z][A-Z\s]+):\s*(.*)$/);
+    if (labelMatch && labelMatch[1].length < 20) {
+      const label = labelMatch[1];
+      let value = labelMatch[2];
+
+      // Check if value continues on next lines (for addresses)
+      i++;
+      while (i < lines.length && lines[i].trim() && !lines[i].trim().match(/^[A-Z][A-Z\s]+:/) && !lines[i].trim().match(/^[=\-]{10,}$/)) {
+        if (lines[i].trim().match(/^(a |the |[A-Z][a-z])/)) {
+          // Looks like start of new paragraph, not continuation
+          break;
+        }
+        value += '\n' + lines[i].trim();
+        i++;
+      }
+
+      // Create tabbed label-value format
+      const valueLines = value.split('\n');
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${label}:`,
+              bold: true,
+              size: 24,
+              font: 'Times New Roman',
+            }),
+            new TextRun({
+              text: `\t${valueLines[0]}`,
+              size: 24,
+              font: 'Times New Roman',
+            }),
+          ],
+          tabStops: [{ type: TabStopType.LEFT, position: 2160 }],
+          spacing: { after: 50 },
+        })
+      );
+
+      // Add continuation lines
+      for (let j = 1; j < valueLines.length; j++) {
+        children.push(
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `\t${valueLines[j]}`,
+                size: 24,
+                font: 'Times New Roman',
+              }),
+            ],
+            tabStops: [{ type: TabStopType.LEFT, position: 2160 }],
+            spacing: { after: 50 },
+          })
+        );
+      }
+      continue;
+    }
+
+    // Lettered subsections (a), (b), etc.
+    const letterMatch = line.match(/^\(([a-z])\)\s+(.+)$/);
+    if (letterMatch) {
+      children.push(createSubsection(letterMatch[1], letterMatch[2]));
+      i++;
+      continue;
+    }
+
+    // Definition terms ("Term" means...)
+    if (line.startsWith('"') && line.includes('" means')) {
+      const defMatch = line.match(/^"([^"]+)"\s+means\s+(.+)$/);
+      if (defMatch) {
+        children.push(createDefinition(defMatch[1], `means ${defMatch[2]}`));
+        i++;
+        continue;
+      }
+    }
+
+    // Signature blocks
+    if (line === 'COMPANY:' || line === 'INVESTOR:') {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: line,
+              bold: true,
+              size: 24,
+              font: 'Times New Roman',
+            }),
+          ],
+          spacing: { before: 600, after: 200 },
+        })
+      );
+      i++;
+      continue;
+    }
+
+    // "By:" signature lines
+    if (line.startsWith('By:')) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: 'By: ________________________________________',
+              size: 24,
+              font: 'Times New Roman',
+            }),
+          ],
+          spacing: { before: 400, after: 100 },
+        })
+      );
+      i++;
+      continue;
+    }
+
+    // "Name:" and "Title:" lines
+    if (line.startsWith('Name:') || line.startsWith('Title:')) {
+      const prefix = line.startsWith('Name:') ? 'Name: ' : 'Title: ';
+      const value = line.replace(/^(Name|Title):\s*/, '');
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: prefix,
+              size: 24,
+              font: 'Times New Roman',
+            }),
+            new TextRun({
+              text: value || '________________________________________',
+              size: 24,
+              font: 'Times New Roman',
+              underline: value ? undefined : {},
+            }),
+          ],
+          spacing: { after: 100 },
+        })
+      );
+      i++;
       continue;
     }
 
     // Regular paragraph
-    sections.push({
-      type: 'paragraph',
-      content: trimmed,
-    });
-  }
-
-  return sections;
-}
-
-// Generate Word document from plain text
-export async function generateWordDocument(textContent: string, title: string): Promise<Blob> {
-  const sections = parseTextToSections(textContent);
-
-  const children: Paragraph[] = [];
-
-  for (const section of sections) {
-    switch (section.type) {
-      case 'heading':
-        children.push(
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: section.content || '',
-                bold: true,
-                size: 32, // 16pt
-                font: 'Times New Roman',
-              }),
-            ],
-            alignment: section.centered ? AlignmentType.CENTER : AlignmentType.LEFT,
-            spacing: { before: 400, after: 200 },
-          })
-        );
-        break;
-
-      case 'subheading':
-        children.push(
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: section.content || '',
-                bold: true,
-                size: 24, // 12pt
-                font: 'Times New Roman',
-                allCaps: true,
-              }),
-            ],
-            alignment: section.centered ? AlignmentType.CENTER : AlignmentType.LEFT,
-            spacing: { before: 300, after: 150 },
-          })
-        );
-        break;
-
-      case 'divider':
-        children.push(
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: '',
-              }),
-            ],
-            border: {
-              bottom: {
-                style: BorderStyle.SINGLE,
-                size: 6,
-                color: '000000',
-              },
-            },
-            spacing: { before: 200, after: 200 },
-          })
-        );
-        break;
-
-      case 'label-value':
-        children.push(
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: `${section.label}: `,
-                bold: true,
-                size: 22, // 11pt
-                font: 'Times New Roman',
-              }),
-              new TextRun({
-                text: section.value || '',
-                size: 22,
-                font: 'Times New Roman',
-              }),
-            ],
-            spacing: { before: 100, after: 100 },
-          })
-        );
-        break;
-
-      case 'list-item':
-        children.push(
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: section.content || '',
-                bold: section.bold,
-                size: 22,
-                font: 'Times New Roman',
-              }),
-            ],
-            indent: { left: 360 }, // 0.25 inch indent
-            spacing: { before: 100, after: 100 },
-          })
-        );
-        break;
-
-      case 'paragraph':
-      default:
-        children.push(
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: section.content || '',
-                size: 22, // 11pt
-                font: 'Times New Roman',
-              }),
-            ],
-            spacing: { before: 100, after: 100 },
-            alignment: AlignmentType.JUSTIFIED,
-          })
-        );
-        break;
-    }
+    children.push(createParagraph(line));
+    i++;
   }
 
   const doc = new Document({
+    styles: {
+      default: {
+        document: {
+          run: {
+            font: 'Times New Roman',
+            size: 24,
+          },
+        },
+      },
+    },
     sections: [
       {
         properties: {
           page: {
             margin: {
-              top: 1440, // 1 inch
+              top: 1440,    // 1 inch
               right: 1440,
               bottom: 1440,
               left: 1440,

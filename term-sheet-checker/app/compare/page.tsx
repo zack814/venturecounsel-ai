@@ -103,46 +103,46 @@ const whenToUse = [
 
 export default function ComparePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-navy-900 tracking-tight mb-6">
               How VentureCounsel.AI Compares
             </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We&apos;re not trying to replace lawyers—we&apos;re trying to help you prepare for conversations with them. Here&apos;s how we stack up.
             </p>
           </div>
 
           {/* Comparison Table */}
-          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-16">
+          <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden mb-16">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200">
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Feature</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-blue-900 bg-blue-50">
+                  <tr className="bg-gray-50 border-b border-gray-200">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-navy-900">Feature</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-teal-900 bg-teal-50">
                       VentureCounsel.AI
                     </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">Startup Lawyer</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">Generic ChatGPT</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">Clerky/Atlas</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-navy-900">Startup Lawyer</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-navy-900">Generic ChatGPT</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-navy-900">Clerky/Atlas</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonData.map((row, index) => (
-                    <tr key={row.feature} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-900">{row.feature}</td>
-                      <td className="px-6 py-4 text-center text-sm text-blue-900 bg-blue-50/50 font-medium">
+                    <tr key={row.feature} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                      <td className="px-6 py-4 text-sm font-medium text-navy-900">{row.feature}</td>
+                      <td className="px-6 py-4 text-center text-sm text-teal-900 bg-teal-50/50 font-medium">
                         {row.ventureCounsel}
                       </td>
-                      <td className="px-6 py-4 text-center text-sm text-slate-600">{row.lawyer}</td>
-                      <td className="px-6 py-4 text-center text-sm text-slate-600">{row.genericAI}</td>
-                      <td className="px-6 py-4 text-center text-sm text-slate-600">{row.clerky}</td>
+                      <td className="px-6 py-4 text-center text-sm text-gray-600">{row.lawyer}</td>
+                      <td className="px-6 py-4 text-center text-sm text-gray-600">{row.genericAI}</td>
+                      <td className="px-6 py-4 text-center text-sm text-gray-600">{row.clerky}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -152,7 +152,7 @@ export default function ComparePage() {
 
           {/* When to Use Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
+            <h2 className="text-3xl font-bold text-navy-900 text-center mb-12">
               Know When to Use What
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -160,13 +160,13 @@ export default function ComparePage() {
                 <div
                   key={section.scenario}
                   className={`rounded-2xl p-6 ${
-                    section.color === 'blue' ? 'bg-blue-50 border border-blue-200' :
+                    section.color === 'blue' ? 'bg-teal-50 border border-teal-200' :
                     section.color === 'green' ? 'bg-green-50 border border-green-200' :
                     'bg-amber-50 border border-amber-200'
                   }`}
                 >
                   <h3 className={`font-bold mb-4 ${
-                    section.color === 'blue' ? 'text-blue-900' :
+                    section.color === 'blue' ? 'text-teal-900' :
                     section.color === 'green' ? 'text-green-900' :
                     'text-amber-900'
                   }`}>
@@ -177,7 +177,7 @@ export default function ComparePage() {
                       <li key={item} className="flex items-start gap-2">
                         <svg
                           className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                            section.color === 'blue' ? 'text-blue-500' :
+                            section.color === 'blue' ? 'text-teal-500' :
                             section.color === 'green' ? 'text-green-500' :
                             'text-amber-500'
                           }`}
@@ -187,7 +187,7 @@ export default function ComparePage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-slate-700 text-sm">{item}</span>
+                        <span className="text-gray-700 text-sm">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -199,14 +199,14 @@ export default function ComparePage() {
           {/* Detailed Comparison Sections */}
           <div className="space-y-12 mb-16">
             {/* vs Lawyers */}
-            <div className="bg-slate-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200">
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">
                 VentureCounsel.AI vs. Hiring a Startup Lawyer
               </h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-3">Why lawyers are still essential:</h4>
-                  <ul className="space-y-2 text-slate-600 text-sm">
+                  <h4 className="font-semibold text-navy-900 mb-3">Why lawyers are still essential:</h4>
+                  <ul className="space-y-2 text-gray-600 text-sm">
                     <li>• Legal liability and malpractice insurance</li>
                     <li>• Negotiating directly with investors on your behalf</li>
                     <li>• Drafting and reviewing final documents</li>
@@ -215,8 +215,8 @@ export default function ComparePage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-3">Where we complement lawyers:</h4>
-                  <ul className="space-y-2 text-slate-600 text-sm">
+                  <h4 className="font-semibold text-navy-900 mb-3">Where we complement lawyers:</h4>
+                  <ul className="space-y-2 text-gray-600 text-sm">
                     <li>• Quick initial assessment before spending on legal fees</li>
                     <li>• Educating yourself on what questions to ask</li>
                     <li>• Understanding market norms before negotiations</li>
@@ -225,22 +225,22 @@ export default function ComparePage() {
                   </ul>
                 </div>
               </div>
-              <div className="mt-6 p-4 bg-white rounded-lg border border-slate-200">
-                <p className="text-sm text-slate-600">
-                  <strong className="text-slate-900">Our recommendation:</strong> Use VentureCounsel.AI to educate yourself and prepare, then bring a qualified startup lawyer in for final review and negotiations. The combination saves money while ensuring you&apos;re protected.
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-600">
+                  <strong className="text-navy-900">Our recommendation:</strong> Use VentureCounsel.AI to educate yourself and prepare, then bring a qualified startup lawyer in for final review and negotiations. The combination saves money while ensuring you&apos;re protected.
                 </p>
               </div>
             </div>
 
             {/* vs Generic AI */}
-            <div className="bg-slate-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200">
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">
                 VentureCounsel.AI vs. Generic ChatGPT
               </h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-3">What generic AI gets wrong:</h4>
-                  <ul className="space-y-2 text-slate-600 text-sm">
+                  <h4 className="font-semibold text-navy-900 mb-3">What generic AI gets wrong:</h4>
+                  <ul className="space-y-2 text-gray-600 text-sm">
                     <li>• No market benchmarks—can&apos;t tell you what&apos;s &quot;normal&quot;</li>
                     <li>• Often hallucinates legal details or cites fake cases</li>
                     <li>• Generic advice that doesn&apos;t consider your context</li>
@@ -249,8 +249,8 @@ export default function ComparePage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-3">What we do differently:</h4>
-                  <ul className="space-y-2 text-slate-600 text-sm">
+                  <h4 className="font-semibold text-navy-900 mb-3">What we do differently:</h4>
+                  <ul className="space-y-2 text-gray-600 text-sm">
                     <li>• Trained on real Silicon Valley deal data</li>
                     <li>• Context-aware: stage, investor type, geography matter</li>
                     <li>• Specific, actionable redline suggestions</li>
@@ -267,14 +267,14 @@ export default function ComparePage() {
             </div>
 
             {/* vs Clerky/Atlas */}
-            <div className="bg-slate-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200">
+              <h3 className="text-2xl font-bold text-navy-900 mb-4">
                 VentureCounsel.AI vs. Clerky & Stripe Atlas
               </h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-3">What they do well:</h4>
-                  <ul className="space-y-2 text-slate-600 text-sm">
+                  <h4 className="font-semibold text-navy-900 mb-3">What they do well:</h4>
+                  <ul className="space-y-2 text-gray-600 text-sm">
                     <li>• Incorporation and company formation</li>
                     <li>• Standard document generation (SAFEs, etc.)</li>
                     <li>• Equity management and cap tables</li>
@@ -283,8 +283,8 @@ export default function ComparePage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-3">Where we&apos;re different:</h4>
-                  <ul className="space-y-2 text-slate-600 text-sm">
+                  <h4 className="font-semibold text-navy-900 mb-3">Where we&apos;re different:</h4>
+                  <ul className="space-y-2 text-gray-600 text-sm">
                     <li>• We analyze documents, not generate them</li>
                     <li>• Review investor-drafted terms (not just your own)</li>
                     <li>• Provide market context and benchmarking</li>
@@ -293,25 +293,25 @@ export default function ComparePage() {
                   </ul>
                 </div>
               </div>
-              <div className="mt-6 p-4 bg-white rounded-lg border border-slate-200">
-                <p className="text-sm text-slate-600">
-                  <strong className="text-slate-900">Use together:</strong> Form your company with Clerky/Atlas, then use VentureCounsel.AI when investors send you term sheets to understand what you&apos;re signing.
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-600">
+                  <strong className="text-navy-900">Use together:</strong> Form your company with Clerky/Atlas, then use VentureCounsel.AI when investors send you term sheets to understand what you&apos;re signing.
                 </p>
               </div>
             </div>
           </div>
 
           {/* CTA Section */}
-          <div className="bg-blue-900 rounded-3xl p-8 sm:p-12 text-center text-white">
+          <div className="bg-navy-900 rounded-3xl p-8 sm:p-12 text-center text-white">
             <h2 className="text-3xl font-bold mb-4">
               See the difference for yourself
             </h2>
-            <p className="text-blue-100 mb-8 max-w-xl mx-auto">
+            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
               Upload a term sheet and get market-calibrated analysis in under 2 minutes. Free, no signup required.
             </p>
             <Link
               href="/term-sheet"
-              className="inline-block px-8 py-4 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+              className="inline-block px-8 py-4 bg-white text-navy-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
             >
               Try It Free
             </Link>
