@@ -21,7 +21,6 @@ const partnerTypes = [
       'Founder workshop presentations',
       'Portfolio-wide usage analytics'
     ],
-    currentPartners: ['Y Combinator', 'Techstars', '500 Global', 'Founder Institute'],
     cta: 'Partner as Accelerator'
   },
   {
@@ -40,7 +39,6 @@ const partnerTypes = [
       'Quarterly portfolio webinars',
       'Early access to new features'
     ],
-    currentPartners: ['a16z Scout', 'First Round Capital', 'Initialized Capital', 'SV Angel'],
     cta: 'Partner as VC'
   },
   {
@@ -59,7 +57,6 @@ const partnerTypes = [
       'Co-marketing opportunities',
       'CLE credit presentations'
     ],
-    currentPartners: ['Goodwin Procter', 'Fenwick & West', 'Wilson Sonsini', 'Cooley'],
     cta: 'Partner as Law Firm'
   },
   {
@@ -78,31 +75,8 @@ const partnerTypes = [
       'Joint product development',
       'Dedicated integration support'
     ],
-    currentPartners: ['Mercury', 'Carta', 'Brex', 'Gusto'],
     cta: 'Explore Integration'
   }
-];
-
-const testimonials = [
-  {
-    quote: "We recommend VentureCounsel.AI to all our portfolio companies. It helps founders come to their first lawyer meeting already understanding the key issues.",
-    author: "Managing Partner",
-    company: "Top 10 Accelerator",
-    type: "Accelerator"
-  },
-  {
-    quote: "The integration with our onboarding flow has been seamless. Founders love having legal insights right where they're already working.",
-    author: "VP Product",
-    company: "Leading Startup Bank",
-    type: "Platform"
-  }
-];
-
-const stats = [
-  { value: '50+', label: 'Partner Organizations' },
-  { value: '10,000+', label: 'Founders Reached' },
-  { value: '$500M+', label: 'Portfolio Value Served' },
-  { value: '4.8/5', label: 'Partner Satisfaction' }
 ];
 
 export default function PartnersPage() {
@@ -118,18 +92,48 @@ export default function PartnersPage() {
               Partner with VentureCounsel.AI
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Join the ecosystem of accelerators, VCs, law firms, and platforms helping founders make smarter legal decisions.
+              Join our ecosystem of accelerators, VCs, law firms, and platforms helping founders make smarter legal decisions.
             </p>
           </div>
 
-          {/* Stats */}
+          {/* Value Props */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center p-6 bg-white rounded-xl border border-gray-200">
-                <p className="text-3xl font-extrabold text-teal-600 mb-1">{stat.value}</p>
-                <p className="text-gray-600 text-sm">{stat.label}</p>
+            <div className="text-center p-6 bg-white rounded-xl border border-gray-200">
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
-            ))}
+              <p className="font-semibold text-navy-900">Free for Partners</p>
+              <p className="text-gray-500 text-sm">No cost to join</p>
+            </div>
+            <div className="text-center p-6 bg-white rounded-xl border border-gray-200">
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <p className="font-semibold text-navy-900">Portfolio Access</p>
+              <p className="text-gray-500 text-sm">For your founders</p>
+            </div>
+            <div className="text-center p-6 bg-white rounded-xl border border-gray-200">
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <p className="font-semibold text-navy-900">Custom Branding</p>
+              <p className="text-gray-500 text-sm">White-label options</p>
+            </div>
+            <div className="text-center p-6 bg-white rounded-xl border border-gray-200">
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <p className="font-semibold text-navy-900">API Access</p>
+              <p className="text-gray-500 text-sm">For integrations</p>
+            </div>
           </div>
 
           {/* Partner Types */}
@@ -162,47 +166,12 @@ export default function PartnersPage() {
                     </ul>
                   </div>
 
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-500 mb-2">Current Partners Include:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {partner.currentPartners.map((p) => (
-                        <span key={p} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
-                          {p}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
                   <Link
                     href={`mailto:partners@venturecounsel.ai?subject=${encodeURIComponent(partner.title + ' Partnership Inquiry')}`}
                     className="block w-full py-3 bg-gradient-to-r from-navy-800 to-navy-900 text-white text-center font-semibold rounded-lg hover:from-navy-700 hover:to-navy-800 transition-all"
                   >
                     {partner.cta}
                   </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Testimonials */}
-          <div className="bg-gradient-to-br from-teal-50 to-navy-50 rounded-3xl p-8 sm:p-12 mb-16">
-            <h2 className="text-2xl font-bold text-navy-900 text-center mb-8">What Partners Say</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
-                  <svg className="w-6 h-6 text-teal-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                  <p className="text-gray-700 mb-4 leading-relaxed">{testimonial.quote}</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-navy-900">{testimonial.author}</p>
-                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
-                    </div>
-                    <span className="px-2 py-1 bg-teal-100 text-teal-700 text-xs font-medium rounded">
-                      {testimonial.type}
-                    </span>
-                  </div>
                 </div>
               ))}
             </div>
@@ -271,9 +240,6 @@ export default function PartnersPage() {
                 >
                   Apply as Community Partner
                 </Link>
-                <p className="text-gray-400 text-sm mt-4">
-                  1,000+ member minimum
-                </p>
               </div>
             </div>
           </div>
@@ -282,7 +248,7 @@ export default function PartnersPage() {
           <div className="text-center">
             <h2 className="text-2xl font-bold text-navy-900 mb-4">Ready to Partner?</h2>
             <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-              Join 50+ organizations helping founders navigate legal complexity with confidence.
+              Join our growing network of organizations helping founders navigate legal complexity with confidence.
             </p>
             <div className="flex justify-center gap-4">
               <Link

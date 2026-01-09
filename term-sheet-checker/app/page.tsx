@@ -22,7 +22,7 @@ export default function HomePage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
               </span>
-              <span className="text-navy-800 font-medium text-sm">Trusted by 2,500+ founders</span>
+              <span className="text-navy-800 font-medium text-sm">Free AI-powered legal tools for founders</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight mb-6 leading-[1.1]">
               Legal AI that gives you<br className="hidden sm:inline" />
@@ -243,7 +243,7 @@ export default function HomePage() {
           <div className="max-w-2xl mx-auto mb-20">
             <EmailCapture
               title="Get the Free Term Sheet Checklist"
-              description="20 critical clauses to review before signing any term sheet. Used by 2,500+ founders."
+              description="20 critical clauses to review before signing any term sheet."
               buttonText="Send Me the Checklist"
             />
           </div>
@@ -262,10 +262,10 @@ export default function HomePage() {
                   Give your portfolio companies and clients access to VentureCounsel.AI. Custom programs for accelerators, VC funds, and startup law practices.
                 </p>
                 <div className="flex flex-wrap gap-3 mb-6">
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">Y Combinator</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">Techstars</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">500 Global</span>
-                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">Goodwin</span>
+                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">Accelerators</span>
+                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">VC Funds</span>
+                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">Law Firms</span>
+                  <span className="px-3 py-1 bg-white/10 rounded-full text-sm">Startup Platforms</span>
                 </div>
               </div>
               <div className="text-center md:text-right">
@@ -327,7 +327,7 @@ export default function HomePage() {
           <div className="text-center">
             <h2 className="text-3xl font-bold text-navy-900 mb-4">Ready to understand your term sheet?</h2>
             <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-              Join 2,500+ founders who use VentureCounsel.AI to make better decisions.
+              Get instant, market-calibrated analysis of your term sheet. Free to try.
             </p>
             <Link
               href="/term-sheet"

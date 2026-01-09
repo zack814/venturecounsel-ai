@@ -263,7 +263,7 @@ export default function PricingPage() {
           <div className="mt-20 text-center">
             <h2 className="text-2xl font-bold text-navy-900 mb-4">Ready to get started?</h2>
             <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-              Join 2,500+ founders who trust VentureCounsel.AI for their startup legal needs.
+              Get instant, market-calibrated analysis of your term sheet. Free to try, no signup required.
             </p>
             <Link
               href="/term-sheet"

@@ -10,9 +10,9 @@ const featuredPost = {
   excerpt: 'The decision between a SAFE and convertible note isn\'t just legal boilerplate—it affects your cap table, investor relationships, and future fundraising. Here\'s what matters and what doesn\'t.',
   category: 'Fundraising Basics',
   readTime: '12 min read',
-  date: 'December 15, 2025',
-  author: 'Sarah Chen',
-  authorRole: 'Founder & CEO'
+  date: 'December 15, 2024',
+  author: 'VentureCounsel.AI',
+  authorRole: 'Editorial Team'
 };
 
 const posts = [
@@ -22,7 +22,7 @@ const posts = [
     excerpt: 'Pro-rata rights sound investor-friendly, but they can have surprising implications for your future rounds. When to grant them, when to push back.',
     category: 'Term Sheet Deep Dives',
     readTime: '8 min read',
-    date: 'December 10, 2025'
+    date: 'December 10, 2024'
   },
   {
     slug: 'valuation-caps-explained',
@@ -30,7 +30,7 @@ const posts = [
     excerpt: 'Your valuation cap isn\'t your company\'s value—it\'s a conversion ceiling. Here\'s how to negotiate it without leaving money on the table.',
     category: 'Fundraising Basics',
     readTime: '10 min read',
-    date: 'December 5, 2025'
+    date: 'December 5, 2024'
   },
   {
     slug: 'mfn-clause-trap',
@@ -38,7 +38,7 @@ const posts = [
     excerpt: 'MFN clauses seem fair, but they can create chaos in later rounds. Learn from founders who learned this lesson the hard way.',
     category: 'Term Sheet Deep Dives',
     readTime: '7 min read',
-    date: 'November 28, 2025'
+    date: 'November 28, 2024'
   },
   {
     slug: 'board-seats-seed-stage',
@@ -46,7 +46,7 @@ const posts = [
     excerpt: 'Board seats at seed stage are more common than they should be. Here\'s how to think about governance before you have real governance.',
     category: 'Governance',
     readTime: '9 min read',
-    date: 'November 20, 2025'
+    date: 'November 20, 2024'
   },
   {
     slug: 'information-rights-what-investors-can-see',
@@ -54,7 +54,7 @@ const posts = [
     excerpt: 'Information rights clauses vary wildly. Some investors want monthly financials; others want real-time dashboard access. Know what\'s standard.',
     category: 'Term Sheet Deep Dives',
     readTime: '6 min read',
-    date: 'November 15, 2025'
+    date: 'November 15, 2024'
   },
   {
     slug: '409a-valuation-basics',
@@ -62,7 +62,7 @@ const posts = [
     excerpt: 'Granting equity without a 409A valuation is a ticking tax bomb. Here\'s what founders need to know about this IRS requirement.',
     category: 'Equity & Compensation',
     readTime: '8 min read',
-    date: 'November 10, 2025'
+    date: 'November 10, 2024'
   }
 ];
 
@@ -117,7 +117,7 @@ export default function BlogPage() {
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-2xl font-bold mb-4">Get Weekly Insights</h2>
               <p className="text-gray-300 mb-6">
-                Join 5,000+ founders who get our weekly analysis of VC deal patterns, market trends, and negotiation tactics.
+                Get our weekly analysis of VC deal patterns, market trends, and negotiation tactics delivered to your inbox.
               </p>
               <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input
@@ -157,7 +157,7 @@ export default function BlogPage() {
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-teal-200 rounded-full flex items-center justify-center">
-                    <span className="text-teal-700 font-semibold text-sm">SC</span>
+                    <span className="text-teal-700 font-semibold text-sm">VC</span>
                   </div>
                   <div>
                     <p className="font-medium text-navy-900">{featuredPost.author}</p>
