@@ -15,15 +15,18 @@ import {
 } from '@/lib/safe-templates';
 import { SAFE_TYPE_INFO, formatUSD, formatValuation, SIDE_LETTER_OPTIONS } from '@/lib/safe-types';
 import type { SafeWizardState } from '@/lib/safe-types';
+import { generateWordDocument } from '@/lib/docx-generator';
 
 function DocumentPreview({
   title,
   content,
   onDownload,
+  isDownloading,
 }: {
   title: string;
   content: string;
   onDownload: () => void;
+  isDownloading?: boolean;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -32,21 +35,30 @@ function DocumentPreview({
       <CardHeader className="bg-slate-50 border-b border-slate-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
               </svg>
             </div>
             <div>
               <h3 className="font-semibold text-slate-900">{title}</h3>
-              <p className="text-xs text-slate-500">Plain text document</p>
+              <p className="text-xs text-slate-500">Word document (.docx)</p>
             </div>
           </div>
-          <Button onClick={onDownload} size="sm" className="bg-amber-600 hover:bg-amber-700">
-            <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Download
+          <Button onClick={onDownload} size="sm" className="bg-amber-600 hover:bg-amber-700" disabled={isDownloading}>
+            {isDownloading ? (
+              <>
+                <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Generating...
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download .docx
+              </>
+            )}
           </Button>
         </div>
       </CardHeader>
@@ -200,27 +212,48 @@ export default function SafeGeneratorResultsPage() {
     }
   }, [router]);
 
-  const downloadDocument = (content: string, filename: string) => {
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const downloadWordDocument = async (content: string, filename: string, title: string) => {
+    try {
+      const blob = await generateWordDocument(content, title);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error generating Word document:', error);
+      // Fallback to plain text if Word generation fails
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename.replace('.docx', '.txt');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
   };
 
-  const downloadAll = () => {
-    const companyName = wizardState?.companyInfo.legalName?.replace(/[^a-zA-Z0-9]/g, '_') || 'Company';
-    const date = new Date().toISOString().split('T')[0];
+  const downloadAll = async () => {
+    setIsDownloading(true);
+    try {
+      const companyName = wizardState?.companyInfo.legalName?.replace(/[^a-zA-Z0-9]/g, '_') || 'Company';
+      const date = new Date().toISOString().split('T')[0];
+      const safeTitle = safeTypeInfo?.name || 'SAFE Agreement';
 
-    downloadDocument(safeDocument, `SAFE_${companyName}_${date}.txt`);
-    if (sideLetter) {
-      setTimeout(() => {
-        downloadDocument(sideLetter, `SideLetter_${companyName}_${date}.txt`);
-      }, 100);
+      await downloadWordDocument(safeDocument, `SAFE_${companyName}_${date}.docx`, safeTitle);
+      if (sideLetter) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        await downloadWordDocument(sideLetter, `SideLetter_${companyName}_${date}.docx`, 'Side Letter');
+      }
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -279,11 +312,21 @@ export default function SafeGeneratorResultsPage() {
                 onClick={downloadAll}
                 size="lg"
                 className="bg-amber-600 hover:bg-amber-700 hidden sm:flex"
+                disabled={isDownloading}
               >
-                <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download All
+                {isDownloading ? (
+                  <>
+                    <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download All
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -295,10 +338,16 @@ export default function SafeGeneratorResultsPage() {
               <DocumentPreview
                 title={safeTypeInfo?.name || 'SAFE Agreement'}
                 content={safeDocument}
-                onDownload={() => {
-                  const companyName = wizardState?.companyInfo.legalName?.replace(/[^a-zA-Z0-9]/g, '_') || 'Company';
-                  const date = new Date().toISOString().split('T')[0];
-                  downloadDocument(safeDocument, `SAFE_${companyName}_${date}.txt`);
+                isDownloading={isDownloading}
+                onDownload={async () => {
+                  setIsDownloading(true);
+                  try {
+                    const companyName = wizardState?.companyInfo.legalName?.replace(/[^a-zA-Z0-9]/g, '_') || 'Company';
+                    const date = new Date().toISOString().split('T')[0];
+                    await downloadWordDocument(safeDocument, `SAFE_${companyName}_${date}.docx`, safeTypeInfo?.name || 'SAFE Agreement');
+                  } finally {
+                    setIsDownloading(false);
+                  }
                 }}
               />
 
@@ -307,10 +356,16 @@ export default function SafeGeneratorResultsPage() {
                 <DocumentPreview
                   title="Side Letter"
                   content={sideLetter}
-                  onDownload={() => {
-                    const companyName = wizardState?.companyInfo.legalName?.replace(/[^a-zA-Z0-9]/g, '_') || 'Company';
-                    const date = new Date().toISOString().split('T')[0];
-                    downloadDocument(sideLetter, `SideLetter_${companyName}_${date}.txt`);
+                  isDownloading={isDownloading}
+                  onDownload={async () => {
+                    setIsDownloading(true);
+                    try {
+                      const companyName = wizardState?.companyInfo.legalName?.replace(/[^a-zA-Z0-9]/g, '_') || 'Company';
+                      const date = new Date().toISOString().split('T')[0];
+                      await downloadWordDocument(sideLetter, `SideLetter_${companyName}_${date}.docx`, 'Side Letter');
+                    } finally {
+                      setIsDownloading(false);
+                    }
                   }}
                 />
               )}
@@ -321,11 +376,21 @@ export default function SafeGeneratorResultsPage() {
                   onClick={downloadAll}
                   size="lg"
                   className="w-full bg-amber-600 hover:bg-amber-700"
+                  disabled={isDownloading}
                 >
-                  <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  Download All Documents
+                  {isDownloading ? (
+                    <>
+                      <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Generating Documents...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      Download All Documents
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
