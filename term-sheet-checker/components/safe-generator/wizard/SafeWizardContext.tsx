@@ -84,7 +84,13 @@ export function SafeWizardProvider({ children }: { children: React.ReactNode }) 
     setState((prev) => ({
       ...prev,
       safeType: type,
-      safeTerms: { ...prev.safeTerms, safeType: type },
+      safeTerms: {
+        ...prev.safeTerms,
+        safeType: type,
+        // Clear cap/discount when switching SAFE types to avoid confusion
+        valuationCap: type.includes('cap') ? prev.safeTerms.valuationCap : undefined,
+        discountRate: type.includes('discount') ? prev.safeTerms.discountRate : undefined,
+      },
     }));
   }, []);
 
@@ -131,14 +137,17 @@ export function SafeWizardProvider({ children }: { children: React.ReactNode }) 
         // SAFE Type selection
         return Boolean(safeType);
       case 2:
-        // Investment details
-        if (safeType === 'post-money-cap' || safeType === 'pre-money-cap') {
-          return Boolean(safeTerms.investmentAmount && safeTerms.valuationCap);
+        // Investment details - check if required fields are filled based on SAFE type
+        const hasInvestmentAmount = Boolean(safeTerms.investmentAmount && safeTerms.investmentAmount > 0);
+
+        if (safeType.includes('cap')) {
+          return hasInvestmentAmount && Boolean(safeTerms.valuationCap && safeTerms.valuationCap > 0);
         }
-        if (safeType === 'post-money-discount' || safeType === 'pre-money-discount') {
-          return Boolean(safeTerms.investmentAmount && safeTerms.discountRate);
+        if (safeType.includes('discount')) {
+          return hasInvestmentAmount && Boolean(safeTerms.discountRate && safeTerms.discountRate > 0);
         }
-        return Boolean(safeTerms.investmentAmount); // MFN just needs amount
+        // MFN just needs amount
+        return hasInvestmentAmount;
       case 3:
         // Company info
         return Boolean(
