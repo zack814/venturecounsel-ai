@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FAQSchema from '@/components/FAQSchema';
 
 const plans = [
   {
@@ -102,6 +103,7 @@ const faqItems = [
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <FAQSchema items={faqItems} />
       <Navigation />
 
       <main className="pt-24 pb-16 px-4 sm:px-6">

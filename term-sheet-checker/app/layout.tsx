@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 export const metadata: Metadata = {
   title: "VentureCounsel.AI | AI Legal Tools for Startup Founders",
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-white text-slate-900">
+        <OrganizationSchema />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
