@@ -17,6 +17,7 @@ export default function Navigation() {
     { href: '/term-sheet', label: 'Term Sheet Checker' },
     { href: '/safe-generator', label: 'SAFE Generator' },
     { href: '/comp-optimizer', label: 'Comp Optimizer' },
+    { href: '/offer-evaluator', label: 'Offer Evaluator' },
     { href: '/contract-review', label: 'Contract Review' },
   ];
 

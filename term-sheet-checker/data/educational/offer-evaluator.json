@@ -1,0 +1,268 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-01",
+
+  "tooltips": {
+    "409a-valuation": {
+      "term": "409A Valuation",
+      "simple": "The official fair market value of company stock, determined by an independent appraisal. This sets your option strike price.",
+      "detailed": "A 409A valuation is an independent appraisal required by the IRS to determine the fair market value (FMV) of a private company's common stock. It's named after Section 409A of the Internal Revenue Code. Companies typically get a new 409A valuation after each funding round or annually.",
+      "example": "If the 409A valuation is $2.00 per share and you receive 10,000 options, you'll pay $20,000 to exercise them (before taxes)."
+    },
+    "strike-price": {
+      "term": "Strike Price (Exercise Price)",
+      "simple": "The price you pay per share to exercise your options. Usually set at the 409A valuation when options are granted.",
+      "detailed": "The strike price is locked in when your options are granted. If the company's value increases, you keep the same low strike price, which is where options get their value. The difference between the strike price and the eventual sale price is your profit.",
+      "example": "If your strike price is $1.00 and the company is acquired at $10.00 per share, you make $9.00 per share (minus taxes)."
+    },
+    "fully-diluted-shares": {
+      "term": "Fully Diluted Shares Outstanding",
+      "simple": "The total number of shares if everyone exercises their options and converts all convertible securities. Used to calculate your ownership percentage.",
+      "detailed": "This includes: issued shares held by founders/employees/investors, all outstanding options (vested and unvested), unissued shares reserved in the option pool, and shares from convertible notes/SAFEs. It's the most accurate way to understand your ownership.",
+      "example": "If there are 10 million fully diluted shares and you have 10,000 options, you own 0.1% of the company."
+    },
+    "iso-options": {
+      "term": "Incentive Stock Options (ISOs)",
+      "simple": "Tax-advantaged options that qualify for long-term capital gains treatment if you hold the shares for 1 year after exercise and 2 years after grant.",
+      "detailed": "ISOs have favorable tax treatment: no regular income tax at exercise (though AMT may apply). If you hold for the required period, all gains are taxed as long-term capital gains (lower rate). However, ISOs are only available to employees, not contractors.",
+      "example": "If you exercise ISOs and hold for the required period, you might pay 15-20% capital gains tax instead of 35-40% ordinary income tax."
+    },
+    "nso-options": {
+      "term": "Non-Qualified Stock Options (NSOs)",
+      "simple": "Standard options without special tax treatment. The spread at exercise is taxed as ordinary income.",
+      "detailed": "NSOs are simpler but less tax-advantaged. When you exercise, the difference between the strike price and current fair market value is taxed as ordinary income (and subject to withholding). Any additional gain when you sell is capital gains.",
+      "example": "If your strike is $1, FMV at exercise is $5, and you sell at $10: the $4 spread is ordinary income, and the additional $5 gain is capital gains."
+    },
+    "rsu": {
+      "term": "Restricted Stock Units (RSUs)",
+      "simple": "A promise to give you shares when they vest. No purchase required, but you pay ordinary income tax on the full value when they vest.",
+      "detailed": "RSUs are common at later-stage companies. Unlike options, you don't pay anything to receive the shares. However, you pay ordinary income tax on the full market value when they vest, which can create tax bills without liquidity to pay them.",
+      "example": "If 1,000 RSUs vest when the stock is worth $50/share, you owe income tax on $50,000 of income, even if you can't sell the shares yet."
+    },
+    "vesting-schedule": {
+      "term": "Vesting Schedule",
+      "simple": "The timeline over which you earn your equity. Standard is 4 years with a 1-year cliff.",
+      "detailed": "Vesting protects the company if you leave early. The 'cliff' is the minimum time before any equity vests. After the cliff, equity typically vests monthly or quarterly. If you leave before the cliff, you get nothing.",
+      "example": "With a 4-year schedule and 1-year cliff: after 12 months you get 25% (the cliff), then ~2% vests each month for the remaining 36 months."
+    },
+    "cliff": {
+      "term": "Vesting Cliff",
+      "simple": "The minimum time before any equity vests. Usually 1 year for employees.",
+      "detailed": "The cliff ensures employees have committed meaningfully before receiving equity. If you leave before the cliff, you forfeit all unvested equity. Cliffs longer than 1 year or shorter than 6 months are unusual.",
+      "example": "With a 1-year cliff on 40,000 options: if you leave at 11 months, you get 0. If you stay 12 months, you get 10,000 options (25%) at once."
+    },
+    "exercise-period": {
+      "term": "Post-Termination Exercise Period (PTEP)",
+      "simple": "How long you have to exercise vested options after leaving the company. Standard is 90 days, but extended periods (5-10 years) are increasingly common.",
+      "detailed": "This is one of the most important terms. Short exercise windows (30-90 days) force you to either pay potentially large exercise costs immediately when you leave, or forfeit your vested options. Extended windows give you flexibility.",
+      "example": "If you have 50,000 vested options at $2 strike, a 90-day window means you need $100,000 within 3 months of leaving, or lose them."
+    },
+    "early-exercise": {
+      "term": "Early Exercise",
+      "simple": "The ability to exercise options before they vest. Combined with an 83(b) election, this can provide significant tax benefits.",
+      "detailed": "Early exercise lets you buy unvested shares (which remain subject to vesting/repurchase). If you file an 83(b) election within 30 days, you start your capital gains clock immediately and may avoid AMT issues later.",
+      "example": "If you early exercise at a $0.10 strike and file 83(b), you pay minimal tax now. If the company later sells at $50/share, all gains could be long-term capital gains."
+    },
+    "83b-election": {
+      "term": "83(b) Election",
+      "simple": "A tax election that lets you pay income tax on stock at today's (lower) value rather than when it vests at a (potentially higher) value.",
+      "detailed": "Must be filed within 30 days of receiving restricted stock or early-exercising options. You pay tax on the current spread now, but all future appreciation becomes capital gains. If the stock becomes worthless, you've paid unnecessary tax.",
+      "example": "You early exercise 100,000 shares at $0.01 when FMV is $0.01. You file 83(b) and pay almost no tax. Years later the shares are worth $10 each - all $999,999 gain is capital gains."
+    },
+    "single-trigger-acceleration": {
+      "term": "Single-Trigger Acceleration",
+      "simple": "Your unvested equity accelerates immediately when the company is acquired, regardless of what happens to your job.",
+      "detailed": "With single-trigger, a change of control event (like acquisition) automatically accelerates some or all of your unvested equity. This is favorable but less common than double-trigger.",
+      "example": "If you have 50% unvested and the company is acquired, single-trigger acceleration would immediately vest that 50%."
+    },
+    "double-trigger-acceleration": {
+      "term": "Double-Trigger Acceleration",
+      "simple": "Your equity accelerates only if BOTH: (1) the company is acquired AND (2) you're terminated within a certain period (usually 12-24 months).",
+      "detailed": "Double-trigger protects employees from being acquired and then laid off before their equity vests. It's more common and more acceptable to acquirers than single-trigger because it maintains retention incentives.",
+      "example": "Company is acquired, and 6 months later you're laid off. With double-trigger, your remaining unvested equity (say 30%) immediately vests."
+    },
+    "option-pool": {
+      "term": "Option Pool",
+      "simple": "Shares reserved for employee equity grants. A larger remaining pool means more equity available for future hires (and potentially refresher grants for you).",
+      "detailed": "Companies typically reserve 10-20% of shares for the option pool. VCs often require a pool top-up before investing. Your grant comes from this pool. A depleted pool might mean smaller future refresher grants.",
+      "example": "If the pool is 15% of the company and only 3% remains, the company may need to create more shares (diluting everyone) before hiring aggressively."
+    },
+    "amt": {
+      "term": "Alternative Minimum Tax (AMT)",
+      "simple": "A parallel tax system that can trigger large tax bills when you exercise ISOs, even if you don't sell the shares.",
+      "detailed": "When exercising ISOs, the spread (FMV minus strike) is an AMT preference item. You might owe AMT on 'paper gains' you can't realize until the company goes public or is acquired. This has bankrupted people.",
+      "example": "You exercise ISOs with $500k spread. You owe ~$140k in AMT. The company fails. You owe $140k in taxes on worthless shares."
+    }
+  },
+
+  "askEmployerQuestions": [
+    {
+      "id": "409a-valuation",
+      "question": "What is the current 409A fair market value per share?",
+      "why": "This determines your option strike price - the price you'll pay to exercise. A lower 409A means more upside for you.",
+      "ifTheyRefuse": "Ask when the last 409A was done and if they can share a range. If they won't share any pricing info, that's a yellow flag.",
+      "relatedFields": ["strikePrice"],
+      "importance": "critical"
+    },
+    {
+      "id": "shares-outstanding",
+      "question": "How many fully diluted shares are outstanding?",
+      "why": "Combined with your share count, this tells you what percentage of the company you'll own. Without this, your share count is meaningless.",
+      "ifTheyRefuse": "Ask what percentage of the company your grant represents. They should be willing to share this.",
+      "relatedFields": ["totalSharesOutstanding", "percentOfCompany"],
+      "importance": "critical"
+    },
+    {
+      "id": "latest-valuation",
+      "question": "What was the company's valuation in the last funding round?",
+      "why": "This helps you estimate the current value of your equity and understand the company's trajectory.",
+      "ifTheyRefuse": "Ask about the funding history - when was the last round, how much was raised? You can estimate valuation from this.",
+      "relatedFields": ["latestValuation"],
+      "importance": "important"
+    },
+    {
+      "id": "option-pool",
+      "question": "What percentage is the option pool, and how much is remaining?",
+      "why": "A depleted pool might mean your refresher grants will be smaller. It also indicates how much equity has been granted to other employees.",
+      "ifTheyRefuse": "This is less commonly shared, but you can ask whether they expect to need to expand the pool soon.",
+      "relatedFields": ["optionPoolPercent"],
+      "importance": "helpful"
+    },
+    {
+      "id": "exercise-period",
+      "question": "What is the post-termination exercise period?",
+      "why": "Standard is 90 days, but extended periods (5-10 years) are increasingly common and much more employee-friendly.",
+      "ifTheyRefuse": "This should be in your option agreement. Ask to see a draft before accepting.",
+      "relatedFields": ["exercisePeriod"],
+      "importance": "critical"
+    },
+    {
+      "id": "acceleration",
+      "question": "Is there acceleration on change of control? Single or double-trigger?",
+      "why": "If the company is acquired and you're let go, acceleration ensures you keep unvested equity. Without it, you could lose significant value.",
+      "ifTheyRefuse": "Ask if this is negotiable or if they have a standard policy for employees at your level.",
+      "relatedFields": ["accelerationProvision"],
+      "importance": "important"
+    },
+    {
+      "id": "early-exercise",
+      "question": "Is early exercise available?",
+      "why": "Early exercise with an 83(b) election can provide significant tax benefits, especially at early-stage companies with low valuations.",
+      "ifTheyRefuse": "This is a company policy, so they should know. If it's not available, ask if it's something they'd consider.",
+      "relatedFields": ["earlyExerciseAllowed"],
+      "importance": "important"
+    },
+    {
+      "id": "equity-type",
+      "question": "Will the options be ISOs or NSOs?",
+      "why": "ISOs have more favorable tax treatment for employees. NSOs are more common for later hires or high-value grants.",
+      "ifTheyRefuse": "This should be straightforward to answer based on your role and grant size.",
+      "relatedFields": ["equityType"],
+      "importance": "important"
+    }
+  ],
+
+  "negotiationSuggestions": {
+    "extendedExercise": {
+      "id": "extended-exercise",
+      "category": "non-obvious",
+      "title": "Extended Post-Termination Exercise Period",
+      "currentTypical": "90 days",
+      "suggestedValue": "5-10 years or until company exit",
+      "rationale": "The standard 90-day window can force you to pay tens or hundreds of thousands of dollars immediately when you leave, or lose your vested options entirely. An extended window costs the company nothing (they're already committed to those shares) but gives you flexibility.",
+      "suggestedLanguage": "I'd like to request an extended post-termination exercise period of 10 years (or until a liquidity event). This is increasingly common at startups like Pinterest, Quora, and Coinbase, and doesn't dilute existing shareholders or cost the company anything.",
+      "difficulty": "medium",
+      "successLikelihood": "medium",
+      "impactLevel": "high"
+    },
+    "doubleTrigger": {
+      "id": "double-trigger",
+      "category": "non-obvious",
+      "title": "Double-Trigger Vesting Acceleration",
+      "currentTypical": "No acceleration",
+      "suggestedValue": "100% acceleration on acquisition + involuntary termination within 12 months",
+      "rationale": "Without this, if the company is acquired and you're laid off, you could lose all your unvested equity - potentially years of work. Double-trigger protects you while still maintaining retention incentives for the acquiring company.",
+      "suggestedLanguage": "I'd like to include double-trigger acceleration - 100% of unvested shares accelerate if there's a change of control AND I'm involuntarily terminated within 12 months. This is standard protection that doesn't affect retention incentives.",
+      "difficulty": "hard",
+      "successLikelihood": "medium",
+      "impactLevel": "high"
+    },
+    "earlyExercise": {
+      "id": "early-exercise",
+      "category": "non-obvious",
+      "title": "Early Exercise with 83(b) Election",
+      "currentTypical": "Not allowed",
+      "suggestedValue": "Allow early exercise of unvested options",
+      "rationale": "Early exercise lets you start your capital gains clock immediately. Combined with an 83(b) election when the strike price is low, this can convert ordinary income into long-term capital gains, potentially saving 15-20% in taxes.",
+      "suggestedLanguage": "Does the company allow early exercise of options? I'd like the ability to exercise unvested shares and file an 83(b) election to optimize my tax situation. This is a common feature that many startups offer.",
+      "difficulty": "easy",
+      "successLikelihood": "high",
+      "impactLevel": "medium"
+    },
+    "refresherGrant": {
+      "id": "refresher-timing",
+      "category": "non-obvious",
+      "title": "Refresher Grant Commitment",
+      "currentTypical": "No commitment",
+      "suggestedValue": "Annual refresh grants tied to performance",
+      "rationale": "Your initial grant will be mostly vested after 2-3 years. Without refresher grants, your equity participation diminishes over time while your contributions may increase.",
+      "suggestedLanguage": "Can you share the company's policy on equity refresh grants? I'd like to understand how top performers receive additional grants and whether there's a target annual refresher amount.",
+      "difficulty": "easy",
+      "successLikelihood": "high",
+      "impactLevel": "medium"
+    },
+    "signingBonus": {
+      "id": "signing-bonus-bridge",
+      "category": "non-obvious",
+      "title": "Signing Bonus to Bridge Equity Gap",
+      "currentTypical": "$0",
+      "suggestedValue": "$10,000-$50,000",
+      "rationale": "If salary is at budget but equity is below market, a signing bonus can bridge the gap without permanently increasing the company's salary obligations.",
+      "suggestedLanguage": "Given that the equity grant is below the 50th percentile for my role and level, would you consider a signing bonus of $25,000 to help bridge that gap? It's a one-time cost that doesn't affect ongoing burn rate.",
+      "difficulty": "medium",
+      "successLikelihood": "medium",
+      "impactLevel": "medium"
+    },
+    "baseSalary": {
+      "id": "base-salary",
+      "category": "standard",
+      "title": "Base Salary Increase",
+      "currentTypical": "Offered amount",
+      "suggestedValue": "Market median or 75th percentile",
+      "rationale": "Base salary is the most liquid and reliable form of compensation. It also affects your 401k contributions, bonus calculations, and future salary negotiations.",
+      "suggestedLanguage": "Based on my research, the market rate for this role is $X-$Y. I'd like to discuss bringing the base salary closer to $Z, which reflects my experience and the value I'll bring.",
+      "difficulty": "medium",
+      "successLikelihood": "high",
+      "impactLevel": "high"
+    },
+    "equityIncrease": {
+      "id": "equity-increase",
+      "category": "standard",
+      "title": "Equity Grant Increase",
+      "currentTypical": "Offered amount",
+      "suggestedValue": "Market median or 75th percentile",
+      "rationale": "More equity increases your upside if the company succeeds. At early-stage companies especially, equity can be more valuable than salary.",
+      "suggestedLanguage": "I'm very excited about the company's potential and would like to have more ownership stake. Would you consider increasing the equity grant to X shares (Y% of the company)?",
+      "difficulty": "medium",
+      "successLikelihood": "medium",
+      "impactLevel": "high"
+    }
+  },
+
+  "counterOfferTemplates": {
+    "balanced": {
+      "id": "balanced",
+      "subject": "Offer Discussion - [Your Name] for [Role]",
+      "opening": "Thank you for the offer to join [Company] as [Role]. I'm excited about the opportunity and the team, and I've given the offer careful consideration.",
+      "transition": "After reviewing the compensation package and researching market rates for similar roles, I'd like to discuss a few adjustments that would make this work well for both of us:",
+      "closing": "I'm confident we can find an arrangement that works for everyone. I'm very motivated to join the team and contribute to [Company]'s success. Would you be available for a call this week to discuss?"
+    },
+    "enthusiastic": {
+      "id": "enthusiastic",
+      "subject": "Very Excited About the Offer - A Few Questions",
+      "opening": "Thank you so much for the offer! I've really enjoyed getting to know the team and I'm genuinely excited about what [Company] is building.",
+      "transition": "Before I sign, I wanted to discuss a few details about the compensation package. I want to make sure I can fully commit and be set up for long-term success:",
+      "closing": "I want to be transparent that I'm very interested in joining - these are just clarifying discussions, not deal-breakers. Looking forward to working this out together!"
+    }
+  }
+}
