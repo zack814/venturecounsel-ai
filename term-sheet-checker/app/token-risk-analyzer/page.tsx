@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
@@ -376,6 +376,115 @@ function InfoBox({ type, title, children }: { type: 'info' | 'warning' | 'tip'; 
         <div>
           <p className="font-semibold mb-1">{title}</p>
           <div className="text-sm">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Entity Card component with local state to prevent focus loss
+interface EntityCardProps {
+  entity: EntityComponent;
+  index: number;
+  onUpdate: (id: string, field: keyof EntityComponent, value: string) => void;
+  onRemove: (id: string) => void;
+  entityTypes: { value: string; label: string }[];
+  entityRoles: { value: string; label: string }[];
+}
+
+function EntityCard({ entity, index, onUpdate, onRemove, entityTypes, entityRoles }: EntityCardProps) {
+  // Local state for text inputs to prevent focus loss during typing
+  const [localJurisdiction, setLocalJurisdiction] = useState(entity.jurisdiction);
+  const [localDescription, setLocalDescription] = useState(entity.description);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Sync local state when entity prop changes (e.g., from template selection)
+  useEffect(() => {
+    setLocalJurisdiction(entity.jurisdiction);
+    setLocalDescription(entity.description);
+  }, [entity.id, entity.jurisdiction, entity.description]);
+
+  const handleJurisdictionChange = (value: string) => {
+    setLocalJurisdiction(value);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      onUpdate(entity.id, 'jurisdiction', value);
+    }, 300);
+  };
+
+  const handleDescriptionChange = (value: string) => {
+    setLocalDescription(value);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      onUpdate(entity.id, 'description', value);
+    }, 300);
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-xl p-5">
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="font-medium text-navy-900">Entity {index + 1}</h4>
+        <button
+          type="button"
+          onClick={() => onRemove(entity.id)}
+          className="text-red-600 hover:text-red-700 text-sm"
+        >
+          Remove
+        </button>
+      </div>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Entity Type</label>
+          <select
+            value={entity.type}
+            onChange={e => onUpdate(entity.id, 'type', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
+          >
+            <option value="">Select type</option>
+            {entityTypes.map(t => (
+              <option key={t.value} value={t.value}>{t.label}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Jurisdiction</label>
+          <input
+            type="text"
+            value={localJurisdiction}
+            onChange={e => handleJurisdictionChange(e.target.value)}
+            placeholder="e.g., Delaware, USA"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+          <select
+            value={entity.role}
+            onChange={e => onUpdate(entity.id, 'role', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
+          >
+            <option value="">Select role</option>
+            {entityRoles.map(r => (
+              <option key={r.value} value={r.value}>{r.label}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <input
+            type="text"
+            value={localDescription}
+            onChange={e => handleDescriptionChange(e.target.value)}
+            placeholder="Brief description of this entity's purpose"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
+          />
         </div>
       </div>
     </div>
@@ -1032,66 +1141,15 @@ export default function TokenRiskPage() {
               <p className="text-gray-500 text-sm italic py-4 text-center">Select a template above or add entities manually.</p>
             ) : (
               formData.entityStructure.map((entity, index) => (
-                <div key={entity.id} className="bg-white border border-gray-200 rounded-xl p-5">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-medium text-navy-900">Entity {index + 1}</h4>
-                    <button
-                      type="button"
-                      onClick={() => removeEntity(entity.id)}
-                      className="text-red-600 hover:text-red-700 text-sm"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Entity Type</label>
-                      <select
-                        value={entity.type}
-                        onChange={e => updateEntity(entity.id, 'type', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
-                      >
-                        <option value="">Select type</option>
-                        {ENTITY_TYPES.map(t => (
-                          <option key={t.value} value={t.value}>{t.label}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Jurisdiction</label>
-                      <input
-                        type="text"
-                        value={entity.jurisdiction}
-                        onChange={e => updateEntity(entity.id, 'jurisdiction', e.target.value)}
-                        placeholder="e.g., Delaware, USA"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                      <select
-                        value={entity.role}
-                        onChange={e => updateEntity(entity.id, 'role', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
-                      >
-                        <option value="">Select role</option>
-                        {ENTITY_ROLES.map(r => (
-                          <option key={r.value} value={r.value}>{r.label}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                      <input
-                        type="text"
-                        value={entity.description}
-                        onChange={e => updateEntity(entity.id, 'description', e.target.value)}
-                        placeholder="Brief description of this entity's purpose"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <EntityCard
+                  key={entity.id}
+                  entity={entity}
+                  index={index}
+                  onUpdate={updateEntity}
+                  onRemove={removeEntity}
+                  entityTypes={ENTITY_TYPES}
+                  entityRoles={ENTITY_ROLES}
+                />
               ))
             )}
           </div>
