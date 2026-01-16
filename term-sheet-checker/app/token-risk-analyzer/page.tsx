@@ -243,7 +243,7 @@ const initialFormData: FormData = {
 };
 
 // ============================================================================
-// TOOLTIP COMPONENT
+// REUSABLE FORM COMPONENTS (defined outside main component to prevent re-renders)
 // ============================================================================
 
 function Tooltip({ content }: { content: string }) {
@@ -267,6 +267,118 @@ function Tooltip({ content }: { content: string }) {
         </div>
       )}
     </span>
+  );
+}
+
+function FormField({ label, tooltip, children, required }: { label: string; tooltip?: string; children: React.ReactNode; required?: boolean }) {
+  return (
+    <div className="mb-5">
+      <label className="block text-sm font-semibold text-gray-700 mb-2">
+        {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
+        {tooltip && <Tooltip content={tooltip} />}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function TextInput({ value, onChange, placeholder, className = '' }: { value: string; onChange: (v: string) => void; placeholder?: string; className?: string }) {
+  return (
+    <input
+      type="text"
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      placeholder={placeholder}
+      className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors ${className}`}
+    />
+  );
+}
+
+function TextArea({ value, onChange, placeholder, rows = 4 }: { value: string; onChange: (v: string) => void; placeholder?: string; rows?: number }) {
+  return (
+    <textarea
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      placeholder={placeholder}
+      rows={rows}
+      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
+    />
+  );
+}
+
+function Select({ value, onChange, options, placeholder }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[]; placeholder?: string }) {
+  return (
+    <select
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
+    >
+      {placeholder && <option value="">{placeholder}</option>}
+      {options.map(opt => (
+        <option key={opt.value} value={opt.value}>{opt.label}</option>
+      ))}
+    </select>
+  );
+}
+
+function CheckboxCard({ checked, onChange, label, description }: { checked: boolean; onChange: () => void; label: string; description?: string }) {
+  return (
+    <label className={`flex items-start p-4 border rounded-xl cursor-pointer transition-all ${checked ? 'border-cyan-500 bg-cyan-50' : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        className="h-5 w-5 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded mt-0.5"
+      />
+      <div className="ml-3">
+        <span className="text-gray-900 font-medium">{label}</span>
+        {description && <p className="text-gray-500 text-sm mt-0.5">{description}</p>}
+      </div>
+    </label>
+  );
+}
+
+function RadioOption({ name, value, checked, onChange, label, description }: { name: string; value: string; checked: boolean; onChange: () => void; label: string; description?: string }) {
+  return (
+    <label className={`flex items-start p-4 border rounded-xl cursor-pointer transition-all ${checked ? 'border-cyan-500 bg-cyan-50' : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}>
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        className="h-5 w-5 text-cyan-600 focus:ring-cyan-500 border-gray-300 mt-0.5"
+      />
+      <div className="ml-3">
+        <span className="text-gray-900 font-medium">{label}</span>
+        {description && <p className="text-gray-500 text-sm mt-0.5">{description}</p>}
+      </div>
+    </label>
+  );
+}
+
+function InfoBox({ type, title, children }: { type: 'info' | 'warning' | 'tip'; title: string; children: React.ReactNode }) {
+  const styles = {
+    info: 'bg-blue-50 border-blue-200 text-blue-800',
+    warning: 'bg-amber-50 border-amber-200 text-amber-800',
+    tip: 'bg-green-50 border-green-200 text-green-800',
+  };
+  const icons = {
+    info: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
+    warning: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />,
+    tip: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />,
+  };
+  return (
+    <div className={`rounded-xl border p-4 mb-6 ${styles[type]}`}>
+      <div className="flex items-start gap-3">
+        <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">{icons[type]}</svg>
+        <div>
+          <p className="font-semibold mb-1">{title}</p>
+          <div className="text-sm">{children}</div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -627,110 +739,6 @@ export default function TokenRiskPage() {
       counselGuidance,
     };
   }
-
-  // --------------------------------------------------------------------------
-  // Render Components
-  // --------------------------------------------------------------------------
-
-  const FormField = ({ label, tooltip, children, required }: { label: string; tooltip?: string; children: React.ReactNode; required?: boolean }) => (
-    <div className="mb-5">
-      <label className="block text-sm font-semibold text-gray-700 mb-2">
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-        {tooltip && <Tooltip content={tooltip} />}
-      </label>
-      {children}
-    </div>
-  );
-
-  const TextInput = ({ value, onChange, placeholder, className = '' }: { value: string; onChange: (v: string) => void; placeholder?: string; className?: string }) => (
-    <input
-      type="text"
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      placeholder={placeholder}
-      className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors ${className}`}
-    />
-  );
-
-  const TextArea = ({ value, onChange, placeholder, rows = 4 }: { value: string; onChange: (v: string) => void; placeholder?: string; rows?: number }) => (
-    <textarea
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      placeholder={placeholder}
-      rows={rows}
-      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
-    />
-  );
-
-  const Select = ({ value, onChange, options, placeholder }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[]; placeholder?: string }) => (
-    <select
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
-    >
-      {placeholder && <option value="">{placeholder}</option>}
-      {options.map(opt => (
-        <option key={opt.value} value={opt.value}>{opt.label}</option>
-      ))}
-    </select>
-  );
-
-  const CheckboxCard = ({ checked, onChange, label, description }: { checked: boolean; onChange: () => void; label: string; description?: string }) => (
-    <label className={`flex items-start p-4 border rounded-xl cursor-pointer transition-all ${checked ? 'border-cyan-500 bg-cyan-50' : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        className="h-5 w-5 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded mt-0.5"
-      />
-      <div className="ml-3">
-        <span className="text-gray-900 font-medium">{label}</span>
-        {description && <p className="text-gray-500 text-sm mt-0.5">{description}</p>}
-      </div>
-    </label>
-  );
-
-  const RadioOption = ({ name, value, checked, onChange, label, description }: { name: string; value: string; checked: boolean; onChange: () => void; label: string; description?: string }) => (
-    <label className={`flex items-start p-4 border rounded-xl cursor-pointer transition-all ${checked ? 'border-cyan-500 bg-cyan-50' : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}>
-      <input
-        type="radio"
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        className="h-5 w-5 text-cyan-600 focus:ring-cyan-500 border-gray-300 mt-0.5"
-      />
-      <div className="ml-3">
-        <span className="text-gray-900 font-medium">{label}</span>
-        {description && <p className="text-gray-500 text-sm mt-0.5">{description}</p>}
-      </div>
-    </label>
-  );
-
-  const InfoBox = ({ type, title, children }: { type: 'info' | 'warning' | 'tip'; title: string; children: React.ReactNode }) => {
-    const styles = {
-      info: 'bg-blue-50 border-blue-200 text-blue-800',
-      warning: 'bg-amber-50 border-amber-200 text-amber-800',
-      tip: 'bg-green-50 border-green-200 text-green-800',
-    };
-    const icons = {
-      info: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
-      warning: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />,
-      tip: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />,
-    };
-    return (
-      <div className={`rounded-xl border p-4 mb-6 ${styles[type]}`}>
-        <div className="flex items-start gap-3">
-          <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">{icons[type]}</svg>
-          <div>
-            <p className="font-semibold mb-1">{title}</p>
-            <div className="text-sm">{children}</div>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   // --------------------------------------------------------------------------
   // Step Renderers
