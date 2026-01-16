@@ -19,6 +19,7 @@ export default function Navigation() {
     { href: '/comp-optimizer', label: 'Comp Optimizer' },
     { href: '/offer-evaluator', label: 'Offer Evaluator' },
     { href: '/contract-review', label: 'Contract Review' },
+    { href: '/token-risk-analyzer', label: 'Token Risk Analyzer' },
   ];
 
   const resourceLinks = [
