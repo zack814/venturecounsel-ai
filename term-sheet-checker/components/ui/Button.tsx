@@ -4,11 +4,23 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'success' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
 }
 
+/**
+ * Consolidated Button component for all wizards and UI.
+ * Replaces duplicate buttons in comp-optimizer/ui and offer-evaluator/ui.
+ *
+ * Variants:
+ * - primary: Main action button (navy theme)
+ * - secondary: Alternative action (slate)
+ * - outline: Bordered button for secondary actions
+ * - ghost: Minimal button for tertiary actions
+ * - success: Positive action (emerald)
+ * - danger: Destructive action (red)
+ */
 export function Button({
   children,
   className,
@@ -21,10 +33,12 @@ export function Button({
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    primary: 'bg-navy-700 text-white hover:bg-navy-800 focus:ring-navy-500',
     secondary: 'bg-slate-600 text-white hover:bg-slate-700 focus:ring-slate-500',
-    outline: 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 focus:ring-blue-500',
+    outline: 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 focus:ring-navy-500',
     ghost: 'text-slate-600 hover:bg-slate-100 focus:ring-slate-500',
+    success: 'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500',
+    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   };
 
   const sizes = {
@@ -45,6 +59,7 @@ export function Button({
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <circle
             className="opacity-25"

@@ -10,8 +10,8 @@ import { Step3Cash } from './steps/Step3Cash';
 import { Step4Equity } from './steps/Step4Equity';
 import { Step5Negotiation } from './steps/Step5Negotiation';
 import { Step6Review } from './steps/Step6Review';
-import { Button } from '@/components/offer-evaluator/ui/Button';
-import { Card, CardContent, CardFooter } from '@/components/offer-evaluator/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import { AlertCircle } from 'lucide-react';
 
 const steps = [

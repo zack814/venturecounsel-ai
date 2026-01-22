@@ -25,7 +25,12 @@ import {
 } from './prompts';
 import { loadMarketNorms, loadClauseLibrary, getClause } from '../utils/loaders';
 
-const MODEL = 'claude-3-5-haiku-20241022'; // Using Claude 3.5 Haiku - fastest and cheapest option
+// Model configuration - can be overridden via environment variable
+const MODEL = process.env.ANTHROPIC_MODEL || 'claude-3-5-haiku-20241022';
+
+// Retry configuration for API resilience
+const MAX_RETRIES = 3;
+const BASE_DELAY_MS = 1000;
 
 // Initialize Anthropic client at runtime, not at module load time
 function getAnthropicClient() {
@@ -34,6 +39,53 @@ function getAnthropicClient() {
     throw new Error('ANTHROPIC_API_KEY environment variable is not set');
   }
   return new Anthropic({ apiKey });
+}
+
+/**
+ * Retry wrapper with exponential backoff for API calls.
+ * Handles transient failures like rate limits, network issues, and server errors.
+ *
+ * @param fn - Async function to retry
+ * @param maxRetries - Maximum number of retry attempts (default: 3)
+ * @param baseDelayMs - Base delay in milliseconds, doubles each retry (default: 1000)
+ */
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  maxRetries: number = MAX_RETRIES,
+  baseDelayMs: number = BASE_DELAY_MS
+): Promise<T> {
+  let lastError: Error | null = null;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+
+      // Don't retry on non-retryable errors (auth issues, validation errors)
+      const errorMessage = lastError.message.toLowerCase();
+      if (
+        errorMessage.includes('invalid_api_key') ||
+        errorMessage.includes('authentication') ||
+        errorMessage.includes('unauthorized') ||
+        errorMessage.includes('invalid_request')
+      ) {
+        throw lastError;
+      }
+
+      // Log and retry on transient errors
+      if (attempt < maxRetries) {
+        const delay = baseDelayMs * Math.pow(2, attempt - 1);
+        console.warn(
+          `API call failed (attempt ${attempt}/${maxRetries}), retrying in ${delay}ms:`,
+          lastError.message
+        );
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+  throw lastError || new Error('All retry attempts failed');
 }
 
 /**
@@ -134,15 +186,18 @@ Return a JSON object with this exact structure:
 
   const anthropic = getAnthropicClient();
 
-  const message = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 8192,
-    temperature: 0,
-    messages: [{
-      role: 'user',
-      content: prompt
-    }]
-  });
+  // Use retry wrapper for resilience against transient API failures
+  const message = await withRetry(() =>
+    anthropic.messages.create({
+      model: MODEL,
+      max_tokens: 8192,
+      temperature: 0,
+      messages: [{
+        role: 'user',
+        content: prompt
+      }]
+    })
+  );
 
   const responseText = message.content[0].type === 'text' ? message.content[0].text : '';
   const jsonMatch = responseText.match(/\{[\s\S]*\}/);
@@ -284,15 +339,18 @@ async function generateExecutiveSummary(
   );
   const anthropic = getAnthropicClient();
 
-  const message = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 2048,
-    temperature: 0.3,
-    messages: [{
-      role: 'user',
-      content: prompt
-    }]
-  });
+  // Use retry wrapper for resilience
+  const message = await withRetry(() =>
+    anthropic.messages.create({
+      model: MODEL,
+      max_tokens: 2048,
+      temperature: 0.3,
+      messages: [{
+        role: 'user',
+        content: prompt
+      }]
+    })
+  );
 
   const responseText = message.content[0].type === 'text' ? message.content[0].text : '';
 
@@ -409,15 +467,18 @@ async function generateNegotiationPlan(
   );
   const anthropic = getAnthropicClient();
 
-  const message = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 3072,
-    temperature: 0.3,
-    messages: [{
-      role: 'user',
-      content: prompt
-    }]
-  });
+  // Use retry wrapper for resilience
+  const message = await withRetry(() =>
+    anthropic.messages.create({
+      model: MODEL,
+      max_tokens: 3072,
+      temperature: 0.3,
+      messages: [{
+        role: 'user',
+        content: prompt
+      }]
+    })
+  );
 
   const responseText = message.content[0].type === 'text' ? message.content[0].text : '';
 

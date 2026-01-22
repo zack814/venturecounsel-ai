@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
+import { isAdminAuthenticated } from '@/lib/utils/auth';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -11,8 +12,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ testimonials: [] });
     }
 
-    const authHeader = request.headers.get('x-admin-password');
-    const isAdmin = authHeader === process.env.ADMIN_PASSWORD;
+    const isAdmin = isAdminAuthenticated(request);
 
     let query = supabase
       .from('user_testimonials')
@@ -112,8 +112,7 @@ export async function POST(request: NextRequest) {
 // PATCH - Approve/feature testimonial (admin only)
 export async function PATCH(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('x-admin-password');
-    if (authHeader !== process.env.ADMIN_PASSWORD) {
+    if (!isAdminAuthenticated(request)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

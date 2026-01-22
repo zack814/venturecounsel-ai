@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useWizard } from '../WizardContext';
-import { RadioGroup } from '@/components/comp-optimizer/ui/Input';
+import { RadioGroup } from '@/components/ui/FormField';
 import type { PriorityLevel } from '@/lib/comp-schemas';
 
 const priorityOptions = [

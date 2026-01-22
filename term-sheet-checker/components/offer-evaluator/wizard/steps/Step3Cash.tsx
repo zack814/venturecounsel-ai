@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useOfferEvaluator } from '../OfferEvaluatorContext';
-import { FormField, Input } from '@/components/offer-evaluator/ui/FormField';
+import { FormField, Input } from '@/components/ui/FormField';
 import { DollarSign, TrendingUp } from 'lucide-react';
 
 export function Step3Cash() {

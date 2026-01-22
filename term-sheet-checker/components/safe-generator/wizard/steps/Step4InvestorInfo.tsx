@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useSafeWizard } from '../SafeWizardContext';
-import { Input, Select, RadioGroup } from '@/components/comp-optimizer/ui/Input';
+import { Input, Select, RadioGroup } from '@/components/ui/FormField';
 import { US_STATES } from '@/lib/safe-types';
 import { cn } from '@/lib/utils';
 

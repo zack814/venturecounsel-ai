@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useWizard } from '../WizardContext';
-import { Select, Input } from '@/components/comp-optimizer/ui/Input';
+import { Select, Input } from '@/components/ui/FormField';
 import type { CompanyStage, GeoMarket, HeadcountRange } from '@/lib/comp-schemas';
 
 const stageOptions = [

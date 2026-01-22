@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
+import { isAdminAuthenticated } from '@/lib/utils/auth';
 
 const VALID_TOOLS = ['safe_generator', 'term_sheet_analyzer', 'contract_review', 'comp_optimizer'];
 
@@ -70,8 +71,7 @@ export async function POST(request: NextRequest) {
 // GET - Get feedback summary (admin only)
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('x-admin-password');
-    if (authHeader !== process.env.ADMIN_PASSWORD) {
+    if (!isAdminAuthenticated(request)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

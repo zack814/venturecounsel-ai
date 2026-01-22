@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useWizard } from '../WizardContext';
-import { RadioGroup } from '@/components/comp-optimizer/ui/Input';
+import { RadioGroup } from '@/components/ui/FormField';
 import type { CompetingOffersLevel, RiskTolerance, StartUrgency } from '@/lib/comp-schemas';
 
 const competingOffersOptions = [

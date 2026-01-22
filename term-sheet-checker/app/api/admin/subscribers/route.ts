@@ -1,19 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase, EmailSubscriber } from '@/lib/supabase';
+import { isAdminAuthenticated } from '@/lib/utils/auth';
+
+// Maximum limit to prevent excessive data retrieval
+const MAX_LIMIT = 500;
 
 export async function GET(request: NextRequest) {
-  // Check admin password
-  const password = request.headers.get('x-admin-password');
-  const adminPassword = process.env.ADMIN_PASSWORD;
-
-  if (!adminPassword) {
-    return NextResponse.json(
-      { error: 'Admin not configured' },
-      { status: 503 }
-    );
-  }
-
-  if (password !== adminPassword) {
+  // Check admin password with constant-time comparison
+  if (!isAdminAuthenticated(request)) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }
@@ -32,7 +26,9 @@ export async function GET(request: NextRequest) {
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
     const page = parseInt(searchParams.get('page') || '1', 10);
-    const limit = parseInt(searchParams.get('limit') || '50', 10);
+    const requestedLimit = parseInt(searchParams.get('limit') || '50', 10);
+    // Cap limit to prevent excessive data retrieval
+    const limit = Math.min(Math.max(1, requestedLimit), MAX_LIMIT);
     const source = searchParams.get('source');
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
@@ -90,11 +86,8 @@ export async function GET(request: NextRequest) {
 
 // Export endpoint for CSV download
 export async function POST(request: NextRequest) {
-  // Check admin password
-  const password = request.headers.get('x-admin-password');
-  const adminPassword = process.env.ADMIN_PASSWORD;
-
-  if (!adminPassword || password !== adminPassword) {
+  // Check admin password with constant-time comparison
+  if (!isAdminAuthenticated(request)) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }

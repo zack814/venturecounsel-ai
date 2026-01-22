@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSafeWizard } from '../SafeWizardContext';
-import { Input } from '@/components/comp-optimizer/ui/Input';
+import { Input } from '@/components/ui/FormField';
 import { cn } from '@/lib/utils';
 import {
   SAFE_TYPE_INFO,

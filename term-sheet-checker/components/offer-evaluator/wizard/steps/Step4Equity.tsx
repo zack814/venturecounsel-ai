@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useOfferEvaluator } from '../OfferEvaluatorContext';
-import { FormField, Select, Input } from '@/components/offer-evaluator/ui/FormField';
+import { FormField, Select, Input } from '@/components/ui/FormField';
 import {
   EQUITY_TYPE_LABELS,
   EXERCISE_PERIOD_LABELS,

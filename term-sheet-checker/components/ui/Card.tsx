@@ -8,6 +8,10 @@ interface CardProps {
   className?: string;
 }
 
+/**
+ * Consolidated Card component for all wizards and UI.
+ * Replaces duplicate cards in comp-optimizer/ui and offer-evaluator/ui.
+ */
 export function Card({ children, className }: CardProps) {
   return (
     <div className={cn('bg-white rounded-xl shadow-sm border border-slate-200', className)}>

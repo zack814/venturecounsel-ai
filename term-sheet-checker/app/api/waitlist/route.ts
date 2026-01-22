@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
+import { isAdminAuthenticated } from '@/lib/utils/auth';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,11 +29,12 @@ export async function POST(request: NextRequest) {
     const normalizedEmail = email.toLowerCase().trim();
 
     // Check for existing signup
+    // Use maybeSingle() to return null if no match instead of throwing
     const { data: existing } = await supabase
       .from('premium_waitlist')
       .select('id')
       .eq('email', normalizedEmail)
-      .single();
+      .maybeSingle();
 
     if (existing) {
       return NextResponse.json({
@@ -85,8 +87,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ count: 0 });
     }
 
-    const authHeader = request.headers.get('x-admin-password');
-    const isAdmin = authHeader === process.env.ADMIN_PASSWORD;
+    const isAdmin = isAdminAuthenticated(request);
 
     if (isAdmin) {
       // Return full list for admin

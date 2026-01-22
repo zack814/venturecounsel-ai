@@ -346,29 +346,8 @@ export function calculateOwnership(
   return (investmentAmount / (valuationCap + investmentAmount)) * 100;
 }
 
-// Helper to format currency
-export function formatUSD(amount: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
-}
-
-// Helper to format large numbers
-export function formatValuation(amount: number): string {
-  if (amount >= 1000000000) {
-    return `$${(amount / 1000000000).toFixed(1)}B`;
-  }
-  if (amount >= 1000000) {
-    return `$${(amount / 1000000).toFixed(1)}M`;
-  }
-  if (amount >= 1000) {
-    return `$${(amount / 1000).toFixed(0)}K`;
-  }
-  return formatUSD(amount);
-}
+// Re-export formatting utilities from centralized location
+export { formatUSD, formatValuation } from '@/lib/utils';
 
 // US States for incorporation
 export const US_STATES = [

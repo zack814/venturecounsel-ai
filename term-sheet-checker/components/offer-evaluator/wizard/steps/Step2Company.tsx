@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useOfferEvaluator } from '../OfferEvaluatorContext';
-import { FormField, Select, Input, Checkbox } from '@/components/offer-evaluator/ui/FormField';
+import { FormField, Select, Input, Checkbox } from '@/components/ui/FormField';
 import {
   STAGE_LABELS,
   GEO_LABELS,

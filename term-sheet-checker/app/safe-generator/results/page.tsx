@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FeedbackModal from '@/components/FeedbackModal';
-import { Button } from '@/components/comp-optimizer/ui/Button';
-import { Card, CardContent, CardHeader, CardFooter } from '@/components/comp-optimizer/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/Card';
 import {
   generateSafeDocument,
   generateSideLetter,

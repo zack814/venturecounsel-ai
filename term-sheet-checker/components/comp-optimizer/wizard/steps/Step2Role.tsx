@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useWizard } from '../WizardContext';
-import { Select, Input } from '@/components/comp-optimizer/ui/Input';
+import { Select, Input } from '@/components/ui/FormField';
 import { normalizeRole } from '@/services/roleNormalizer';
 import type { JobFamily, JobLevel, LocationType, GeoMarket } from '@/lib/comp-schemas';
 

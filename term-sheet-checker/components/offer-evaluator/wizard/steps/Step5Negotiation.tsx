@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useOfferEvaluator } from '../OfferEvaluatorContext';
-import { FormField, Select, Checkbox, Textarea, Input } from '@/components/offer-evaluator/ui/FormField';
+import { FormField, Select, Checkbox, Textarea, Input } from '@/components/ui/FormField';
 import type { CompetingOffers, NegotiationPriority } from '@/lib/offer-evaluator-schemas';
 import { Sparkles, GripVertical } from 'lucide-react';
 

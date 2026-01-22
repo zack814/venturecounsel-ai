@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useOfferEvaluator } from '../OfferEvaluatorContext';
-import { FormField, Select, Input, RadioGroup } from '@/components/offer-evaluator/ui/FormField';
+import { FormField, Select, Input, RadioGroup } from '@/components/ui/FormField';
 import {
   JOB_FAMILY_LABELS,
   JOB_LEVEL_LABELS,

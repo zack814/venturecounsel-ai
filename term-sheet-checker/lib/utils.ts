@@ -33,3 +33,30 @@ export function percentToBps(percent: number): number {
 export function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
+
+// Alias for formatCurrency - used by safe-generator
+export const formatUSD = formatCurrency;
+
+// Format large numbers with M/B suffixes
+export function formatValuation(amount: number): string {
+  if (amount >= 1000000000) {
+    return `$${(amount / 1000000000).toFixed(1)}B`;
+  }
+  if (amount >= 1000000) {
+    return `$${(amount / 1000000).toFixed(1)}M`;
+  }
+  if (amount >= 1000) {
+    return `$${(amount / 1000).toFixed(0)}K`;
+  }
+  return formatCurrency(amount);
+}
+
+// Format shares with commas
+export function formatShares(shares: number): string {
+  return new Intl.NumberFormat('en-US').format(shares);
+}
+
+// Format multiples (e.g., 2.5x)
+export function formatMultiple(value: number): string {
+  return `${value.toFixed(1)}x`;
+}

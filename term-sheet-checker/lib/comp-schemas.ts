@@ -45,20 +45,31 @@ export type JobLevel = z.infer<typeof JobLevel>;
 export const LocationType = z.enum(['onsite', 'remote', 'hybrid']);
 export type LocationType = z.infer<typeof LocationType>;
 
-export const CompetingOffersLevel = z.enum(['none', 'some', 'high']);
-export type CompetingOffersLevel = z.infer<typeof CompetingOffersLevel>;
-
 export const RiskTolerance = z.enum(['low', 'medium', 'high']);
 export type RiskTolerance = z.infer<typeof RiskTolerance>;
+
+export const EquityType = z.enum(['iso', 'nso', 'rsu', 'restricted-stock']);
+export type EquityType = z.infer<typeof EquityType>;
+
+export const VestingSchedule = z.object({
+  totalMonths: z.number().positive().default(48),
+  cliffMonths: z.number().nonnegative().default(12),
+  vestingFrequency: z.enum(['monthly', 'quarterly', 'annually']).default('monthly'),
+});
+export type VestingSchedule = z.infer<typeof VestingSchedule>;
+
+// ============================================
+// COMP-OPTIMIZER SPECIFIC ENUMS
+// ============================================
+
+export const CompetingOffersLevel = z.enum(['none', 'some', 'high']);
+export type CompetingOffersLevel = z.infer<typeof CompetingOffersLevel>;
 
 export const StartUrgency = z.enum(['immediate', 'standard', 'flexible']);
 export type StartUrgency = z.infer<typeof StartUrgency>;
 
 export const PriorityLevel = z.enum(['high', 'normal']);
 export type PriorityLevel = z.infer<typeof PriorityLevel>;
-
-export const EquityType = z.enum(['iso', 'nso', 'rsu', 'restricted-stock']);
-export type EquityType = z.infer<typeof EquityType>;
 
 // ============================================
 // CORE DATA MODELS
@@ -101,13 +112,6 @@ export const CandidateContext = z.object({
   startUrgency: StartUrgency.default('standard'),
 });
 export type CandidateContext = z.infer<typeof CandidateContext>;
-
-export const VestingSchedule = z.object({
-  totalMonths: z.number().positive().default(48),
-  cliffMonths: z.number().nonnegative().default(12),
-  vestingFrequency: z.enum(['monthly', 'quarterly', 'annually']).default('monthly'),
-});
-export type VestingSchedule = z.infer<typeof VestingSchedule>;
 
 export const TokenProgram = z.object({
   enabled: z.boolean().default(false),

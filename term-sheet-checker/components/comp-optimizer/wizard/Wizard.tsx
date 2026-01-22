@@ -10,8 +10,8 @@ import { Step3Candidate } from './steps/Step3Candidate';
 import { Step4Constraints } from './steps/Step4Constraints';
 import { Step5Preferences } from './steps/Step5Preferences';
 import { Step6Generate } from './steps/Step6Generate';
-import { Button } from '@/components/comp-optimizer/ui/Button';
-import { Card, CardContent, CardFooter } from '@/components/comp-optimizer/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 
 const steps = [
   { number: 1, title: 'Company' },

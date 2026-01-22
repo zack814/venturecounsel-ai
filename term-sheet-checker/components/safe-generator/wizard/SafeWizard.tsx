@@ -10,8 +10,8 @@ import { Step3CompanyInfo } from './steps/Step3CompanyInfo';
 import { Step4InvestorInfo } from './steps/Step4InvestorInfo';
 import { Step5SideLetters } from './steps/Step5SideLetters';
 import { Step6Review } from './steps/Step6Review';
-import { Button } from '@/components/comp-optimizer/ui/Button';
-import { Card, CardContent, CardFooter } from '@/components/comp-optimizer/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 
 const steps = [
   { number: 1, title: 'SAFE Type' },

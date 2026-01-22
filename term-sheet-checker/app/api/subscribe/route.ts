@@ -56,11 +56,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Check for duplicate email
+    // Use maybeSingle() to return null if no match instead of throwing
     const { data: existing } = await supabase
       .from('email_subscribers')
       .select('id')
       .eq('email', normalizedEmail)
-      .single();
+      .maybeSingle();
 
     if (existing) {
       // Email already exists - still send the lead magnet but don't create duplicate

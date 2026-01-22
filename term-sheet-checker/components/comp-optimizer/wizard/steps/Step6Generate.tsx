@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useWizard } from '../WizardContext';
-import { Card, CardContent } from '@/components/comp-optimizer/ui/Card';
+import { Card, CardContent } from '@/components/ui/Card';
 import { formatCurrency } from '@/lib/utils';
 
 export function Step6Generate() {

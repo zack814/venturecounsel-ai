@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/comp-optimizer/ui/Button';
+import { Button } from '@/components/ui/Button';
 import type { OfferLanguageBlock, NegotiationLever } from '@/lib/comp-schemas';
 
 interface OfferLanguagePanelProps {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useWizard } from '../WizardContext';
-import { Input } from '@/components/comp-optimizer/ui/Input';
+import { Input } from '@/components/ui/FormField';
 
 export function Step4Constraints() {
   const { state, updateConstraints, updateTokenProgram } = useWizard();

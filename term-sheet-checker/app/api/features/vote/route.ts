@@ -29,12 +29,13 @@ export async function POST(request: NextRequest) {
       'anonymous';
 
     // Check if already voted
+    // Use maybeSingle() to return null if no vote exists instead of throwing
     const { data: existingVote } = await supabase
       .from('feature_votes')
       .select('id')
       .eq('feature_id', featureId)
       .eq('voter_identifier', identifier)
-      .single();
+      .maybeSingle();
 
     if (existingVote) {
       return NextResponse.json({
@@ -45,6 +46,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Add vote record
+    // NOTE: The vote_count is automatically incremented by a database trigger
+    // See: supabase/migrations/001_performance_optimizations.sql
     const { error: voteError } = await supabase
       .from('feature_votes')
       .insert({
@@ -53,7 +56,7 @@ export async function POST(request: NextRequest) {
       });
 
     if (voteError) {
-      // Likely duplicate vote due to race condition
+      // Likely duplicate vote due to race condition or unique constraint
       if (voteError.code === '23505') {
         return NextResponse.json({
           success: false,
@@ -68,24 +71,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Increment vote count
+    // Get updated vote count (already incremented by trigger)
     const { data: feature } = await supabase
       .from('feature_requests')
       .select('vote_count')
       .eq('id', featureId)
-      .single();
-
-    const newCount = (feature?.vote_count || 0) + 1;
-
-    await supabase
-      .from('feature_requests')
-      .update({ vote_count: newCount, updated_at: new Date().toISOString() })
-      .eq('id', featureId);
+      .maybeSingle();
 
     return NextResponse.json({
       success: true,
       message: 'Vote recorded!',
-      newVoteCount: newCount,
+      newVoteCount: feature?.vote_count || 1,
     });
   } catch (error) {
     console.error('Vote error:', error);
